@@ -10,6 +10,10 @@
 
 My highly experimental Nix (and *nix) based OS
 
+## Development
+
+Most development happens on other branches (and there will likely be a lot of them at any given time). See the `test` branch for a sampling of the latest experiments. Don't expect anything in `main` for a while.
+
 ## About
 
 As this repository is nowhere near a finished state, I would recommend subscribing to releases, so you can receive a GitHub notification when the first stable release is ready. You're probably wondering, however, what and perhaps *why* this is. Here's a little bit of context …
