@@ -49,17 +49,14 @@ quasar:
 
     # archives
     zip
-    xz
     unzip
 
     # utils
     fzf
     bat
-    pavucontrol
 
     # system monitoring
     nix-output-monitor
-    htop
     btop
 
     # wayland desktop utils
@@ -82,7 +79,7 @@ quasar:
     delta
     lazygit
     micro
-  ];
+  ] + (quasar.homePackages pkgs);
 
   wayland.windowManager.hyprland = {
     enable = true;

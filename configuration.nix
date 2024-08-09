@@ -142,7 +142,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     micro
-    wget
     curl
     bat
     librewolf
@@ -151,7 +150,7 @@
     gcc
     cachix
     gnupg
-  ];
+  ] ++ (quasar.systemPackages pkgs);
 
   # Git is an essential system package
   programs.git.enable = true;
