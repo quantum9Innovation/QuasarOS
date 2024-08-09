@@ -32,7 +32,7 @@ in {
   ];
   bind = [
     # Application Keybinds
-    "$mod, F, exec, firefox"
+    "$mod, F, exec, librewolf"
     "$mod, T, exec, kitty"
     "$mod, E, exec, dolphin"
     "$mod, R, exec, pavucontrol"
@@ -91,6 +91,7 @@ in {
   ];
   windowrulev2 = [
     "opacity 0.90 0.90,class:^(firefox)$"
+    "opacity 0.90 0.90,class:^(librewolf)$"
     "opacity 0.90 0.90,class:^(Brave-browser)$"
     "opacity 0.80 0.80,class:^(Steam)$"
     "opacity 0.80 0.80,class:^(steam)$"
@@ -135,6 +136,7 @@ in {
     "float,class:^(org.kde.dolphin)$,title:^(Copying — Dolphin)$"
     "float,title:^(Picture-in-Picture)$"
     "float,class:^(firefox)$,title:^(Library)$"
+    "float,class:^(librewolf)$,title:^(Library)$"
     "float,class:^(vlc)$"
     "float,class:^(kvantummanager)$"
     "float,class:^(qt5ct)$"
