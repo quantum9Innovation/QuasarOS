@@ -90,12 +90,14 @@
   };
 
   # Enable SDDM for login and lock management
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    package = pkgs.kdePackages.sddm;
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      package = pkgs.kdePackages.sddm;
+    };
     autoLogin.enable = quasar.autoLogin;
-    autoLogin.user = quasar.user;
+    autoLogin.user = if quasar.autoLogin then quasar.user else null;
   };
 
   # Enable CUPS to print documents
