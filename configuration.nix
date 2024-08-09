@@ -40,7 +40,12 @@
   networking.hostName = quasar.hostname;
 
   # Select kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = {
+    "zen" = pkgs.linuxPackages_zen;
+    "latest" = pkgs.linuxPackages_latest;
+    "hardened" = pkgs.linuxPackages_latest_hardened;
+    "libre" = pkgs.linuxPackages_latest-libre;
+  }."${quasar.kernel}";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -125,7 +130,6 @@
   };
 
   # Allow unfree packages for proprietary driver support
-  # Can be disabled with user override
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
