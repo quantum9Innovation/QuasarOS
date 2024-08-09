@@ -24,7 +24,7 @@
     # from the latest stable git source,
     # usually the last commit on the `main` branch.
     # This is the recommended way to install user packages
-    # which are no·t critical for system functionality on QuasarOS.
+    # which are not critical for system functionality on QuasarOS.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home Manager manages user dotfiles in the Nix configuration language,
@@ -41,7 +41,7 @@
 
     # Hyprland is fetched hot off the presses to take advantage
     # of the latest eyecandy.
-    # The Hyprland flake binaries are fetched from the Hyprland cachix instance
+    # The Hyprland flake binaries are fetched from the Hyprland Cachix instance
     # for faster compile times.
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
