@@ -2,7 +2,7 @@ quasar:
 let
   hyprland = quasar.hyprland;
   default = mod: attr: fallback:
-    if builtins.hasAttr attr mod then mod."${attr}" else fallback;
+    if builtins.hasAttr attr mod then mod.${attr} else fallback;
 in {
 
   #  /*****                                                 /******   /****

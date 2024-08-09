@@ -112,7 +112,7 @@
             # Home Manager backup files will end in .backup
             home-manager.backupFileExtension = "backup";
 
-            home-manager.users."${user}" = {
+            home-manager.users.${user} = {
               # Primary user Home Manager configuration module
               imports = [ (import ./home.nix quasar) ] ++ homeOverrides;
             };

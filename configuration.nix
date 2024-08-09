@@ -45,7 +45,7 @@
     "latest" = pkgs.linuxPackages_latest;
     "hardened" = pkgs.linuxPackages_latest_hardened;
     "libre" = pkgs.linuxPackages_latest-libre;
-  }."${quasar.kernel}";
+  }.${quasar.kernel};
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -117,7 +117,7 @@
   # Define a user account
   # Don't forget to set a password with `passwd`
   programs.fish.enable = true;
-  users.users."${quasar.user}" = {
+  users.users.${quasar.user} = {
     isNormalUser = true;
     description = quasar.name;
     extraGroups = [ "networkmanager" "wheel" ];
