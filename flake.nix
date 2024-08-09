@@ -59,8 +59,8 @@
 
   outputs = { self, nixpkgs, home-manager, lanzaboote, ... }@inputs: {
     make = { hostname, user, name, email, hardware, system ? "x86_64-linux"
-      , kernel ? "zen", secureboot ? { enabled = true; }, free ? false
-      , stateVersion ? "24.05", autoLogin ? true, proxy ? { enabled = false; }
+      , kernel ? "zen", secureboot ? { enabled = true; }
+      , stateVersion ? "24.05", autoLogin ? true
       , ssh ? { enabled = false; }, time ? { zone = "utc"; }
       , locale ? "en_US.UTF-8", hyprland ? { mod = "SUPER"; }, graphics ? {
         opengl = true;

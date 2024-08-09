@@ -50,8 +50,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone
+  # Set your time zone, with automatic time zone detection enabled
   time.timeZone = quasar.time.zone;
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties
   i18n.defaultLocale = quasar.locale;
@@ -68,6 +69,7 @@
     LC_TIME = quasar.locale;
   };
 
+  # Faster boot times
   systemd.services = { NetworkManager-wait-online.enable = false; };
 
   # Disable the X11 windowing system, 
@@ -87,11 +89,18 @@
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   };
 
-  # # Enable SDDM for login and lock management
+  # Enable SDDM for login and lock management
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
     package = pkgs.kdePackages.sddm;
+    settings = if quasar.autoLogin then {
+      Autologin = {
+        Session = "Hyprland";
+        User = quasar.user;
+      };
+    } else
+      { };
   };
 
   # Enable CUPS to print documents
@@ -159,8 +168,11 @@
   # Setup GnuPG
   programs.gnupg.agent = {
     enable = true;
-    enableSSHSupport = true;
+    enableSSHSupport = quasar.ssh.enabled;
   };
+
+  # Enable the OpenSSH daemon
+  services.openssh.enable = quasar.ssh.enabled;
 
   # Setup Dconf for user configuration of low-level settings
   # Also needed as a dependency for critical system packages
@@ -179,15 +191,13 @@
   hardware.graphics.enable = quasar.graphics.opengl;
 
   # Install and configure appropriate NVIDIA drivers
-  # Note that this requires enabling unfree packages
-  # in your on-device configuration with:
-  #   nixpkgs.config.allowUnfree = true;
+  # Do not attempt to disable unfree software packages if you enable this
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = if quasar.graphics.nvidia.enabled then {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
     powerManagement.enable = true;
-    powerManagement.finegrained = false;
+    powerManagement.finegrained = true;
     open = false;
     nvidiaSettings = true;
     prime = {
