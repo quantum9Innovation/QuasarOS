@@ -107,10 +107,12 @@
 
   # Define a user account
   # Don't forget to set a password with `passwd`
+  programs.fish.enable = true;
   users.users."${quasar.user}" = {
     isNormalUser = true;
     description = quasar.name;
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
   };
 
   # More user configuration
@@ -190,9 +192,6 @@
     };
   } else
     null;
-
-  programs.fish.enable = true;
-  users.users."${quasar.user}".shell = pkgs.fish;
 
   fonts = {
     enableDefaultPackages = true;
