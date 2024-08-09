@@ -12,7 +12,7 @@ My highly experimental Nix (and *nix) based OS
 
 ## Development
 
-Most development happens on other branches (and there will likely be a lot of them at any given time). See the `test` branch for a sampling of the latest experiments. Don't expect anything in `main` for a while.
+Most development happens on other branches (and there will likely be a lot of them at any given time). Take a look at some others for a sampling of the latest experiments. `main` can be considered (relatively) stable.
 
 ## About
 
