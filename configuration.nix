@@ -40,7 +40,7 @@
   networking.hostName = quasar.hostname;
 
   # Select kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = quasar.kernel;
 
   # Enable networking
   networking.networkmanager.enable = true;
