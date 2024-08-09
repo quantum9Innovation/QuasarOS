@@ -124,9 +124,6 @@
       [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
-  # Allow unfree packages for proprietary driver support
-  nixpkgs.config.allowUnfree = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -174,6 +171,9 @@
   hardware.graphics.enable = quasar.graphics.opengl;
 
   # Install and configure appropriate NVIDIA drivers
+  # Note that this requires enabling unfree packages
+  # in your on-device configuration with:
+  #   nixpkgs.config.allowUnfree = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = if quasar.graphics.nvidia.enabled then {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
