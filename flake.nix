@@ -60,7 +60,8 @@
   outputs = { self, nixpkgs, home-manager, lanzaboote, ... }@inputs: {
     make = { hostname, user, name, email, hardware, system ? "x86_64-linux"
       , kernel ? "zen", secureboot ? { enabled = true; }, stateVersion ? "24.05"
-      , systemPackages, homePackages, autoLogin ? true, ssh ? { enabled = false; }, time ? { zone = "utc"; }
+      , systemPackages, homePackages, autoLogin ? true
+      , ssh ? { enabled = false; }, time ? { zone = "utc"; }
       , locale ? "en_US.UTF-8", hyprland ? { mod = "SUPER"; }, graphics ? {
         opengl = true;
         nvidia = {

@@ -41,45 +41,46 @@ quasar:
   # '';
 
   # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    # essential
-    fastfetch
-    dolphin
-    thunderbird
+  home.packages = with pkgs;
+    [
+      # essential
+      fastfetch
+      dolphin
+      thunderbird
 
-    # archives
-    zip
-    unzip
+      # archives
+      zip
+      unzip
 
-    # utils
-    fzf
-    bat
+      # utils
+      fzf
+      bat
 
-    # system monitoring
-    nix-output-monitor
-    btop
+      # system monitoring
+      nix-output-monitor
+      btop
 
-    # wayland desktop utils
-    wl-clipboard
-    rofi-wayland
+      # wayland desktop utils
+      wl-clipboard
+      rofi-wayland
 
-    # messaging apps
-    signal-desktop
+      # messaging apps
+      signal-desktop
 
-    # ricing
-    swww
-    waypaper
-    bibata-cursors
-    libsForQt5.qtstyleplugin-kvantum
-    libsForQt5.qt5ct
-    papirus-icon-theme
-    libsForQt5.qt5ct
+      # ricing
+      swww
+      waypaper
+      bibata-cursors
+      libsForQt5.qtstyleplugin-kvantum
+      libsForQt5.qt5ct
+      papirus-icon-theme
+      libsForQt5.qt5ct
 
-    # editing
-    delta
-    lazygit
-    micro
-  ] + (quasar.homePackages pkgs);
+      # editing
+      delta
+      lazygit
+      micro
+    ] + (quasar.homePackages pkgs);
 
   wayland.windowManager.hyprland = {
     enable = true;

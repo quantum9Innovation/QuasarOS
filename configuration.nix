@@ -140,17 +140,9 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    micro
-    curl
-    bat
-    librewolf
-    gnumake
-    clang
-    gcc
-    cachix
-    gnupg
-  ] ++ (quasar.systemPackages pkgs);
+  environment.systemPackages = with pkgs;
+    [ micro curl bat librewolf gnumake clang gcc cachix gnupg ]
+    ++ (quasar.systemPackages pkgs);
 
   # Git is an essential system package
   programs.git.enable = true;
