@@ -58,7 +58,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, lanzaboote, ... }@inputs: {
-    make = { hostname, user, name, email, hardware, system ? "x86_64-linux"
+    make = { hostname, user, name, git, hardware, system ? "x86_64-linux"
       , kernel ? "zen", secureboot ? { enabled = true; }, stateVersion ? "24.05"
       , systemPackages, homePackages, autoLogin ? true
       , ssh ? { enabled = false; }, time ? { zone = "utc"; }

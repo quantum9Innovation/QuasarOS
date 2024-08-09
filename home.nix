@@ -97,17 +97,38 @@ quasar:
   };
   services.easyeffects = { enable = true; };
 
-  programs.fzf = { enable = true; };
-  programs.wlogout = { enable = true; };
+  programs.gh.enable = true;
+  programs.fzf.enable = true;
+  programs.fish.enable = true;
+  programs.wlogout.enable = true;
+  programs.lazygit.enable = true;
+  programs.nushell.enable = true;
+  programs.bash.enable = true;
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+    enableNushellIntegration = true;
+  };
+
+  programs.oh-my-posh = {
+    enable = true;
+    enableFishIntegration = true;
+    enableNushellIntegration = true;
+    enableBashIntegration = true;
+    useTheme = "bubblesline";
+  };
+
   programs.git = {
     enable = true;
-    userName = quasar.name;
-    userEmail = quasar.email;
+    userName = if builtins.hasAttr "name" quasar.git then
+      quasar.git.name
+    else
+      quasar.name;
+    userEmail = quasar.git.email;
     delta.enable = true;
     extraConfig = { init.defaultBranch = "main"; };
   };
-
-  programs.lazygit.enable = true;
 
   programs.kitty = {
     enable = true;
@@ -123,15 +144,10 @@ quasar:
     };
   };
 
-  programs.readline = {
-    enable = true;
-    extraConfig = "set editing-mode vi";
-  };
-
   gtk = {
     enable = true;
     cursorTheme = {
-      name = "Bibata-Modern-Ice";
+      name = "Bibata-Modern-Classic";
       size = 26;
     };
     iconTheme = { name = "Papirus-Dark"; };
@@ -152,30 +168,6 @@ quasar:
     "Kvantum/GraphiteNord".source =
       "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
   };
-
-  programs.firefox.enable = true;
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
-    enableNushellIntegration = true;
-  };
-  programs.gh = { enable = true; };
-  programs.oh-my-posh = {
-    enable = true;
-    enableFishIntegration = true;
-    enableNushellIntegration = true;
-    enableBashIntegration = true;
-    useTheme = "bubblesline";
-  };
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set -g fish_key_bindings fish_vi_key_bindings
-      set fish_greeting
-    '';
-  };
-  programs.nushell = { enable = true; };
-  programs.bash = { enable = true; };
 
   home.stateVersion = quasar.stateVersion;
   programs.home-manager.enable = true;
