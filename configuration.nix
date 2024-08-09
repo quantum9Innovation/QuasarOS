@@ -18,11 +18,11 @@
   # and in the NixOS manual (accessible by running ‘nixos-help’).
   # This is the default system configuration that ships with QuasarOS.
   # Most of it can be modified from the Quasar configuration.
-  # You can also override it by including other custom configuration files,
-  # which is how you should install packages.
+  # You can also override it by including other custom configuration files
+  # and a custom package list.
 
   imports = [
-    # Include the results of the hardware scan.
+    # Include the results of the hardware scan
     quasar.hardware
   ] ++ quasar.overrides;
 
