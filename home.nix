@@ -99,11 +99,17 @@ quasar:
 
   programs.gh.enable = true;
   programs.fzf.enable = true;
-  programs.fish.enable = true;
   programs.wlogout.enable = true;
   programs.lazygit.enable = true;
   programs.nushell.enable = true;
   programs.bash.enable = true;
+
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting
+    '';
+  };
 
   programs.zoxide = {
     enable = true;
