@@ -125,7 +125,7 @@
   };
 
   # Allow unfree packages for proprietary driver support
-  nixpkgs.config.allowUnfree = quasar.free;
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
