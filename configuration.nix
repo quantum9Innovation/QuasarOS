@@ -94,13 +94,8 @@
     enable = true;
     wayland.enable = true;
     package = pkgs.kdePackages.sddm;
-    settings = if quasar.autoLogin then {
-      Autologin = {
-        Session = "Hyprland";
-        User = quasar.user;
-      };
-    } else
-      { };
+    autoLogin.enable = quasar.autoLogin;
+    autoLogin.user = quasar.user;
   };
 
   # Enable CUPS to print documents
