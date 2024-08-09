@@ -135,7 +135,7 @@
           system = system;
 
           # This does the heavy lifting of configuring the system
-          modules = modules ++ overrides;
+          modules = modules;
         };
       };
 
