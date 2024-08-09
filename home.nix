@@ -80,7 +80,7 @@ quasar:
       delta
       lazygit
       micro
-    ] + (quasar.homePackages pkgs);
+    ] ++ (quasar.homePackages pkgs);
 
   wayland.windowManager.hyprland = {
     enable = true;
