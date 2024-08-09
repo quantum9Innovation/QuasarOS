@@ -68,7 +68,7 @@
   # Disable the X11 windowing system, 
   # since Hyprland uses the more modern Wayland
   services.xserver.enable = false;
-  
+
   # Compatibility for running binaries not packaged for QuasarOS
   programs.nix-ld = {
     enable = true;
@@ -188,7 +188,8 @@
       intelBusId = quasar.graphics.nvidia.intelBusId;
       nvidiaBusId = quasar.graphics.nvidia.nvidiaBusId;
     };
-  } else null;
+  } else
+    null;
 
   programs.fish.enable = true;
   users.users."${quasar.user}".shell = pkgs.fish;

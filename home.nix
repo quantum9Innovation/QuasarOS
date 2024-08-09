@@ -2,7 +2,7 @@ quasar:
 { config, pkgs, inputs, ... }:
 
 {
-  
+
   #  /*****                                                 /******   /****
   #  |*    |  |*   |    **     ****     **    *****        |*    |  /*    * 
   #  |*    |  |*   |   /* *   /*       /* *   |*   |      |*    |  |*       
@@ -54,12 +54,12 @@ quasar:
 
     # utils
     fzf
-	  bat
+    bat
     pavucontrol
 
     # system monitoring
     nix-output-monitor
-	  htop
+    htop
     btop
 
     # wayland desktop utils
