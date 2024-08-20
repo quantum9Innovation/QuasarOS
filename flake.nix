@@ -55,9 +55,17 @@
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Sops-nix is needed for secret management within Nix configuration files.
+    # Due to it implementing critical functionality, it is tied to a specific
+    # version and should be considered relatively stable.
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, sops-nix, ... }@inputs: {
     make = { hostname, user, name, git, hardware, system ? "x86_64-linux"
       , kernel ? "zen", secureboot ? { enabled = true; }, stateVersion ? "24.05"
       , systemPackages, homePackages, autoLogin ? true
@@ -99,6 +107,9 @@
         baseModules = [
           # Primary system configuration module
           ./configuration.nix
+
+          # Secret management
+          sops-nix.nixosModules.sops
 
           # Home Manager setup
           home-manager.nixosModules.home-manager
