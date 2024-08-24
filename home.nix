@@ -44,6 +44,7 @@ quasar:
   home.packages = with pkgs;
     [
       # essential
+      brave
       fastfetch
       dolphin
       thunderbird
@@ -80,6 +81,7 @@ quasar:
       delta
       lazygit
       micro
+      zed
     ] ++ (quasar.homePackages pkgs);
 
   wayland.windowManager.hyprland = {
