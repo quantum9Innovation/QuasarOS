@@ -81,7 +81,7 @@ quasar:
       delta
       lazygit
       micro
-      zed
+      zed-editor
     ] ++ (quasar.homePackages pkgs);
 
   wayland.windowManager.hyprland = {
