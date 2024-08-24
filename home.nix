@@ -177,6 +177,9 @@ quasar:
       "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
   };
 
+  programs.chromium.commandLineArgs =
+    "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+
   home.stateVersion = quasar.stateVersion;
   programs.home-manager.enable = true;
 }
