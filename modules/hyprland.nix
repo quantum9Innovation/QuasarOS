@@ -32,7 +32,7 @@ in {
   ];
   bind = [
     # Application Keybinds
-    "$mod, F, exec, librewolf"
+    "$mod, B, exec, brave"
     "$mod, T, exec, kitty"
     "$mod, E, exec, dolphin"
     "$mod, R, exec, pavucontrol"
