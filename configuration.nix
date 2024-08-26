@@ -76,6 +76,9 @@
   # since Hyprland uses the more modern Wayland
   services.xserver.enable = false;
 
+  # Enable Wayland support for Electron apps
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   # Compatibility for running binaries not packaged for QuasarOS
   programs.nix-ld = {
     enable = true;

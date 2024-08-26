@@ -44,7 +44,7 @@ quasar:
   home.packages = with pkgs;
     [
       # essential
-	  brave
+      brave
       firefox
       fastfetch
       dolphin

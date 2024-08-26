@@ -32,7 +32,7 @@ in {
   ];
   bind = [
     # Application Keybinds
-    "$mod, B, exec, brave --enable-features=UseOzonePlatform --ozone-platform=wayland"
+    "$mod, B, exec, brave"
     "$mod, T, exec, kitty"
     "$mod, E, exec, dolphin"
     "$mod, R, exec, pavucontrol"
