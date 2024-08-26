@@ -45,6 +45,7 @@ quasar:
     [
       # essential
       brave
+      firefox
       fastfetch
       dolphin
       thunderbird
