@@ -88,7 +88,7 @@ quasar:
       pkgs.brave.overrideAttrs
       (old: {
         installPhase = old.installPhase
-          + "    rm $out/bin/brave\n\n    makeWrapper $BINARYWRAPPER $out/bin/brave \\\n      --add-flags \"--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer\"\n  ";
+          + "rm $out/bin/brave\nmakeWrapper $BINARYWRAPPER $out/bin/brave --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"";
       })
     ] ++ (quasar.homePackages pkgs);
 
