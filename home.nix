@@ -44,6 +44,7 @@ quasar:
   home.packages = with pkgs;
     [
       # essential
+	  brave
       firefox
       fastfetch
       dolphin
@@ -82,15 +83,6 @@ quasar:
       lazygit
       micro
       zed-editor
-    ] ++ [
-      # patches for wayland
-      # from https://www.reddit.com/r/NixOS/comments/r8vows/comment/hnbwnay/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-      pkgs.brave.overrideAttrs
-      (old: {
-        installPhase = old.installPhase + ''
-          rm $out/bin/brave
-          makeWrapper $BINARYWRAPPER $out/bin/brave --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"'';
-      })
     ] ++ (quasar.homePackages pkgs);
 
   wayland.windowManager.hyprland = {
