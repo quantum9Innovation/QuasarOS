@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, quasar, ... }:
+{ config, lib, pkgs, inputs, quasar, ... }:
 
 {
 
