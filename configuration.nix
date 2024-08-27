@@ -3,11 +3,11 @@
 {
 
   #  /*****                                                 /******   /****
-  #  |*    |  |*   |    **     ****     **    *****        |*    |  /*    * 
-  #  |*    |  |*   |   /* *   /*       /* *   |*   |      |*    |  |*       
-  #  |*    |  |*   |  /*   *   ****   /*   *  |*   /     |*    |   ****** 
-  #  |*  * |  |*   |  ******       |  ******  *****     |*    |         | 
-  #  |*   *   |*   |  |*   |   *   |  |*   |  |*  *    |*    |   *     | 
+  #  |*    |  |*   |    **     ****     **    *****        |*    |  /*    *
+  #  |*    |  |*   |   /* *   /*       /* *   |*   |      |*    |  |*
+  #  |*    |  |*   |  /*   *   ****   /*   *  |*   /     |*    |   ******
+  #  |*  * |  |*   |  ******       |  ******  *****     |*    |         |
+  #  |*   *   |*   |  |*   |   *   |  |*   |  |*  *    |*    |   *     |
   #   **** *   ****   |*   |    ****  |*   |  |*   *   ******    *****
   #
   #  ==========================================================================
@@ -51,7 +51,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone, with automatic time zone detection enabled
-  time.timeZone = quasar.time.zone;
+  time.timeZone = lib.mkForce null;
   services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties
@@ -72,7 +72,7 @@
   # Faster boot times
   systemd.services = { NetworkManager-wait-online.enable = false; };
 
-  # Disable the X11 windowing system, 
+  # Disable the X11 windowing system,
   # since Hyprland uses the more modern Wayland
   services.xserver.enable = false;
 
