@@ -51,8 +51,8 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone, with automatic time zone detection enabled
-  time.timeZone = lib.mkForce null;
-  services.automatic-timezoned.enable = true;
+  time.timeZone = "UTC";
+  services.localtime.enable = true;
 
   # Select internationalisation properties
   i18n.defaultLocale = quasar.locale;
