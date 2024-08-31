@@ -61,8 +61,8 @@
     make = { hostname, user, name, git, hardware, system ? "x86_64-linux"
       , kernel ? "zen", secureboot ? { enabled = true; }, stateVersion ? "24.05"
       , systemPackages, homePackages, autoLogin ? true
-      , ssh ? { enabled = false; }
-      , locale ? "en_US.UTF-8", hyprland ? { mod = "SUPER"; }, graphics ? {
+      , ssh ? { enabled = false; }, locale ? "en_US.UTF-8"
+      , hyprland ? { mod = "SUPER"; }, graphics ? {
         opengl = true;
         nvidia = {
           enabled = true;
