@@ -46,7 +46,7 @@
     # of the latest eyecandy.
     # The Hyprland flake binaries are fetched from the Hyprland Cachix instance
     # for faster compile times.
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.url = "github:hyprwm/Hyprland/v0.42.0";
 
     # Unofficial Hyprland packages are fetched for building
     hyprscroller.url = "github:dawsers/hyprscroller";
