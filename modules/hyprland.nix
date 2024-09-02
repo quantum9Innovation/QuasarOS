@@ -198,7 +198,6 @@ in {
     gaps_in = "3";
     gaps_out = "8";
     border_size = "2";
-    #
     # the dot is a hyprland name, not nix syntax, so we escape it
     "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
     "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
@@ -225,4 +224,5 @@ in {
       special = true;
     };
   };
+  force_default_wallpaper = 0;
 }
