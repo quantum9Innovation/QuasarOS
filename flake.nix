@@ -48,6 +48,9 @@
     # for faster compile times.
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
+    # Unofficial Hyprland packages are fetched for building
+    hyprscroller.url = "github:dawsers/hyprscroller";
+
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
@@ -60,7 +63,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, hyprscroller, lanzaboote, ... }@inputs: {
     make = { hostname, user, name, git, hardware, system ? "x86_64-linux"
       , kernel ? "zen", secureboot ? { enabled = true; }, stateVersion ? "24.05"
       , systemPackages, homePackages, autoLogin ? true
@@ -117,7 +120,7 @@
 
             home-manager.users.${user} = {
               # Primary user Home Manager configuration module
-              imports = [ (import ./home.nix quasar) ] ++ homeOverrides;
+              imports = [ (import ./home.nix quasar [ hyprscroller  ]) ] ++ homeOverrides;
             };
           }
         ];
