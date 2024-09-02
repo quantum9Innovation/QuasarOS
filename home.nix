@@ -1,5 +1,4 @@
-quasar:
-hyprPlugins:
+quasar: deconst: hyprPlugins:
 { config, pkgs, inputs, ... }:
 
 {
@@ -88,7 +87,7 @@ hyprPlugins:
 
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = hyprPlugins;
+    plugins = map (deconst pkgs) hyprPlugins;
     settings = import ./modules/hyprland.nix quasar;
   };
 
