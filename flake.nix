@@ -27,6 +27,9 @@
     # which are not critical for system functionality on QuasarOS.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # For incorporating hotfixes
+    nixpkgs-upstream.url = "github:nixos/nixpkgs/nixos-unstable-small";
+
     # Home Manager manages user dotfiles in the Nix configuration language,
     # enhancing interoperability and consolidation of system configurations.
     # You should use Home Manager integrations

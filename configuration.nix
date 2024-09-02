@@ -26,6 +26,14 @@
     quasar.hardware
   ] ++ quasar.overrides;
 
+  # Incorporate hotfixes
+  nixpkgs.overlays = [
+    (self: super: {
+      xdg-desktop-portal-hyprland =
+        inputs.nixpkgs-upstream.legacyPackages.${pkgs.system}.xdg-desktop-portal-hyprland;
+    })
+  ];
+
   # Bootloader
   boot.loader = {
     efi.canTouchEfiVariables = true;
