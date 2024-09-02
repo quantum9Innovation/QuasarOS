@@ -78,8 +78,13 @@ in {
     "$mod+Ctrl+Shift, ${hypr "min" "S"}, movetoworkspacesilent, special"
 
     # Utilities
-    "$mod, ${hypr "omni" "Space"}, exec, pkill -x rofi || rofi -show drun" # Run rofi
-    ''$mod, ${hypr "screen" "P"}, exec, grim -g "$(slurp)" - | swappy -f -'' # Screenshot
+    "$mod, ${
+      hypr "omni" "Space"
+    }, exec, pkill -x rofi || rofi -show drun" # Run rofi
+    ''
+      $mod, ${
+        hypr "screen" "P"
+      }, exec, grim -g "$(slurp)" - | swappy -f -'' # Screenshot
     "$mod, ${hypr "menu" "Backspace"}, exec, wlogout" # Show power menu
   ];
   bindm = [
