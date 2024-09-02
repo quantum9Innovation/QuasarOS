@@ -45,7 +45,6 @@ quasar:
     [
       # essential
       brave
-      bluez
       firefox
       fastfetch
       dolphin
