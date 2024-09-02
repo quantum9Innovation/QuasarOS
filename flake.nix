@@ -46,10 +46,11 @@
     # most notably hyprscroller.
     # The Hyprland flake binaries are fetched from the Hyprland Cachix instance
     # for faster compile times.
-    hyprland.url = "github:hyprwm/Hyprland/9a09eac79b85c846e3a865a9078a3f8ff65a9259";
+    hyprland.url = "github:hyprwm/Hyprland/v0.42.0";
 
-    # Unofficial Hyprland packages are fetched for building
-    hyprscroller.url = "github:dawsers/hyprscroller/f43a0d4ee839e3a6a3a2fe992b5ee8f78fbe0b11";
+    # Unofficial (patched) Hyprland packages are fetched for building
+    hyprscroller.url =
+      "github:youwen5/hyprscroller/b7e3db307dea8a1a060fe984b34674621613ccc2";
 
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
