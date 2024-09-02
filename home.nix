@@ -47,7 +47,7 @@ quasar:
       brave
       firefox
       fastfetch
-      dolphin
+      cinnamon.nemo
       thunderbird
 
       # archives
