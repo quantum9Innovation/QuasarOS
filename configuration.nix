@@ -157,17 +157,17 @@
 
   # Prevent atrocious directories from polluting user home
   environment.etc = {
-  	"xdg/user-dirs.defaults".text = ''
-	  DESKTOP=desk
-	  DOWNLOAD=dl
-	  TEMPLATES=tmp
-	  PUBLICSHARE=pub
-	  DOCUMENTS=doc
-	  MUSIC=music
-	  PICTURES=img
-	  VIDEOS=vid
-	  WALLPAPERS=wall
-  	'';
+    "xdg/user-dirs.defaults".text = ''
+      	  DESKTOP=desk
+      	  DOWNLOAD=dl
+      	  TEMPLATES=tmp
+      	  PUBLICSHARE=pub
+      	  DOCUMENTS=doc
+      	  MUSIC=music
+      	  PICTURES=img
+      	  VIDEOS=vid
+      	  WALLPAPERS=wall
+        	'';
   };
 
   # Setup GnuPG
