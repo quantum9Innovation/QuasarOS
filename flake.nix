@@ -42,14 +42,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Hyprland is fetched hot off the presses to take advantage
-    # of the latest eyecandy.
+    # Hyprland is pinned to 0.42.0 for compatibility with plugins,
+    # most notably hyprscroller.
     # The Hyprland flake binaries are fetched from the Hyprland Cachix instance
     # for faster compile times.
-    hyprland.url = "github:hyprwm/Hyprland/v0.42.0";
+    hyprland.url = "github:hyprwm/Hyprland/9a09eac79b85c846e3a865a9078a3f8ff65a9259";
 
     # Unofficial Hyprland packages are fetched for building
-    hyprscroller.url = "github:dawsers/hyprscroller";
+    hyprscroller.url = "github:dawsers/hyprscroller/f43a0d4ee839e3a6a3a2fe992b5ee8f78fbe0b11";
 
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
