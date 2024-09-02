@@ -224,5 +224,5 @@ in {
       special = true;
     };
   };
-  force_default_wallpaper = 0;
+  misc = { force_default_wallpaper = 0; };
 }
