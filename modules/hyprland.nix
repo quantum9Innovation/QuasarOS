@@ -3,6 +3,7 @@ let
   hyprland = quasar.hyprland;
   default = mod: attr: fallback:
     if builtins.hasAttr attr mod then mod.${attr} else fallback;
+  hypr = attr: fallback: default hyprland attr fallback;
 in {
 
   #  /*****                                                 /******   /****
@@ -19,29 +20,29 @@ in {
   # It should be modified from the Quasar configuration, not here.
 
   exec-once = [ "waybar" "waypaper --restore" ];
-  "$mod" = default hyprland "mod" "SUPER";
-  "$Left" = "Left";
-  "$Right" = "Right";
-  "$Up" = "Up";
-  "$Down" = "Down";
+  "$mod" = hypr "mod" "SUPER";
+  "$Left" = hypr "left" "Left";
+  "$Right" = hypr "right" "Right";
+  "$Up" = hypr "up" "Up";
+  "$Down" = hypr "down" "Down";
   env = [
-    "HYPRCURSOR_THEME,Bibata-Modern-Ice"
+    "HYPRCURSOR_THEME,Bibata-Modern-Classic"
     "HYPRCURSOR_SIZE,26"
-    "XCURSOR_THEME,Bibata-Modern-Ice"
+    "XCURSOR_THEME,Bibata-Modern-Classic"
     "XCURSOR_SIZE,26"
   ];
   bind = [
     # Application Keybinds
-    "$mod, B, exec, brave"
-    "$mod, T, exec, kitty"
-    "$mod, E, exec, dolphin"
-    "$mod, R, exec, pavucontrol"
+    "$mod, ${hypr "browserKey" "B"}, exec, ${hypr "browser" "brave"}"
+    "$mod, ${hypr "termKey" "Q"}, exec, ${hypr "term" "kitty"}"
+    "$mod, ${hypr "fileKey" "E"}, exec, ${hypr "file" "nemo"}"
+    "$mod, ${hypr "mailKey" "U"}, exec, ${hypr "mail" "thunderbird"}"
 
     # Window actions
-    "$mod, Q, killactive"
-    "$mod, W, togglefloating"
-    "$mod, J, togglesplit"
-    "$mod, Return, fullscreen"
+    "$mod, ${hypr "kill" "C"}, killactive"
+    "$mod, ${hypr "exit" "M"}, exit"
+    "$mod, ${hypr "float" "V"}, togglefloating"
+    "$mod, ${hypr "full" "F"}, fullscreen"
 
     # Move around
     "$mod, $Left, movefocus, l"
@@ -60,104 +61,32 @@ in {
     "$mod, 9, workspace, 9"
     "$mod, 0, workspace, 10"
 
-    "$mod, S, togglespecialworkspace"
+    "$mod, ${hypr "min" "S"}, togglespecialworkspace"
 
     # Move windows around
-    "$mod+Shift+Ctrl, $Left, movewindow, l"
-    "$mod+Shift+Ctrl, $Right, movewindow, r"
-    "$mod+Shift+Ctrl, $Up, movewindow, u"
-    "$mod+Shift+Ctrl, $Down, movewindow, d"
+    "$mod+Shift, $Left, movewindow, l"
+    "$mod+Shift, $Right, movewindow, r"
+    "$mod+Shift, $Up, movewindow, u"
+    "$mod+Shift, $Down, movewindow, d"
 
-    "$mod+Ctrl+Alt, $Right, movetoworkspace, r+1"
-    "$mod+Ctrl+Alt, $Left, movetoworkspace, r-1"
+    "$mod+Ctrl+Shift, $Right, movetoworkspace, r+1"
+    "$mod+Ctrl+Shift, $Left, movetoworkspace, r-1"
 
     "$mod+Ctrl, $Right, workspace, r+1"
     "$mod+Ctrl, $Left, workspace, r-1"
 
-    "$mod+Alt, S, movetoworkspacesilent, special"
+    "$mod+Ctrl+Shift, ${hypr "min" "S"}, movetoworkspacesilent, special"
 
     # Utilities
-    "$mod, Space, exec, pkill -x rofi || rofi -show drun" # Run rofi
-
-    ''$mod, P, exec, grim -g "$(slurp)" - | swappy -f -'' # Screenshot
-
-    "$mod, Backspace, exec, wlogout" # Screenshot
+    "$mod, ${hypr "omni" "Space"}, exec, pkill -x rofi || rofi -show drun" # Run rofi
+    ''$mod, ${hypr "screen" "P"}, exec, grim -g "$(slurp)" - | swappy -f -'' # Screenshot
+    "$mod, ${hypr "menu" "Backspace"}, exec, wlogout" # Show power menu
   ];
   bindm = [
     "$mod, mouse:272, movewindow"
     "$mod, mouse:273, resizewindow"
     "$mod, Z, movewindow"
     "$mod, X, resizewindow"
-  ];
-  windowrulev2 = [
-    "opacity 0.90 0.90,class:^(firefox)$"
-    "opacity 0.90 0.90,class:^(librewolf)$"
-    "opacity 0.90 0.90,class:^(Brave-browser)$"
-    "opacity 0.80 0.80,class:^(Steam)$"
-    "opacity 0.80 0.80,class:^(steam)$"
-    "opacity 0.80 0.80,class:^(steamwebhelper)$"
-    "opacity 0.80 0.80,class:^(Spotify)$"
-    "opacity 0.80 0.80,initialTitle:^(Spotify Free)$"
-    "opacity 0.80 0.80,class:^(code-oss)$"
-    "opacity 0.80 0.80,class:^(Code)$"
-    "opacity 0.80 0.80,class:^(code-url-handler)$"
-    "opacity 0.80 0.80,class:^(code-insiders-url-handler)$"
-    "opacity 0.80 0.80,class:^(kitty)$"
-    "opacity 0.80 0.80,class:^(org.kde.dolphin)$"
-    "opacity 0.80 0.80,class:^(org.kde.ark)$"
-    "opacity 0.80 0.80,class:^(nwg-look)$"
-    "opacity 0.80 0.80,class:^(qt5ct)$"
-    "opacity 0.80 0.80,class:^(qt6ct)$"
-    "opacity 0.80 0.80,class:^(kvantummanager)$"
-
-    "opacity 0.90 0.90,class:^(com.github.rafostar.Clapper)$ # Clapper-Gtk"
-    "opacity 0.80 0.80,class:^(com.github.tchx84.Flatseal)$ # Flatseal-Gtk"
-    "opacity 0.80 0.80,class:^(hu.kramo.Cartridges)$ # Cartridges-Gtk"
-    "opacity 0.80 0.80,class:^(com.obsproject.Studio)$ # Obs-Qt"
-    "opacity 0.80 0.80,class:^(gnome-boxes)$ # Boxes-Gtk"
-    "opacity 0.80 0.80,class:^(discord)$ # Discord-Electron"
-    "opacity 0.80 0.80,class:^(vesktop)$ # Vesktop-Electron"
-    "opacity 0.80 0.80,class:^(ArmCord)$ # ArmCord-Electron"
-    "opacity 0.80 0.80,class:^(app.drey.Warp)$ # Warp-Gtk"
-    "opacity 0.80 0.80,class:^(net.davidotek.pupgui2)$ # ProtonUp-Qt"
-    "opacity 0.80 0.80,class:^(yad)$ # Protontricks-Gtk"
-    "opacity 0.80 0.80,class:^(Signal)$ # Signal-Gtk"
-    "opacity 0.80 0.80,class:^(io.github.alainm23.planify)$ # planify-Gtk"
-    "opacity 0.80 0.80,class:^(io.gitlab.theevilskeleton.Upscaler)$ # Upscaler-Gtk"
-    "opacity 0.80 0.80,class:^(com.github.unrud.VideoDownloader)$ # VideoDownloader-Gtk"
-
-    "opacity 0.80 0.70,class:^(pavucontrol)$"
-    "opacity 0.80 0.70,class:^(blueman-manager)$"
-    "opacity 0.80 0.70,class:^(nm-applet)$"
-    "opacity 0.80 0.70,class:^(nm-connection-editor)$"
-    "opacity 0.80 0.70,class:^(org.kde.polkit-kde-authentication-agent-1)$"
-
-    "float,class:^(org.kde.dolphin)$,title:^(Progress Dialog — Dolphin)$"
-    "float,class:^(org.kde.dolphin)$,title:^(Copying — Dolphin)$"
-    "float,title:^(Picture-in-Picture)$"
-    "float,class:^(firefox)$,title:^(Library)$"
-    "float,class:^(librewolf)$,title:^(Library)$"
-    "float,class:^(vlc)$"
-    "float,class:^(kvantummanager)$"
-    "float,class:^(qt5ct)$"
-    "float,class:^(qt6ct)$"
-    "float,class:^(nwg-look)$"
-    "float,class:^(org.kde.ark)$"
-    "float,class:^(com.github.rafostar.Clapper)$ # Clapper-Gtk"
-    "float,class:^(app.drey.Warp)$ # Warp-Gtk"
-    "float,class:^(net.davidotek.pupgui2)$ # ProtonUp-Qt"
-    "float,class:^(yad)$ # Protontricks-Gtk"
-    "float,class:^(eog)$ # Imageviewer-Gtk"
-    "float,class:^(io.github.alainm23.planify)$ # planify-Gtk"
-    "float,class:^(io.gitlab.theevilskeleton.Upscaler)$ # Upscaler-Gtk"
-    "float,class:^(com.github.unrud.VideoDownloader)$ # VideoDownloader-Gkk"
-    "float,class:^(pavucontrol)$"
-    "float,class:^(blueman-manager)$"
-    "float,class:^(nm-applet)$"
-    "float,class:^(nm-connection-editor)$"
-    "float,class:^(org.kde.polkit-kde-authentication-agent-1)$"
-    "opacity 0.80 0.80,class:^(org.freedesktop.impl.portal.desktop.gtk)$"
-    "opacity 0.80 0.80,class:^(org.freedesktop.impl.portal.desktop.hyprland)$"
   ];
   layerrule = [
     "blur,rofi"
@@ -170,7 +99,7 @@ in {
     "ignorezero,swaync-control-center"
     "blur,logout_dialog"
   ];
-  monitor = [ "DP-1,2560x1440@165,1920x0,auto" "HDMI-A-1,1920x1080@60,0x0,1" ];
+  monitor = hyprland.monitors;
   dwindle = {
     pseudotile = "yes";
     preserve_split = "yes";
