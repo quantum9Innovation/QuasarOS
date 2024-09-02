@@ -48,7 +48,7 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     # Unofficial (patched) Hyprland packages are fetched for building
-    hyprscroller.url = "github:youwen5/hyprscroller";
+    hyprscroller.url = "github:youwen5/hyprscroller/fix";
 
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
