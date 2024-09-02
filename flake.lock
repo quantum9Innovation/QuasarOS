@@ -192,11 +192,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1725219211,
-        "narHash": "sha256-17WA01XfBTuH1CJdGje3095K/7RUUL6lwQHEFq9t2Go=",
+        "lastModified": 1725310138,
+        "narHash": "sha256-LgX5xG/xdfWxie6ia9M+Fc825EH93kcwu5CFzFqIe5g=",
         "ref": "refs/heads/main",
-        "rev": "6934e7aa2b300bc4565855a4092fb34de8a9a8d2",
-        "revCount": 5178,
+        "rev": "8f9887b0c9443d6c2559feeec411daecb9780a97",
+        "revCount": 5181,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -260,6 +260,25 @@
       "original": {
         "owner": "hyprwm",
         "repo": "hyprlang",
+        "type": "github"
+      }
+    },
+    "hyprscroller": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1725316222,
+        "narHash": "sha256-7WJOB4fPEVbLC8m0GolicZyBwow9zu7e7PqFkAAMVIQ=",
+        "owner": "youwen5",
+        "repo": "hyprscroller",
+        "rev": "b5eacbced492cbf36189c54260cc4e2bc7ae5a05",
+        "type": "github"
+      },
+      "original": {
+        "owner": "youwen5",
+        "ref": "fix",
+        "repo": "hyprscroller",
         "type": "github"
       }
     },
@@ -404,6 +423,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1725103162,
+        "narHash": "sha256-Ym04C5+qovuQDYL/rKWSR+WESseQBbNAe5DsXNx5trY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "12228ff1752d7b7624a54e9c1af4b222b3c1073b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": [
@@ -435,8 +470,9 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "hyprscroller": "hyprscroller",
         "lanzaboote": "lanzaboote",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-upstream": "nixpkgs-upstream"
       }
     },
