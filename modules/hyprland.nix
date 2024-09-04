@@ -42,8 +42,8 @@ in {
     "$mod, ${hypr "kill" "C"}, killactive"
     "$mod, ${hypr "exit" "M"}, exit"
     "$mod, ${hypr "float" "V"}, togglefloating"
-    "$mod, ${hypr "full" "F"}, fullscreen, 1"
-    "$mod+Alt, ${hypr "full" "F"}, fullscreen, 0"
+    "$mod, ${hypr "full" "F"}, fullscreen, 0"
+    "$mod+Alt, ${hypr "full" "F"}, fullscreen, 1"
     "$mod, ${hypr "last" "L"}, focusurgentorlast"
 
     # Hyprscroller
