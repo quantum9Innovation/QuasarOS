@@ -44,7 +44,7 @@ in {
     "$mod, ${hypr "float" "V"}, togglefloating"
     "$mod, ${hypr "full" "F"}, fullscreen, 1"
     "$mod+Alt, ${hypr "full" "F"}, fullscreen, 0"
-    "$mod+Shift, ${hypr "opaque" "O"}, opaque"
+    "$mod+Shift, ${hypr "opaque" "O"}, opacity, 1.0"
     "$mod, ${hypr "last" "L"}, focusurgentorlast"
 
 	# Hyprscroller
@@ -62,10 +62,10 @@ in {
     "$mod+Alt, 7, resizeactive, exact 50% 71%"
 
     # Move around
-    "$mod, $Left, movefocus, l"
-    "$mod, $Right, movefocus, r"
-    "$mod, $Up, movefocus, u"
-    "$mod, $Down, movefocus, d"
+    "$mod, $Left, scroller:movefocus, l"
+    "$mod, $Right, scroller:movefocus, r"
+    "$mod, $Up, scroller:movefocus, u"
+    "$mod, $Down, scroller:movefocus, d"
 
 	# Change workspaces
     "$mod, 1, workspace, 1"
@@ -81,17 +81,22 @@ in {
     "$mod, ${hypr "min" "S"}, togglespecialworkspace"
 
     # Move windows around
-    "$mod+Shift, $Left, movewindow, l"
-    "$mod+Shift, $Right, movewindow, r"
-    "$mod+Shift, $Up, movewindow, u"
-    "$mod+Shift, $Down, movewindow, d"
+    "$mod+Shift, $Left, scroller:movewindow, l"
+    "$mod+Shift, $Left, scroller:alignwindow, l"
+    "$mod+Shift, $Right, scroller:movewindow, r"
+    "$mod+Shift, $Right, scroller:alignwindow, r"
+    "$mod+Shift, $Up, scroller:movewindow, u"
+    "$mod+Shift, $Up, scroller:alignwindow, u"
+    "$mod+Shift, $Down, scroller:movewindow, d"
+    "$mod+Shift, $Down, scroller:alignwindow, d"
+    "$mod, comma, scroller:admitwindow"
+    "$mod, period, scroller:expelwindow"
 
+	# Workspace shortcuts
     "$mod+Ctrl+Shift, $Right, movetoworkspace, r+1"
     "$mod+Ctrl+Shift, $Left, movetoworkspace, r-1"
-
     "$mod+Ctrl, $Right, workspace, r+1"
     "$mod+Ctrl, $Left, workspace, r-1"
-
     "$mod+Ctrl+Shift, ${hypr "min" "S"}, movetoworkspacesilent, special"
 
     # Utilities
@@ -126,7 +131,7 @@ in {
     enabled = "yes";
     bezier = [
       "smooth, 0.05, 0.9, 0.1, 1.05"
-      "juump, 0.4, 0.0, 0.2, 1"
+      "jump, 0.4, 0.0, 0.2, 1"
       "bounce, 0.4, -0.25, 0.2, 1.33"
     ];
     animation = [
