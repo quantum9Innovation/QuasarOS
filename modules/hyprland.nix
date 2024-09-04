@@ -107,7 +107,7 @@ in {
     "$mod+Ctrl, $Down, workspace, r+1"
     "$mod+Ctrl, $Up, workspace, r-1"
     "$mod, ${hypr "min" "S"}, togglespecialworkspace"
-    "$mod+Ctrl+Shift, ${hypr "min" "S"}, movetoworkspacesilent, special"
+    "$mod+Shift, ${hypr "min" "S"}, movetoworkspacesilent, special"
 
     # Utilities
     "$mod, ${
