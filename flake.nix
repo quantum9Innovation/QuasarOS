@@ -54,87 +54,94 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-upstream, home-manager, lanzaboote, ... }@inputs: {
-    make = { hostname, user, name, git, hardware, system ? "x86_64-linux"
-      , kernel ? "zen", secureboot ? { enabled = true; }, stateVersion ? "24.05"
-      , systemPackages, homePackages, autoLogin ? true
-      , ssh ? { enabled = false; }, locale ? "en_US.UTF-8"
-      , hyprland ? { mod = "SUPER"; }, graphics ? {
-        opengl = true;
-        nvidia = {
-          enabled = true;
-          intelBusId = null;
-          nvidiaBusId = null;
-        };
-      }, audio ? { jack = false; }, overrides ? [ ], homeOverrides ? [ ], ...
-      }@quasar:
-      let
-        # Secure boot configuration
-        secureBoot = [
-          lanzaboote.nixosModules.lanzaboote
-
-          ({ pkgs, lib, ... }: {
-            environment.systemPackages = [
-              # For debugging and troubleshooting secure boot
-              pkgs.sbctl
-            ];
-
-            # Lanzaboote currently replaces the systemd-boot module.
-            # This setting is usually set to true in configuration.nix,
-            # generated at installation time.
-            # So we force it to false for now.
-            boot.loader.systemd-boot.enable = lib.mkForce false;
-
-            boot.lanzaboote = {
-              enable = true;
-              pkiBundle = "/etc/secureboot";
-            };
-          })
-        ];
-
-        # Modules without conditional add-ons
-        baseModules = [
-          # Primary system configuration module
-          ./configuration.nix
-
-          # Home Manager setup
-          home-manager.nixosModules.home-manager
-          {
-            # Install from preconfigured nixpkgs channel
-            home-manager.useGlobalPkgs = true;
-
-            # Enable user packages for `nixos-rebuild build-vm`
-            home-manager.useUserPackages = true;
-
-            # Home Manager backup files will end in .backup
-            home-manager.backupFileExtension = "backup";
-
-            home-manager.users.${user} = {
-              # Primary user Home Manager configuration module
-              imports = [ (import ./home.nix quasar nixpkgs-upstream.legacyPackages.${system}.hyprlandPlugins) ] ++ homeOverrides;
-            };
-          }
-        ];
-
-        # Modules with conditional add-ons
-        modules =
-          if secureboot.enabled then baseModules ++ secureBoot else baseModules;
-      in {
-        system = nixpkgs.lib.nixosSystem {
-          # Forward external configurations to declared modules
-          specialArgs = {
-            inherit inputs;
-            inherit quasar;
+  outputs =
+    { self, nixpkgs, nixpkgs-upstream, home-manager, lanzaboote, ... }@inputs: {
+      make = { hostname, user, name, git, hardware, system ? "x86_64-linux"
+        , kernel ? "zen", secureboot ? { enabled = true; }
+        , stateVersion ? "24.05", systemPackages, homePackages, autoLogin ? true
+        , ssh ? { enabled = false; }, locale ? "en_US.UTF-8"
+        , hyprland ? { mod = "SUPER"; }, graphics ? {
+          opengl = true;
+          nvidia = {
+            enabled = true;
+            intelBusId = null;
+            nvidiaBusId = null;
           };
+        }, audio ? { jack = false; }, overrides ? [ ], homeOverrides ? [ ], ...
+        }@quasar:
+        let
+          # Secure boot configuration
+          secureBoot = [
+            lanzaboote.nixosModules.lanzaboote
 
-          # Official support is currently for x86_64-linux only
-          system = system;
+            ({ pkgs, lib, ... }: {
+              environment.systemPackages = [
+                # For debugging and troubleshooting secure boot
+                pkgs.sbctl
+              ];
 
-          # This does the heavy lifting of configuring the system
-          modules = modules;
+              # Lanzaboote currently replaces the systemd-boot module.
+              # This setting is usually set to true in configuration.nix,
+              # generated at installation time.
+              # So we force it to false for now.
+              boot.loader.systemd-boot.enable = lib.mkForce false;
+
+              boot.lanzaboote = {
+                enable = true;
+                pkiBundle = "/etc/secureboot";
+              };
+            })
+          ];
+
+          # Modules without conditional add-ons
+          baseModules = [
+            # Primary system configuration module
+            ./configuration.nix
+
+            # Home Manager setup
+            home-manager.nixosModules.home-manager
+            {
+              # Install from preconfigured nixpkgs channel
+              home-manager.useGlobalPkgs = true;
+
+              # Enable user packages for `nixos-rebuild build-vm`
+              home-manager.useUserPackages = true;
+
+              # Home Manager backup files will end in .backup
+              home-manager.backupFileExtension = "backup";
+
+              home-manager.users.${user} = {
+                # Primary user Home Manager configuration module
+                imports = [
+                  (import ./home.nix quasar
+                    nixpkgs-upstream.legacyPackages.${system}.hyprlandPlugins)
+                ] ++ homeOverrides;
+              };
+            }
+          ];
+
+          # Modules with conditional add-ons
+          modules = if secureboot.enabled then
+            baseModules ++ secureBoot
+          else
+            baseModules;
+        in {
+          system = nixpkgs.lib.nixosSystem {
+            # Forward external configurations to declared modules
+            specialArgs = {
+              inherit inputs;
+              inherit quasar;
+            };
+
+            # Official support is currently for x86_64-linux only
+            system = system;
+
+            # This does the heavy lifting of configuring the system
+            modules = modules;
+          };
         };
-      };
 
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-classic;
-  };
+      formatter.x86_64-linux =
+        nixpkgs.legacyPackages.x86_64-linux.nixfmt-classic;
+    };
 }

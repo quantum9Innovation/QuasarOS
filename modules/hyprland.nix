@@ -46,7 +46,7 @@ in {
     "$mod+Alt, ${hypr "full" "F"}, fullscreen, 0"
     "$mod, ${hypr "last" "L"}, focusurgentorlast"
 
-	# Hyprscroller
+    # Hyprscroller
     "$mod, ${hypr "view" "A"}, scroller:toggleoverview"
     "$mod, ${hypr "fit" "J"}, scroller:fitsize"
     "$mod+Shift, $Up, scroller:cyclesize, +1"
@@ -66,7 +66,7 @@ in {
     "$mod, $Up, scroller:movefocus, u"
     "$mod, $Down, scroller:movefocus, d"
 
-	# Change workspaces
+    # Change workspaces
     "$mod, 0, workspace, 10"
     "$mod, 1, workspace, 1"
     "$mod, 2, workspace, 2"
@@ -101,7 +101,7 @@ in {
     "$mod, comma, scroller:admitwindow"
     "$mod, period, scroller:expelwindow"
 
-	# Workspace shortcuts
+    # Workspace shortcuts
     "$mod+Ctrl+Shift, $Down, movetoworkspace, r+1"
     "$mod+Ctrl+Shift, $Up, movetoworkspace, r-1"
     "$mod+Ctrl, $Down, workspace, r+1"
