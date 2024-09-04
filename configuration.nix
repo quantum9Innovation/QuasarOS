@@ -93,11 +93,7 @@
   };
 
   # Enable Hyprland
-  programs.hyprland = {
-    enable = true;
-    package =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  };
+  programs.hyprland.enable = true;
 
   # Enable SDDM for login and lock management
   services.displayManager = {

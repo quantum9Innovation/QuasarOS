@@ -42,11 +42,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Hyprland is fetched hot off the presses for the latest eye candy.
-    # The Hyprland flake binaries are fetched from the Hyprland Cachix instance
-    # for faster compile times.
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
