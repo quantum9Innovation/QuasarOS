@@ -1,4 +1,4 @@
-quasar: deconst: hyprPlugins:
+quasar:
 { config, pkgs, inputs, ... }:
 
 {
