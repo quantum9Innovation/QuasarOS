@@ -32,7 +32,7 @@ in {
     "XCURSOR_SIZE,26"
   ];
   bind = [
-    # Application Keybinds
+    # Application keybinds
     "$mod, ${hypr "browserKey" "B"}, exec, ${hypr "browser" "brave"}"
     "$mod, ${hypr "termKey" "Q"}, exec, ${hypr "term" "kitty"}"
     "$mod, ${hypr "fileKey" "E"}, exec, ${hypr "file" "nemo"}"
@@ -42,7 +42,25 @@ in {
     "$mod, ${hypr "kill" "C"}, killactive"
     "$mod, ${hypr "exit" "M"}, exit"
     "$mod, ${hypr "float" "V"}, togglefloating"
-    "$mod, ${hypr "full" "F"}, fullscreen"
+    "$mod, ${hypr "full" "F"}, fullscreen, 1"
+    "$mod+Alt, ${hypr "full" "F"}, fullscreen, 0"
+    "$mod+Shift, ${hypr "full" "F"}, fakefullscreen"
+    "$mod+Shift, ${hypr "opaque" "O"}, toggleopaque"
+    "$mod, ${hypr "last" "L"}, focusurgentorlast"
+
+	# Hyprscroller
+    "$mod, ${hypr "view" "A"}, scroller:toggleoverview"
+    "$mod, ${hypr "fit" "J"}, scroller:fitsize"
+    "$mod+Shift, $Up, scroller:cyclesize, +1"
+    "$mod+Shift, $Down, scroller:cyclesize, -1"
+
+    # Resizing
+    "$mod+Alt, 1, resizeactive, exact 50% 95%"
+    "$mod+Alt, 2, resizeactive, exact 50% 47%"
+    "$mod+Alt, 3, resizeactive, exact 50% 31%"
+    "$mod+Alt, 4, resizeactive, exact 50% 23%"
+    "$mod+Alt, 5, resizeactive, exact 50% 63%"
+    "$mod+Alt, 7, resizeactive, exact 50% 71%"
 
     # Move around
     "$mod, $Left, movefocus, l"
@@ -50,6 +68,7 @@ in {
     "$mod, $Up, movefocus, u"
     "$mod, $Down, movefocus, d"
 
+	# Change workspaces
     "$mod, 1, workspace, 1"
     "$mod, 2, workspace, 2"
     "$mod, 3, workspace, 3"
@@ -60,7 +79,6 @@ in {
     "$mod, 8, workspace, 8"
     "$mod, 9, workspace, 9"
     "$mod, 0, workspace, 10"
-
     "$mod, ${hypr "min" "S"}, togglespecialworkspace"
 
     # Move windows around
@@ -105,39 +123,33 @@ in {
     "blur,logout_dialog"
   ];
   monitor = hyprland.monitors;
-  dwindle = {
-    pseudotile = "yes";
-    preserve_split = "yes";
-  };
   animations = {
     enabled = "yes";
     bezier = [
-      "wind, 0.05, 0.9, 0.1, 1.05"
-      "winIn, 0.1, 1.1, 0.1, 1.1"
-      "winOut, 0.3, -0.3, 0, 1"
-      "liner, 1, 1, 1, 1"
+      "smooth, 0.05, 0.9, 0.1, 1.05"
+      "juump, 0.4, 0.0, 0.2, 1"
+      "bounce, 0.4, -0.25, 0.2, 1.33"
     ];
     animation = [
-      "windows, 1, 6, wind, slide"
-      "windowsIn, 1, 6, winIn, slide"
-      "windowsOut, 1, 5, winOut, slide"
-      "windowsMove, 1, 5, wind, slide"
-      "border, 1, 1, liner"
-      "borderangle, 1, 30, liner, loop"
-      "fade, 1, 10, default"
-      "workspaces, 1, 5, wind"
+      "windows, 1, 8, bounce"
+      "windowsOut, 1, 8, bounce, popin 80%"
+      "border, 1, 4, jump"
+      "borderangle, 1, 4, liner, jump"
+      "fade, 1, 4, jump"
+      "workspaces, 1, 8, bounce, slidefadevert"
     ];
   };
   general = {
-    gaps_in = "3";
-    gaps_out = "8";
-    border_size = "2";
+    gaps_in = "5";
+    gaps_out = "20";
+    border_size = "4";
     # the dot is a hyprland name, not nix syntax, so we escape it
-    "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
-    "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
+    "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+    "col.inactive_border" = "rgba(00000000)";
     layout = "scroller";
     resize_on_border = "true";
     sensitivity = "0.5";
+    allow_tearing = "false";
   };
   input.touchpad = {
     natural_scroll = true;
@@ -145,15 +157,18 @@ in {
     tap-to-click = true;
   };
   decoration = {
-    rounding = "10";
+    rounding = "14";
     drop_shadow = "false";
-    dim_special = "0.3";
     blur = {
       enabled = "yes";
       size = "6";
-      passes = "3";
+      passes = "2";
+      brightness = "1.0";
+      contrast = "2.0";
+      vibrancy = "1.0";
       new_optimizations = "on";
       ignore_opacity = "on";
+      noise = "0";
       xray = "false";
       special = true;
     };
