@@ -44,7 +44,6 @@ in {
     "$mod, ${hypr "float" "V"}, togglefloating"
     "$mod, ${hypr "full" "F"}, fullscreen, 1"
     "$mod+Alt, ${hypr "full" "F"}, fullscreen, 0"
-    "$mod+Shift, ${hypr "opaque" "O"}, opacity, 1.0"
     "$mod, ${hypr "last" "L"}, focusurgentorlast"
 
 	# Hyprscroller
