@@ -44,8 +44,7 @@ in {
     "$mod, ${hypr "float" "V"}, togglefloating"
     "$mod, ${hypr "full" "F"}, fullscreen, 1"
     "$mod+Alt, ${hypr "full" "F"}, fullscreen, 0"
-    "$mod+Shift, ${hypr "full" "F"}, fakefullscreen"
-    "$mod+Shift, ${hypr "opaque" "O"}, toggleopaque"
+    "$mod+Shift, ${hypr "opaque" "O"}, opaque"
     "$mod, ${hypr "last" "L"}, focusurgentorlast"
 
 	# Hyprscroller
@@ -134,7 +133,7 @@ in {
       "windows, 1, 8, bounce"
       "windowsOut, 1, 8, bounce, popin 80%"
       "border, 1, 4, jump"
-      "borderangle, 1, 4, liner, jump"
+      "borderangle, 1, 4, jump"
       "fade, 1, 4, jump"
       "workspaces, 1, 8, bounce, slidefadevert"
     ];
