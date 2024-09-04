@@ -19,7 +19,7 @@ in {
   # This is the default Hyrpland configuration that ships with QuasarOS.
   # It should be modified from the Quasar configuration, not here.
 
-  exec-once = [ "waybar" "waypaper --restore" ];
+  exec-once = [ "waybar" "swww restore" ];
   "$mod" = hypr "mod" "SUPER";
   "$Left" = hypr "left" "Left";
   "$Right" = hypr "right" "Right";
