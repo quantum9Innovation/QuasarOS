@@ -135,6 +135,6 @@
         };
       };
 
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-classic;
+    formatter.x86_64-linux = nixpkgs.legacyPackages.${system}.nixfmt-classic;
   };
 }
