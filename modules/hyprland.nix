@@ -67,6 +67,7 @@ in {
     "$mod, $Down, scroller:movefocus, d"
 
 	# Change workspaces
+    "$mod, 0, workspace, 10"
     "$mod, 1, workspace, 1"
     "$mod, 2, workspace, 2"
     "$mod, 3, workspace, 3"
@@ -76,8 +77,17 @@ in {
     "$mod, 7, workspace, 7"
     "$mod, 8, workspace, 8"
     "$mod, 9, workspace, 9"
-    "$mod, 0, workspace, 10"
-    "$mod, ${hypr "min" "S"}, togglespecialworkspace"
+    "$mod+Shift, 0, movetoworkspace, 10"
+    "$mod+Shift, 1, movetoworkspace, 1"
+    "$mod+Shift, 2, movetoworkspace, 2"
+    "$mod+Shift, 3, movetoworkspace, 3"
+    "$mod+Shift, 4, movetoworkspace, 4"
+    "$mod+Shift, 5, movetoworkspace, 5"
+    "$mod+Shift, 6, movetoworkspace, 6"
+    "$mod+Shift, 7, movetoworkspace, 7"
+    "$mod+Shift, 8, movetoworkspace, 8"
+    "$mod+Shift, 9, movetoworkspace, 9"
+    "$mod+Shift, 0, movetoworkspace, 10"
 
     # Move windows around
     "$mod+Shift, $Left, scroller:movewindow, l"
@@ -92,10 +102,11 @@ in {
     "$mod, period, scroller:expelwindow"
 
 	# Workspace shortcuts
-    "$mod+Ctrl+Shift, $Right, movetoworkspace, r+1"
-    "$mod+Ctrl+Shift, $Left, movetoworkspace, r-1"
-    "$mod+Ctrl, $Right, workspace, r+1"
-    "$mod+Ctrl, $Left, workspace, r-1"
+    "$mod+Ctrl+Shift, $Down, movetoworkspace, r+1"
+    "$mod+Ctrl+Shift, $Up, movetoworkspace, r-1"
+    "$mod+Ctrl, $Down, workspace, r+1"
+    "$mod+Ctrl, $Up, workspace, r-1"
+    "$mod, ${hypr "min" "S"}, togglespecialworkspace"
     "$mod+Ctrl+Shift, ${hypr "min" "S"}, movetoworkspacesilent, special"
 
     # Utilities
