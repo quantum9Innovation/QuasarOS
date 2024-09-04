@@ -87,7 +87,7 @@ quasar: deconst: hyprPlugins:
 
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = map (deconst pkgs) hyprPlugins;
+    plugins = [ pkgs.hyprlandPlugins.hyprscroller ];
     settings = import ./modules/hyprland.nix quasar;
   };
 
