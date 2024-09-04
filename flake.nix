@@ -116,7 +116,7 @@
 
             home-manager.users.${user} = {
               # Primary user Home Manager configuration module
-              imports = [ import ./home.nix quasar ] ++ homeOverrides;
+              imports = [ (import ./home.nix quasar) ] ++ homeOverrides;
             };
           }
         ];
