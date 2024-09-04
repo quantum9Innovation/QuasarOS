@@ -54,7 +54,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-upstream, home-manager, lanzaboote, ... }@inputs: {
     make = { hostname, user, name, git, hardware, system ? "x86_64-linux"
       , kernel ? "zen", secureboot ? { enabled = true; }, stateVersion ? "24.05"
       , systemPackages, homePackages, autoLogin ? true
@@ -111,7 +111,7 @@
 
             home-manager.users.${user} = {
               # Primary user Home Manager configuration module
-              imports = [ (import ./home.nix quasar) ] ++ homeOverrides;
+              imports = [ (import ./home.nix quasar nixpkgs-upstream.legacyPackages.${system}.hyprlandPlugins) ] ++ homeOverrides;
             };
           }
         ];
