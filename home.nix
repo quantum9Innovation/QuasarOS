@@ -87,7 +87,7 @@ quasar:
 
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [ pkgs.hyprlandPlugins.hyprscroller ];
+    plugins = [ inputs.nixpkgs-upstream.hyprlandPlugins.hyprscroller ];
     settings = import ./modules/hyprland.nix quasar;
   };
 
