@@ -22,7 +22,6 @@ in
   # It should be modified from the Quasar configuration, not here.
 
   exec-once = [
-    "waybar"
     "swww-daemon; swww restore;"
   ];
   "$mod" = hypr "mod" "SUPER";
