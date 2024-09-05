@@ -70,9 +70,6 @@ quasar: hyprPlugins:
       wl-clipboard
       rofi-wayland
 
-      # messaging apps
-      signal-desktop
-
       # ricing
       swww
       waypaper
