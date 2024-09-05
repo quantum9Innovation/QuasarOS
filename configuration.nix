@@ -167,15 +167,15 @@
   # Prevent atrocious directories from polluting user home
   environment.etc = {
     "xdg/user-dirs.defaults".text = ''
-      	  DESKTOP=desk
-      	  DOWNLOAD=dl
-      	  TEMPLATES=tmp
-      	  PUBLICSHARE=pub
-      	  DOCUMENTS=doc
-      	  MUSIC=music
-      	  PICTURES=img
-      	  VIDEOS=vid
-      	  WALLPAPERS=wall
+      	  XDG_DESKTOP_DIR=desk
+      	  XDG_DOWNLOAD_DIR=dl
+      	  XDG_TEMPLATES_DIR=tmp
+      	  XDG_PUBLICSHARE_DIR=pub
+      	  XDG_DOCUMENTS_DIR=doc
+      	  XDG_MUSIC_DIR=music
+      	  XDG_PICTURES_DIR=img
+      	  XDG_VIDEOS_DIR=vid
+      	  XDG_WALLPAPERS_DIR=wall
         	'';
   };
 
