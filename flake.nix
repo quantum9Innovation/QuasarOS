@@ -55,42 +55,78 @@
   };
 
   outputs =
-    { self, nixpkgs, nixpkgs-upstream, home-manager, lanzaboote, ... }@inputs: {
-      make = { hostname, user, name, git, hardware, system ? "x86_64-linux"
-        , kernel ? "zen", secureboot ? { enabled = true; }
-        , stateVersion ? "24.05", systemPackages, homePackages, autoLogin ? true
-        , ssh ? { enabled = false; }, locale ? "en_US.UTF-8"
-        , hyprland ? { mod = "SUPER"; }, graphics ? {
-          opengl = true;
-          nvidia = {
+    {
+      self,
+      nixpkgs,
+      nixpkgs-upstream,
+      home-manager,
+      lanzaboote,
+      ...
+    }@inputs:
+    {
+      make =
+        {
+          hostname,
+          user,
+          name,
+          git,
+          hardware,
+          system ? "x86_64-linux",
+          kernel ? "zen",
+          secureboot ? {
             enabled = true;
-            intelBusId = null;
-            nvidiaBusId = null;
-          };
-        }, audio ? { jack = false; }, overrides ? [ ], homeOverrides ? [ ], ...
+          },
+          stateVersion ? "24.05",
+          systemPackages,
+          homePackages,
+          autoLogin ? true,
+          ssh ? {
+            enabled = false;
+          },
+          locale ? "en_US.UTF-8",
+          hyprland ? {
+            mod = "SUPER";
+          },
+          graphics ? {
+            opengl = true;
+            nvidia = {
+              enabled = true;
+              intelBusId = null;
+              nvidiaBusId = null;
+            };
+          },
+          audio ? {
+            jack = false;
+          },
+          overrides ? [ ],
+          homeOverrides ? [ ],
+          ...
         }@quasar:
         let
           # Secure boot configuration
           secureBoot = [
             lanzaboote.nixosModules.lanzaboote
 
-            ({ pkgs, lib, ... }: {
-              environment.systemPackages = [
-                # For debugging and troubleshooting secure boot
-                pkgs.sbctl
-              ];
+            (
+              { pkgs, lib, ... }:
+              {
+                environment.systemPackages = [
+                  # For debugging and troubleshooting secure boot
+                  pkgs.sbctl
+                ];
 
-              # Lanzaboote currently replaces the systemd-boot module.
-              # This setting is usually set to true in configuration.nix,
-              # generated at installation time.
-              # So we force it to false for now.
-              boot.loader.systemd-boot.enable = lib.mkForce false;
+                # Lanzaboote currently replaces the systemd-boot module.
+                # This setting is usually set to true in configuration.nix,
+                # generated at installation time.
+                # So we force it to false for now.
+                boot.loader.systemd-boot.enable = lib.mkForce false;
 
-              boot.lanzaboote = {
-                enable = true;
-                pkiBundle = "/etc/secureboot";
-              };
-            })
+                boot.lanzaboote = {
+                  enable = true;
+                  pkiBundle = "/etc/secureboot";
+                };
+              }
+            )
           ];
 
           # Modules without conditional add-ons
@@ -113,19 +149,16 @@
               home-manager.users.${user} = {
                 # Primary user Home Manager configuration module
                 imports = [
-                  (import ./home.nix quasar
-                    nixpkgs-upstream.legacyPackages.${system}.hyprlandPlugins)
+                  (import ./home.nix quasar nixpkgs-upstream.legacyPackages.${system}.hyprlandPlugins)
                 ] ++ homeOverrides;
               };
             }
           ];
 
           # Modules with conditional add-ons
-          modules = if secureboot.enabled then
-            baseModules ++ secureBoot
-          else
-            baseModules;
-        in {
+          modules = if secureboot.enabled then baseModules ++ secureBoot else baseModules;
+        in
+        {
           system = nixpkgs.lib.nixosSystem {
             # Forward external configurations to declared modules
             specialArgs = {
@@ -141,7 +174,6 @@
           };
         };
 
-      formatter.x86_64-linux =
-        nixpkgs.legacyPackages.x86_64-linux.nixfmt-classic;
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };
 }

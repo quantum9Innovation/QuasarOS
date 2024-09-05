@@ -1,4 +1,11 @@
-{ config, lib, pkgs, inputs, quasar, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  quasar,
+  ...
+}:
 
 {
 
@@ -48,12 +55,14 @@
   networking.hostName = quasar.hostname;
 
   # Select kernel
-  boot.kernelPackages = {
-    "zen" = pkgs.linuxPackages_zen;
-    "latest" = pkgs.linuxPackages_latest;
-    "hardened" = pkgs.linuxPackages_latest_hardened;
-    "libre" = pkgs.linuxPackages_latest-libre;
-  }.${quasar.kernel};
+  boot.kernelPackages =
+    {
+      "zen" = pkgs.linuxPackages_zen;
+      "latest" = pkgs.linuxPackages_latest;
+      "hardened" = pkgs.linuxPackages_latest_hardened;
+      "libre" = pkgs.linuxPackages_latest-libre;
+    }
+    .${quasar.kernel};
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -82,7 +91,9 @@
   };
 
   # Faster boot times
-  systemd.services = { NetworkManager-wait-online.enable = false; };
+  systemd.services = {
+    NetworkManager-wait-online.enable = false;
+  };
 
   # Disable the X11 windowing system,
   # since Hyprland uses the more modern Wayland
@@ -133,17 +144,25 @@
   users.users.${quasar.user} = {
     isNormalUser = true;
     description = quasar.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.fish;
   };
 
   # More user configuration
   nix.settings = {
-    trusted-users = [ "root" quasar.user ];
-    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [
+      "root"
+      quasar.user
+    ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys =
-      [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   # Allow unfree packages for proprietary driver support
@@ -151,8 +170,18 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [ micro curl bat gnumake clang gcc cachix gnupg ]
+  environment.systemPackages =
+    with pkgs;
+    [
+      micro
+      curl
+      bat
+      gnumake
+      clang
+      gcc
+      cachix
+      gnupg
+    ]
     ++ (quasar.systemPackages pkgs);
 
   # Git is an essential system package
@@ -207,23 +236,26 @@
   # Install and configure appropriate NVIDIA drivers
   # Do not attempt to disable unfree software packages if you enable this
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = if quasar.graphics.nvidia.enabled then {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
-    open = false;
-    nvidiaSettings = true;
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-      intelBusId = quasar.graphics.nvidia.intelBusId;
-      nvidiaBusId = quasar.graphics.nvidia.nvidiaBusId;
-    };
-  } else
-    null;
+  hardware.nvidia =
+    if quasar.graphics.nvidia.enabled then
+      {
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        modesetting.enable = true;
+        powerManagement.enable = true;
+        powerManagement.finegrained = true;
+        open = false;
+        nvidiaSettings = true;
+        prime = {
+          offload = {
+            enable = true;
+            enableOffloadCmd = true;
+          };
+          intelBusId = quasar.graphics.nvidia.intelBusId;
+          nvidiaBusId = quasar.graphics.nvidia.nvidiaBusId;
+        };
+      }
+    else
+      null;
 
   fonts = {
     enableDefaultPackages = true;

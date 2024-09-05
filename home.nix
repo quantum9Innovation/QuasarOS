@@ -1,5 +1,10 @@
 quasar: hyprPlugins:
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
 
@@ -41,7 +46,8 @@ quasar: hyprPlugins:
   # '';
 
   # Packages that should be installed to the user profile.
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       # essential
       brave
@@ -83,7 +89,8 @@ quasar: hyprPlugins:
       lazygit
       micro
       zed-editor
-    ] ++ (quasar.homePackages pkgs);
+    ]
+    ++ (quasar.homePackages pkgs);
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -99,7 +106,9 @@ quasar: hyprPlugins:
       size = "32x32";
     };
   };
-  services.easyeffects = { enable = true; };
+  services.easyeffects = {
+    enable = true;
+  };
 
   programs.gh.enable = true;
   programs.fzf.enable = true;
@@ -131,13 +140,12 @@ quasar: hyprPlugins:
 
   programs.git = {
     enable = true;
-    userName = if builtins.hasAttr "name" quasar.git then
-      quasar.git.name
-    else
-      quasar.name;
+    userName = if builtins.hasAttr "name" quasar.git then quasar.git.name else quasar.name;
     userEmail = quasar.git.email;
     delta.enable = true;
-    extraConfig = { init.defaultBranch = "main"; };
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
 
   programs.kitty = {
@@ -160,7 +168,9 @@ quasar: hyprPlugins:
       name = "Bibata-Modern-Classic";
       size = 26;
     };
-    iconTheme = { name = "Papirus-Dark"; };
+    iconTheme = {
+      name = "Papirus-Dark";
+    };
   };
 
   qt = {
@@ -175,12 +185,10 @@ quasar: hyprPlugins:
       theme=GraphiteNordDark
     '';
 
-    "Kvantum/GraphiteNord".source =
-      "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
+    "Kvantum/GraphiteNord".source = "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
   };
 
-  programs.chromium.commandLineArgs =
-    "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+  programs.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
 
   home.stateVersion = quasar.stateVersion;
   programs.home-manager.enable = true;

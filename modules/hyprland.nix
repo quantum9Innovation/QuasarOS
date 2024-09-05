@@ -1,10 +1,12 @@
 quasar:
 let
   hyprland = quasar.hyprland;
-  default = mod: attr: fallback:
+  default =
+    mod: attr: fallback:
     if builtins.hasAttr attr mod then mod.${attr} else fallback;
   hypr = attr: fallback: default hyprland attr fallback;
-in {
+in
+{
 
   #  /*****                                                 /******   /****
   #  |*    |  |*   |    **     ****     **    *****        |*    |  /*    * 
@@ -19,7 +21,10 @@ in {
   # This is the default Hyrpland configuration that ships with QuasarOS.
   # It should be modified from the Quasar configuration, not here.
 
-  exec-once = [ "waybar" "swww-daemon; swww restore;" ];
+  exec-once = [
+    "waybar"
+    "swww-daemon; swww restore;"
+  ];
   "$mod" = hypr "mod" "SUPER";
   "$Left" = hypr "left" "Left";
   "$Right" = hypr "right" "Right";
@@ -110,13 +115,8 @@ in {
     "$mod+Shift, ${hypr "min" "S"}, movetoworkspacesilent, special"
 
     # Utilities
-    "$mod, ${
-      hypr "omni" "Space"
-    }, exec, pkill -x rofi || rofi -show drun" # Run rofi
-    ''
-      $mod, ${
-        hypr "screen" "P"
-      }, exec, grim -g "$(slurp)" - | swappy -f -'' # Screenshot
+    "$mod, ${hypr "omni" "Space"}, exec, pkill -x rofi || rofi -show drun" # Run rofi
+    ''$mod, ${hypr "screen" "P"}, exec, grim -g "$(slurp)" - | swappy -f -'' # Screenshot
     "$mod, ${hypr "menu" "Backspace"}, exec, wlogout" # Show power menu
   ];
   bindm = [
@@ -187,5 +187,7 @@ in {
       special = true;
     };
   };
-  misc = { force_default_wallpaper = 0; };
+  misc = {
+    force_default_wallpaper = 0;
+  };
 }
