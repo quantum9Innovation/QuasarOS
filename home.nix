@@ -53,7 +53,6 @@ quasar: hyprPlugins:
       # communication
       thunderbird
       signal-desktop
-      dissent
 
       # archives
       zip
