@@ -48,7 +48,12 @@ quasar: hyprPlugins:
       firefox
       fastfetch
       nemo
+      logseq
+
+      # communication
       thunderbird
+      signal-desktop
+      dissent
 
       # archives
       zip
