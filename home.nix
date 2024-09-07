@@ -46,9 +46,10 @@ quasar: hyprPlugins:
       # essential
       brave
       firefox
+      thunderbird
+      anytype
       fastfetch
       nemo
-      thunderbird
 
       # archives
       zip
