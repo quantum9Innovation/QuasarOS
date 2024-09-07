@@ -47,7 +47,7 @@ quasar: hyprPlugins:
       brave
       firefox
       thunderbird
-      anytype
+      zettlr
       fastfetch
       nemo
 
