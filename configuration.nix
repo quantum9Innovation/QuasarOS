@@ -181,6 +181,7 @@
       gcc
       cachix
       gnupg
+      pavucontrol
     ]
     ++ (quasar.systemPackages pkgs);
 
