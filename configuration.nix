@@ -147,6 +147,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     shell = pkgs.fish;
   };
@@ -221,6 +222,13 @@
   # Setup Dconf for user configuration of low-level settings
   # Also needed as a dependency for critical system packages
   programs.dconf.enable = true;
+
+  # Enable Docker for hardware virtualization
+  virtualisation.docker = {
+  	enable = true;
+  	setSocketVariable = true;
+  };
+  hardware.nvidia-container-toolkit.enable = quasar.graphics.nvidia.enabled;
 
   # This value determines the NixOS release from which the default settings
   # for stateful data, like file locations and database versions
