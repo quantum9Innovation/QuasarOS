@@ -224,10 +224,7 @@
   programs.dconf.enable = true;
 
   # Enable Docker for hardware virtualization
-  virtualisation.docker = {
-  	enable = true;
-  	setSocketVariable = true;
-  };
+  virtualisation.docker.enable = true;
   hardware.nvidia-container-toolkit.enable = quasar.graphics.nvidia.enabled;
 
   # This value determines the NixOS release from which the default settings
