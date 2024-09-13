@@ -110,7 +110,6 @@
 
   # Enable Hyprland
   programs.hyprland.enable = true;
-  programs.hyprland.package = inputs.nixpkgs-stable.legacyPackages.${pkgs.system}.hyprland;
 
   # Enable SDDM for login and lock management
   services.displayManager = {

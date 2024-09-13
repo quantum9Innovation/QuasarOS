@@ -161,7 +161,6 @@ in
     "col.inactive_border" = "rgba(00000000)";
     layout = "scroller";
     resize_on_border = "true";
-    sensitivity = "0.5";
     allow_tearing = "false";
   };
   input.touchpad = {

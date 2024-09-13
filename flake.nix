@@ -27,9 +27,6 @@
     # which are not critical for system functionality on QuasarOS.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-	# For when the bleeding edge is bleeding a bit too much
-	nixpkgs-stable.url = "github:nixos/nixpkgs";
-
     # For incorporating hotfixes
     nixpkgs-upstream.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
