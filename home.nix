@@ -151,7 +151,7 @@ quasar: hyprPlugins:
 
   programs.kitty = {
     enable = true;
-    theme = "Tokyo Night";
+    themeFile = "Tokyo Night";
     font.name = "CaskaydiaCove Nerd Font";
     settings = {
       font_size = 11;
