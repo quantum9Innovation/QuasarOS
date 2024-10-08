@@ -183,6 +183,8 @@
       cachix
       gnupg
       pavucontrol
+      inxi
+      brightnessctl
     ]
     ++ (quasar.systemPackages pkgs);
 
