@@ -164,6 +164,52 @@ quasar: hyprPlugins:
     };
   };
 
+  programs.waybar = {
+    enable = true;
+    style = "min";
+    package = pkgs.waybar;
+    settings = {
+      "layer" = "top";
+      "modules-left" = [ "sway/workspaces" "sway/mode" "sway/window" ];
+      "modules-center" = [ "sway/layout" "sway/clock" ];
+      "modules-right" = [ "idle_inhibitor" "pulseaudio" "network" "memory" "cpu" "temperature" "backlight" "battery" "tray" ];
+      "sway/workspaces" = {
+        "all-outputs" = true;
+        "format" = "{name}:{icon}";
+        "format-icons" = {
+          "1" = "";
+          "2" = "";
+          "3" = "";
+          "4" = "";
+          "5" = "";
+          "urgent" = "";
+          "focused" = "";
+          "default" = "";
+        };
+        "format-foreground" = {
+          "1" = "#002c71";
+          "2" = "#002c71";
+          "3" = "#002c71";
+          "4" = "#002c71";
+          "5" = "#002c71";
+          "urgent" = "#2f343a";
+          "focused" = "#2f343a";
+          "default" = "#2f343a";
+        };
+        "format-background" = {
+          "1" = "#002c71";
+          "2" = "#002c71";
+          "3" = "#002c71";
+          "4" = "#002c  71";
+          "5" = "#002c71";
+          "urgent" = "#2f343a";
+          "focused" = "#2f343a";
+          "default" = "#2f343a";
+        };
+      };
+    };
+  };
+
   gtk = {
     enable = true;
     cursorTheme = {
