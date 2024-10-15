@@ -178,8 +178,8 @@ quasar: hyprPlugins:
           "clock"
         ];
         "network" = {
-          "format" = "{ipaddr}   {bandwidthDownBits} 󰇚 {bandwidthUpBits} 󰕒";
-          "format_connected" = "{essid}   {bandwidthDownBits} 󰇚 {bandwidthUpBits} 󰕒";
+          "format" = "{ipaddr} 󰈀 ";
+          "format_connected" = "{essid}  ";
           "format_disconnected" = "Disconnected 󰖪 ";
           "tooltip" = true;
         };
