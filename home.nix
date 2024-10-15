@@ -166,7 +166,6 @@ quasar: hyprPlugins:
 
   programs.waybar = {
     enable = true;
-    style = "min";
     package = pkgs.waybar;
     settings = {
       mainbar = {
