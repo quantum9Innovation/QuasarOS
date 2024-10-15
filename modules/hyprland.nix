@@ -52,12 +52,11 @@ in
 
     # Hyprscroller
     "$mod, ${hypr "view" "A"}, scroller:toggleoverview"
-    "$mod, ${hypr "fit" "J"}, scroller:fitsize"
     "$mod+Shift, $Up, scroller:cyclesize, +1"
     "$mod+Shift, $Down, scroller:cyclesize, -1"
 
     # Resizing
-    "$mod+Alt, 1, resizeactive, exact 50% 95%"
+    "$mod+Alt, 1, resizeactive, exact 50% 92%"
     "$mod+Alt, 2, resizeactive, exact 50% 47%"
     "$mod+Alt, 3, resizeactive, exact 50% 31%"
     "$mod+Alt, 4, resizeactive, exact 50% 23%"
@@ -98,10 +97,6 @@ in
     "$mod+Shift, $Left, scroller:alignwindow, l"
     "$mod+Shift, $Right, scroller:movewindow, r"
     "$mod+Shift, $Right, scroller:alignwindow, r"
-    "$mod+Shift, $Up, scroller:movewindow, u"
-    "$mod+Shift, $Up, scroller:alignwindow, u"
-    "$mod+Shift, $Down, scroller:movewindow, d"
-    "$mod+Shift, $Down, scroller:alignwindow, d"
     "$mod, comma, scroller:admitwindow"
     "$mod, period, scroller:expelwindow"
 
@@ -157,7 +152,7 @@ in
     gaps_out = "20";
     border_size = "4";
     # the dot is a hyprland name, not nix syntax, so we escape it
-    "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+    "col.active_border" = "rgba(#1966ffff) rgba(00ff99ee) 45deg";
     "col.inactive_border" = "rgba(00000000)";
     layout = "scroller";
     resize_on_border = "true";
