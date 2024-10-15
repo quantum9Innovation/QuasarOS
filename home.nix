@@ -177,8 +177,12 @@ quasar: hyprPlugins:
         "modules-center" = [
           "clock"
         ];
+        "network" = {
+          "format" = "{essid} ";
+          "tooltip" = true;
+        };
         "clock" = {
-          "format" = "{:%I:%M %p} ";
+          "format" = "{:%I:%M %p}  ";
           "format-alt" = "{:%a, %b %d, %C%y}   ";
           "tooltip" = false;
         };
@@ -231,8 +235,8 @@ quasar: hyprPlugins:
           ];
         };
         "modules-right" = [
-          "pulseaudio"
           "network"
+          "pulseaudio"
           "memory"
           "cpu"
           "temperature"

@@ -14,7 +14,7 @@
 
 #battery {
     color: #333333;
-    background-color: rgba(255, 202, 97, 0.5);
+    background-color: rgba(255, 202, 97, 0.75);
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
@@ -44,7 +44,7 @@
 
 #temperature {
     color: #333333;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.75);
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
@@ -54,7 +54,7 @@
 
 #backlight {
     color: #333333;
-    background-color: rgba(184, 255, 97, 0.5);
+    background-color: rgba(184, 255, 97, 0.75);
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
@@ -96,19 +96,20 @@
     margin: 0 5px;
     background-color: #002aff;
     border-radius: 5px;
-    border: 2px solid #00ff99;
+    border: 2px solid #ffffff;
     color: #ffffff;
     box-shadow: none;
 }
 
 #workspaces button:hover {
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.5);
     color: #002aff;
 }
 
 #workspaces button.focused {
     border-color: #ffffff;
     color: #002aff;
+    border: 2px solid #00ff99;
 }
 
 #workspaces button.active {
