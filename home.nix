@@ -167,6 +167,7 @@ quasar: hyprPlugins:
   programs.waybar = {
     enable = true;
     package = pkgs.waybar;
+    style = builtins.readFile modules/waybar.css;
     settings = {
       mainbar = {
         "layer" = "top";
@@ -250,6 +251,26 @@ quasar: hyprPlugins:
           "backlight"
           "battery"
         ];
+        "pulseaudio" = {
+          "format" = "{icon} {volume}% {format_source}";
+          "format-bluetooth" = "{icon} {volume}% {format_source}";
+          "format-bluetooth-muted" = " {format source}";
+          "format-muted" = "󰝟 {format_source}";
+          "format-source" = "{volume}%";
+          "format-source-muted" = "{volume}%";
+          "format-icons" = [
+            ""
+            ""
+            ""
+            "󰝟"
+            ""
+            ""
+            ""
+            "󰝟"
+          ];
+          "scroll-step" = 0.5;
+          "on-click" = "pavucontrol";
+        };
         "hyprland/workspaces" = {
           "all-outputs" = true;
           "format" = "{name}";
