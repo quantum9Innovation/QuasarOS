@@ -58,7 +58,7 @@ in
     "$mod+Shift, $Down, scroller:cyclesize, -1"
 
     # Resizing
-    "$mod+Alt, 1, resizeactive, exact 50% 92%"
+    "$mod+Alt, 1, resizeactive, exact 50% 94%"
     "$mod+Alt, 2, resizeactive, exact 50% 47%"
     "$mod+Alt, 3, resizeactive, exact 50% 31%"
     "$mod+Alt, 4, resizeactive, exact 50% 23%"
@@ -130,7 +130,6 @@ in
     "ignorezero,swaync-notification-window"
     "blur,swaync-control-center"
     "ignorezero,swaync-control-center"
-    "blur,logout_dialog"
   ];
   monitor = hyprland.monitors;
   animations = {
