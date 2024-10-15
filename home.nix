@@ -171,7 +171,7 @@ quasar: hyprPlugins:
       mainbar = {
         "layer" = "top";
         "modules-left" = [
-          "sway/workspaces"
+          "hyprland/workspaces"
           "sway/mode"
           "sway/window"
         ];
@@ -179,8 +179,76 @@ quasar: hyprPlugins:
           "sway/layout"
           "sway/clock"
         ];
+        "clock" = {
+          "format" = "{:%H:%M %Z} ";
+          "format-alt" = "{:%a, %b %d %C%y} ";
+          "tooltip" = true;
+        };
+        "cpu" = {
+          "format" = "{usage}% ";
+          "tooltip" = true;
+        };
+        "memory" = {
+          "format" = "{percentage}% ";
+          "tooltip" = true;
+        };
+        "temperature" = {
+          "thermal-zone" = 0;
+          "critical-threshold" = 80;
+          "format" = "{temperatureC}°C ";
+          "format-icons" = [
+            ""
+            ""
+            ""
+            ""
+          ];
+          "format-icons-sunrise" = [
+            ""
+            ""
+            ""
+            ""
+          ];
+          "format-icons-sunset" = [
+            ""
+            ""
+            ""
+            ""
+          ];
+          "show-icons" = true;
+          "on-click" = "pkill -x polybar-thermal-zone";
+        };
+        "backlight" = {
+          "format" = "{percentage}% ";
+          "format-icons" = [
+            ""
+            ""
+          ];
+          "on-click" = "pkill -x polybar-backlight";
+        };
+        "battery" = {
+          "bat" = "BAT0";
+          "adapter" = "AC";
+          "states" = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
+          "format" = "{capacity}% {icon}";
+          "format-charging" = "{capacity}% ";
+          "format-plugged" = "{capacity}% ";
+          "format-alt" = "{time} {icon}";
+          "format-icons" = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
+          "on-click" = "pkill -x polybar-battery";
+        };
         "modules-right" = [
-          "idle_inhibitor"
           "pulseaudio"
           "network"
           "memory"
@@ -188,21 +256,10 @@ quasar: hyprPlugins:
           "temperature"
           "backlight"
           "battery"
-          "tray"
         ];
-        "sway/workspaces" = {
+        "hyprland/workspaces" = {
           "all-outputs" = true;
-          "format" = "{name}:{icon}";
-          "format-icons" = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            "urgent" = "";
-            "focused" = "";
-            "default" = "";
-          };
+          "format" = "{name}";
           "format-foreground" = {
             "1" = "#002c71";
             "2" = "#002c71";
@@ -217,7 +274,7 @@ quasar: hyprPlugins:
             "1" = "#002c71";
             "2" = "#002c71";
             "3" = "#002c71";
-            "4" = "#002c  71";
+            "4" = "#002c71";
             "5" = "#002c71";
             "urgent" = "#2f343a";
             "focused" = "#2f343a";
