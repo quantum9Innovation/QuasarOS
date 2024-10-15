@@ -152,7 +152,7 @@ in
     gaps_out = "20";
     border_size = "4";
     # the dot is a hyprland name, not nix syntax, so we escape it
-    "col.active_border" = "rgba(#1966ffff) rgba(00ff99ee) 45deg";
+    "col.active_border" = "rgba(1966ffff) rgba(00ff99ee) 45deg";
     "col.inactive_border" = "rgba(00000000)";
     layout = "scroller";
     resize_on_border = "true";
