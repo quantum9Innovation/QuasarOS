@@ -172,58 +172,50 @@ quasar: hyprPlugins:
         "layer" = "top";
         "modules-left" = [
           "hyprland/workspaces"
-          "sway/mode"
-          "sway/window"
         ];
         "modules-center" = [
-          "sway/layout"
-          "sway/clock"
+          "clock"
         ];
         "clock" = {
           "format" = "{:%H:%M %Z} ";
           "format-alt" = "{:%a, %b %d %C%y} ";
           "tooltip" = true;
+          "background" = "#002aff";
+          "foreground" = "#ffffff";
         };
         "cpu" = {
           "format" = "{usage}% ";
           "tooltip" = true;
+          "background" = "#1966ff";
+          "foreground" = "#ffffff";
         };
         "memory" = {
           "format" = "{percentage}% ";
           "tooltip" = true;
+          "background" = "#4aa1ff";
+          "foreground" = "#ffffff";
         };
         "temperature" = {
-          "thermal-zone" = 0;
-          "critical-threshold" = 80;
-          "format" = "{temperatureC}°C ";
+          "critical-threshold" = 120;
+          "format" = "{temperatureF}°F ";
           "format-icons" = [
-            ""
-            ""
-            ""
-            ""
-          ];
-          "format-icons-sunrise" = [
-            ""
-            ""
-            ""
-            ""
-          ];
-          "format-icons-sunset" = [
             ""
             ""
             ""
             ""
           ];
           "show-icons" = true;
-          "on-click" = "pkill -x polybar-thermal-zone";
+          "background" = "#ffffff";
+          "foreground" = "#333333";
         };
         "backlight" = {
-          "format" = "{percentage}% ";
+          "format" = "{percent}% ";
           "format-icons" = [
             ""
             ""
           ];
-          "on-click" = "pkill -x polybar-backlight";
+          "background" = "#b8ff61";
+          "foreground" = "#333333";
         };
         "battery" = {
           "bat" = "BAT0";
@@ -236,7 +228,7 @@ quasar: hyprPlugins:
             ""
           ];
           "format" = "{capacity}% {icon}";
-          "format-charging" = "{capacity}% ";
+          "format-charging" = "{capacity}% 󰂄";
           "format-plugged" = "{capacity}% ";
           "format-alt" = "{time} {icon}";
           "format-icons" = [
@@ -246,7 +238,8 @@ quasar: hyprPlugins:
             ""
             ""
           ];
-          "on-click" = "pkill -x polybar-battery";
+          "background" = "#ffca61";
+          "foreground" = "#333333";
         };
         "modules-right" = [
           "pulseaudio"
@@ -266,9 +259,9 @@ quasar: hyprPlugins:
             "3" = "#002c71";
             "4" = "#002c71";
             "5" = "#002c71";
-            "urgent" = "#2f343a";
-            "focused" = "#2f343a";
-            "default" = "#2f343a";
+            "urgent" = "#002aff";
+            "focused" = "#002aff";
+            "default" = "#002aff";
           };
           "format-background" = {
             "1" = "#002c71";
@@ -276,9 +269,9 @@ quasar: hyprPlugins:
             "3" = "#002c71";
             "4" = "#002c71";
             "5" = "#002c71";
-            "urgent" = "#2f343a";
-            "focused" = "#2f343a";
-            "default" = "#2f343a";
+            "urgent" = "#002aff";
+            "focused" = "#002aff";
+            "default" = "#002aff";
           };
         };
       };
