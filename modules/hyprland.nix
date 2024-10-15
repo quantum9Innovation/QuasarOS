@@ -58,7 +58,7 @@ in
     "$mod+Shift, $Down, scroller:cyclesize, -1"
 
     # Resizing
-    "$mod+Alt, 1, resizeactive, exact 50% 88%"
+    "$mod+Alt, 1, resizeactive, exact 50% 89%"
     "$mod+Alt, 2, resizeactive, exact 50% 47%"
     "$mod+Alt, 3, resizeactive, exact 50% 31%"
     "$mod+Alt, 4, resizeactive, exact 50% 23%"

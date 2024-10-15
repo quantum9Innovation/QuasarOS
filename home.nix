@@ -178,8 +178,7 @@ quasar: hyprPlugins:
           "clock"
         ];
         "network" = {
-          "format" = "{ip}  ";
-          "format_alt" = "{mac}  ";
+          "format" = "{mac}  ";
           "format_connected" = "{essid}  ";
           "format_disconnected" = "Disconnected 󰖪 ";
           "tooltip" = true;
