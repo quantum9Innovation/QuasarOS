@@ -49,6 +49,7 @@ in
     "$mod, ${hypr "full" "F"}, fullscreen, 0"
     "$mod+Alt, ${hypr "full" "F"}, fullscreen, 1"
     "$mod, ${hypr "last" "L"}, focusurgentorlast"
+    "$mod, ${hypr "opaque" "O"}, toggleopaque"
 
     # Hyprscroller
     "$mod, ${hypr "view" "A"}, scroller:toggleoverview"
@@ -166,6 +167,9 @@ in
   decoration = {
     rounding = "14";
     drop_shadow = "false";
+    active_opacity = "0.8";
+    inactive_opacity = "0.6";
+    fullscreen_opacity = "0.9";
     blur = {
       enabled = "yes";
       size = "6";
