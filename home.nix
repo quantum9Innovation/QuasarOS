@@ -178,11 +178,14 @@ quasar: hyprPlugins:
           "clock"
         ];
         "network" = {
-          "format" = "{essid} ";
+          "format" = "{ip}  ";
+          "format_alt" = "{mac}  ";
+          "format_connected" = "{essid}  ";
+          "format_disconnected" = "Disconnected 󰖪 ";
           "tooltip" = true;
         };
         "clock" = {
-          "format" = "{:%I:%M %p}  ";
+          "format" = "{:%I:%M %p}   ";
           "format-alt" = "{:%a, %b %d, %C%y}   ";
           "tooltip" = false;
         };
@@ -244,8 +247,8 @@ quasar: hyprPlugins:
           "battery"
         ];
         "pulseaudio" = {
-          "format" = "{volume}% {icon} ";
-          "format-bluetooth" = "{volume}% {icon} ";
+          "format" = "{volume}%  {icon} ";
+          "format-bluetooth" = "{volume}%  {icon} ";
           "format-bluetooth-muted" = "{icon} ";
           "format-muted" = "{icon} 󰝟 ";
           "format-source" = "{volume}%";
