@@ -1,3 +1,7 @@
+#waybar {
+    background-color: #1e1e2e;
+}
+
 #clock {
     color: #ffffff;
     background-color: #002aff;
@@ -6,7 +10,7 @@
 }
 
 #battery {
-    color: #ffffff;
+    color: #333333;
     background-color: #ffca61;
     border-radius: 10px;
     padding: 10px;
@@ -14,27 +18,27 @@
 
 #cpu {
     color: #ffffff;
-    background-color: #1966ff;
+    background-color: #4aa1ff;
     border-radius: 10px;
     padding: 10px;
 }
 
 #memory {
     color: #ffffff;
-    background-color: #4aa1ff;
+    background-color: #1966ff;
     border-radius: 10px;
     padding: 10px;
 }
 
 #temperature {
-    color: #ffffff;
+    color: #333333;
     background-color: #ffffff;
     border-radius: 10px;
     padding: 10px;
 }
 
 #backlight {
-    color: #ffffff;
+    color: #333333;
     background-color: #b8ff61;
     border-radius: 10px;
     padding: 10px;
@@ -55,16 +59,9 @@
 }
 
 #workspaces {
-    color: #ffffff;
-    background-color: #002aff;
+    color: #333333;
     border-radius: 10px;
     padding: 10px;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-    }
 }
 
 #workspaces button {
@@ -79,44 +76,9 @@
 #workspaces button:hover {
     background-color: #ffffff;
     color: #002aff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
 }
 
 #workspaces button.focused {
-    background-color: #ffffff;
+    border-color: #ffffff;
     color: #002aff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-#workspaces button.urgent {
-    background-color: #ff0000;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-#workspaces button.visible {
-    background-color: #002aff;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-#workspaces button.focused.visible {
-    background-color: #ffffff;
-    color: #002aff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
 }

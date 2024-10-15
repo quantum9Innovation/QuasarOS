@@ -178,23 +178,17 @@ quasar: hyprPlugins:
           "clock"
         ];
         "clock" = {
-          "format" = "{:%H:%M %Z} ";
+          "format" = "{:%h:%M %Z} ";
           "format-alt" = "{:%a, %b %d %C%y} ";
           "tooltip" = true;
-          "background" = "#002aff";
-          "foreground" = "#ffffff";
         };
         "cpu" = {
           "format" = "{usage}% ";
           "tooltip" = true;
-          "background" = "#1966ff";
-          "foreground" = "#ffffff";
         };
         "memory" = {
           "format" = "{percentage}% ";
           "tooltip" = true;
-          "background" = "#4aa1ff";
-          "foreground" = "#ffffff";
         };
         "temperature" = {
           "critical-threshold" = 120;
@@ -206,8 +200,6 @@ quasar: hyprPlugins:
             ""
           ];
           "show-icons" = true;
-          "background" = "#ffffff";
-          "foreground" = "#333333";
         };
         "backlight" = {
           "format" = "{percent}% ";
@@ -215,8 +207,6 @@ quasar: hyprPlugins:
             ""
             ""
           ];
-          "background" = "#b8ff61";
-          "foreground" = "#333333";
         };
         "battery" = {
           "bat" = "BAT0";
@@ -239,8 +229,6 @@ quasar: hyprPlugins:
             ""
             ""
           ];
-          "background" = "#ffca61";
-          "foreground" = "#333333";
         };
         "modules-right" = [
           "pulseaudio"
@@ -252,10 +240,10 @@ quasar: hyprPlugins:
           "battery"
         ];
         "pulseaudio" = {
-          "format" = "{icon} {volume}% {format_source}";
-          "format-bluetooth" = "{icon} {volume}% {format_source}";
-          "format-bluetooth-muted" = " {format source}";
-          "format-muted" = "󰝟 {format_source}";
+          "format" = "{volume}% {format_source} {icon}";
+          "format-bluetooth" = "{volume}% {format_source} {icon}";
+          "format-bluetooth-muted" = "{format source} ";
+          "format-muted" = "{format_source} 󰝟";
           "format-source" = "{volume}%";
           "format-source-muted" = "{volume}%";
           "format-icons" = [
@@ -274,26 +262,6 @@ quasar: hyprPlugins:
         "hyprland/workspaces" = {
           "all-outputs" = true;
           "format" = "{name}";
-          "format-foreground" = {
-            "1" = "#002c71";
-            "2" = "#002c71";
-            "3" = "#002c71";
-            "4" = "#002c71";
-            "5" = "#002c71";
-            "urgent" = "#002aff";
-            "focused" = "#002aff";
-            "default" = "#002aff";
-          };
-          "format-background" = {
-            "1" = "#002c71";
-            "2" = "#002c71";
-            "3" = "#002c71";
-            "4" = "#002c71";
-            "5" = "#002c71";
-            "urgent" = "#002aff";
-            "focused" = "#002aff";
-            "default" = "#002aff";
-          };
         };
       };
     };
