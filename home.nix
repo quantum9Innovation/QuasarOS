@@ -170,9 +170,26 @@ quasar: hyprPlugins:
     package = pkgs.waybar;
     settings = {
       "layer" = "top";
-      "modules-left" = [ "sway/workspaces" "sway/mode" "sway/window" ];
-      "modules-center" = [ "sway/layout" "sway/clock" ];
-      "modules-right" = [ "idle_inhibitor" "pulseaudio" "network" "memory" "cpu" "temperature" "backlight" "battery" "tray" ];
+      "modules-left" = [
+        "sway/workspaces"
+        "sway/mode"
+        "sway/window"
+      ];
+      "modules-center" = [
+        "sway/layout"
+        "sway/clock"
+      ];
+      "modules-right" = [
+        "idle_inhibitor"
+        "pulseaudio"
+        "network"
+        "memory"
+        "cpu"
+        "temperature"
+        "backlight"
+        "battery"
+        "tray"
+      ];
       "sway/workspaces" = {
         "all-outputs" = true;
         "format" = "{name}:{icon}";
