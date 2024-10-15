@@ -1,5 +1,6 @@
 #waybar {
-    background-color: #1e1e2e;
+    background-color: #1e1e2e80;
+    filter: blur(8px);
 }
 
 #clock {
@@ -7,6 +8,9 @@
     background-color: #002aff;
     border-radius: 10px;
     padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
 }
 
 #battery {
@@ -14,6 +18,9 @@
     background-color: #ffca61;
     border-radius: 10px;
     padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
 }
 
 #cpu {
@@ -21,6 +28,9 @@
     background-color: #4aa1ff;
     border-radius: 10px;
     padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
 }
 
 #memory {
@@ -28,6 +38,9 @@
     background-color: #1966ff;
     border-radius: 10px;
     padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
 }
 
 #temperature {
@@ -35,6 +48,9 @@
     background-color: #ffffff;
     border-radius: 10px;
     padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
 }
 
 #backlight {
@@ -42,6 +58,9 @@
     background-color: #b8ff61;
     border-radius: 10px;
     padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
 }
 
 #network {
@@ -49,6 +68,9 @@
     background-color: #002aff;
     border-radius: 10px;
     padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
 }
 
 #pulseaudio {
@@ -56,12 +78,18 @@
     background-color: #002aff;
     border-radius: 10px;
     padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
 }
 
 #workspaces {
     color: #333333;
     border-radius: 10px;
     padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
 }
 
 #workspaces button {
@@ -80,5 +108,10 @@
 
 #workspaces button.focused {
     border-color: #ffffff;
+    color: #002aff;
+}
+
+.workspace.active {
+    background-color: #ffffff;
     color: #002aff;
 }
