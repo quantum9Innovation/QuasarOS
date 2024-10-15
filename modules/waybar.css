@@ -1,6 +1,6 @@
 #waybar {
     background-color: rgba(30, 30, 30, 0.5);
-    filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 
 #clock {
