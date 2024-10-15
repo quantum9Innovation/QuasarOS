@@ -178,8 +178,8 @@ quasar: hyprPlugins:
           "clock"
         ];
         "clock" = {
-          "format" = "{:%l:%M %p} ";
-          "format-alt" = "{:%a, %b %d, %C%y}  ";
+          "format" = "{:%I:%M %p} ";
+          "format-alt" = "{:%a, %b %d, %C%y}   ";
           "tooltip" = false;
         };
         "cpu" = {
@@ -218,10 +218,10 @@ quasar: hyprPlugins:
             ""
             ""
           ];
-          "format" = "{capacity}% {icon}";
+          "format" = "{capacity}% {icon} ";
           "format-charging" = "{capacity}% 󰂄";
           "format-plugged" = "{capacity}% ";
-          "format-alt" = "{time} {icon}";
+          "format-alt" = "{time} {icon} ";
           "format-icons" = [
             ""
             ""
@@ -240,10 +240,10 @@ quasar: hyprPlugins:
           "battery"
         ];
         "pulseaudio" = {
-          "format" = "{volume}% {icon}";
+          "format" = "{volume}% {icon} ";
           "format-bluetooth" = "{volume}% {icon} ";
           "format-bluetooth-muted" = "{icon} ";
-          "format-muted" = "{icon} 󰝟";
+          "format-muted" = "{icon} 󰝟 ";
           "format-source" = "{volume}%";
           "format-source-muted" = "{volume}%";
           "format-icons" = [
