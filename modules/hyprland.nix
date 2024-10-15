@@ -168,9 +168,9 @@ in
   decoration = {
     rounding = "14";
     drop_shadow = "false";
-    active_opacity = "0.8";
-    inactive_opacity = "0.6";
-    fullscreen_opacity = "0.9";
+    active_opacity = "0.9";
+    inactive_opacity = "0.8";
+    fullscreen_opacity = "0.95";
     blur = {
       enabled = "yes";
       size = "6";
