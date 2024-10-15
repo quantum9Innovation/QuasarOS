@@ -49,7 +49,8 @@ in
     "$mod, ${hypr "full" "F"}, fullscreen, 0"
     "$mod+Alt, ${hypr "full" "F"}, fullscreen, 1"
     "$mod, ${hypr "last" "L"}, focusurgentorlast"
-    "$mod, ${hypr "opaque" "O"}, toggleopaque"
+    # jahnky ahh janky (see https://github.com/hyprwm/Hyprland/pull/7024 for reasons)
+    "$mod, ${hypr "opaque" "O"}, exec, hyprctl setprop active opaque toggle"
 
     # Hyprscroller
     "$mod, ${hypr "view" "A"}, scroller:toggleoverview"
