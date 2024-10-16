@@ -2,8 +2,11 @@
 	0% {
 		background: linear-gradient(to right, rgba(0, 100, 255, 0.5), rgba(240, 0, 200, 0.5));
 	}
-	50% {
+	25% {
 		background: linear-gradient(to right, rgba(240, 0, 200, 0.5), rgba(0, 40, 200, 0.5));
+	}
+	75% {
+		background: linear-gradient(to right, rgba(0, 40, 200, 0.5), rgba(240, 0, 200, 0.5));
 	}
 	100% {
 		background: linear-gradient(to right, rgba(0, 100, 255, 0.5), rgba(240, 0, 200, 0.5));
