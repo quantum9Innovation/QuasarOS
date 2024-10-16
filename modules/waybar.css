@@ -3,7 +3,7 @@
 		background: linear-gradient(to right, rgba(0, 100, 255, 0.5), rgba(240, 0, 200, 0.5));
 	}
 	50% {
-		background: linear-gradient(to right, rgba(240, 0, 200, 0.5), rgba(0, 100, 255, 0.5));
+		background: linear-gradient(to right, rgba(240, 0, 200, 0.5), rgba(0, 40, 200, 0.5));
 	}
 	100% {
 		background: linear-gradient(to right, rgba(0, 100, 255, 0.5), rgba(240, 0, 200, 0.5));
@@ -12,7 +12,7 @@
 
 #waybar {
     background: linear-gradient(to right, rgba(0, 100, 255, 0.5), rgba(240, 0, 200, 0.5));
-	animation: wave 5s infinite;
+	animation: wave 3s infinite;
 }
 
 #clock {
