@@ -1,10 +1,9 @@
 #waybar {
-    background: linear-gradient(to right, rgba(0, 42, 255, 0.5), rgba(170, 0, 255, 0.5));
+    background: linear-gradient(to right, rgba(0, 100, 255, 0.5), rgba(240, 0, 255, 0.5));
 }
 
 #clock {
     color: #ffffff;
-    background-color: rgba(0, 42, 255, 0.5);
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
@@ -13,8 +12,7 @@
 }
 
 #battery {
-    color: #333333;
-    background-color: rgba(255, 202, 97, 0.75);
+    color: #ffffff;
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
@@ -24,7 +22,6 @@
 
 #cpu {
     color: #ffffff;
-    background-color: rgba(74, 161, 255, 0.5);
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
@@ -34,7 +31,6 @@
 
 #memory {
     color: #ffffff;
-    background-color: rgba(25, 102, 255, 0.5);
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
@@ -43,8 +39,7 @@
 }
 
 #temperature {
-    color: #333333;
-    background-color: rgba(255, 255, 255, 0.75);
+    color: #ffffff;
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
@@ -53,8 +48,7 @@
 }
 
 #backlight {
-    color: #333333;
-    background-color: rgba(184, 255, 97, 0.75);
+    color: #ffffff;
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
@@ -64,7 +58,6 @@
 
 #network {
     color: #ffffff;
-    background-color: rgba(0, 42, 255, 0.5);
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
@@ -74,7 +67,6 @@
 
 #pulseaudio {
     color: #ffffff;
-    background-color: rgba(0, 42, 255, 0.5);
     border-radius: 10px;
     padding: 10px;
     padding-top: 5px;
