@@ -166,6 +166,7 @@ quasar: hyprPlugins:
 
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
     package = pkgs.waybar;
     style = builtins.readFile modules/waybar.css;
     settings = {

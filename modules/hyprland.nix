@@ -22,7 +22,7 @@ in
   # It should be modified from the Quasar configuration, not here.
 
   exec-once = [
-    "swww-daemon; swww restore; waybar;"
+    "swww-daemon; swww restore;"
   ];
   "$mod" = hypr "mod" "SUPER";
   "$Left" = hypr "left" "Left";

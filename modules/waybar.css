@@ -1,5 +1,5 @@
 #waybar {
-    background-color: rgba(30, 30, 30, 0.5);
+    background: linear-gradient(to right, rgba(0, 42, 255, 0.5), rgba(170, 0, 255, 0.5));
 }
 
 #clock {
