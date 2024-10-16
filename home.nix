@@ -258,11 +258,11 @@ quasar: hyprPlugins:
             ""
             ""
             ""
-            "󰝟"
+            ""
             ""
             ""
             ""
-            "󰝟"
+            ""
           ];
           "scroll-step" = 0.5;
           "on-click" = "pavucontrol";
