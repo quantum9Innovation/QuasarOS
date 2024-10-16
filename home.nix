@@ -247,7 +247,7 @@ quasar: hyprPlugins:
           "battery"
         ];
         "pulseaudio" = {
-          "format" = "{volume}%  {icon} ";
+          "format" = "{volume}%  {icon}";
           "format-bluetooth" = "{volume}%  {icon} ";
           "format-bluetooth-muted" = "{icon} ";
           "format-muted" = "{icon} 󰝟 ";
