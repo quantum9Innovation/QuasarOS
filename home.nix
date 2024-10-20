@@ -90,6 +90,7 @@ quasar: hyprPlugins:
       lazygit
       micro
       zed-editor
+      nixd
     ]
     ++ (quasar.homePackages pkgs);
 
