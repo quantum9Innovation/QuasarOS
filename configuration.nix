@@ -275,7 +275,7 @@
     };
     packages = with pkgs; [
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
       (google-fonts.override { fonts = [ "Lora" ]; })
