@@ -250,8 +250,8 @@ quasar: hyprPlugins:
         ];
         "pulseaudio" = {
           "format" = "{volume}%  {icon}";
-          "format-bluetooth" = "{volume}%  {icon} ";
-          "format-bluetooth-muted" = "{icon} ";
+          "format-bluetooth" = "{volume}%  {icon}  ";
+          "format-bluetooth-muted" = "{icon}  ";
           "format-muted" = "Muted 󰝟 ";
           "format-source" = "{volume}%";
           "format-source-muted" = "{volume}%";
