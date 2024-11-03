@@ -34,12 +34,11 @@
   ] ++ quasar.overrides;
 
   # Incorporate hotfixes
-  # nixpkgs.overlays = [
-  #   (self: super: {
-  #     xdg-desktop-portal-hyprland =
-  #       inputs.nixpkgs-upstream.legacyPackages.${pkgs.system}.xdg-desktop-portal-hyprland;
-  #   })
-  # ];
+  nixpkgs.overlays = [
+    (self: super: {
+      neatvnc = inputs.nixpkgs-upstream.legacyPackages.${pkgs.system}.neatvnc;
+    })
+  ];
 
   # Bootloader
   boot.loader = {
