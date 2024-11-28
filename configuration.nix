@@ -247,16 +247,17 @@
     if quasar.graphics.nvidia.enabled then
       {
         package = config.boot.kernelPackages.nvidiaPackages.stable;
-        modesetting.enable = true;
-        powerManagement.enable = true;
-        powerManagement.finegrained = true;
+        # modesetting.enable = true;
+        # powerManagement.enable = true;
+        # powerManagement.finegrained = true;
         open = false;
         nvidiaSettings = true;
         prime = {
-          offload = {
-            enable = true;
-            enableOffloadCmd = true;
-          };
+          # offload = {
+          #   enable = true;
+          #   enableOffloadCmd = true;
+          # };
+          sync.enable = true;
           intelBusId = quasar.graphics.nvidia.intelBusId;
           nvidiaBusId = quasar.graphics.nvidia.nvidiaBusId;
         };
