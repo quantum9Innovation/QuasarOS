@@ -50,11 +50,11 @@ quasar: hyprPlugins:
     let
       zedGPU = pkgs.stdenv.mkDerivation rec {
         name = "zed-gpu";
-        src = pkgs.zed;
+        src = pkgs.zed-editor;
         buildInputs = [ pkgs.makeWrapper ];
         installPhase = ''
           mkdir -p $out/bin
-          makeWrapper ${src}/bin/zed $out/bin/zed \
+          makeWrapper ${src}/bin/zeditor $out/bin/zeditor \
             --set __NV_PRIME_RENDER_OFFLOAD 1 \
             --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
             --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
