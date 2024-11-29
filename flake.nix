@@ -156,7 +156,7 @@
                 imports =
                   let
                     pack = [
-                      zen-browser
+                      zen-browser.packages."${system}".generic
                     ];
                   in
                   [
