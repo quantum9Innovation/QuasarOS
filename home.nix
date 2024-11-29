@@ -321,6 +321,19 @@ quasar: hyprPlugins:
     "Kvantum/GraphiteNord".source = "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
   };
 
+  xdg.desktopEntries = {
+    zeditor = {
+      name = "Zed";
+      genericName = "Text Editor";
+      exec = "zeditor %F";
+      terminal = false;
+      categories = [
+        "Utility"
+        "TextEditor"
+      ];
+    };
+  };
+
   programs.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
 
   home.stateVersion = quasar.stateVersion;
