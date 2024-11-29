@@ -168,6 +168,9 @@
   # Allow unfree packages for proprietary driver support
   nixpkgs.config.allowUnfree = true;
 
+  # Enable CUDA
+  nixpkgs.config.cudaSupport = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages =
@@ -219,6 +222,10 @@
 
   # Enable the OpenSSH daemon
   services.openssh.enable = quasar.ssh.enabled;
+
+  # Ollama
+  services.ollama.enable = true;
+  services.ollama.acceleration = "cuda";
 
   # Setup Dconf for user configuration of low-level settings
   # Also needed as a dependency for critical system packages
