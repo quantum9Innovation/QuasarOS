@@ -47,6 +47,25 @@ quasar: hyprPlugins:
 
   # Packages that should be installed to the user profile.
   home.packages =
+    let
+      zedGPU = pkgs.stdenv.mkDerivation rec {
+        name = "zed-gpu";
+        src = pkgs.zed;
+        buildInputs = [ pkgs.makeWrapper ];
+        installPhase = ''
+          mkdir -p $out/bin
+          makeWrapper ${src}/bin/zed $out/bin/zed \
+            --set __NV_PRIME_RENDER_OFFLOAD 1 \
+            --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
+            --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
+            --set __VK_LAYER_NV_optimus "NVIDIA_only"
+        '';
+        meta = with pkgs.lib; {
+          description = "NVIDIA GPU offloading for Zed";
+          license = licenses.bsd3;
+        };
+      };
+    in
     with pkgs;
     [
       # essential
@@ -89,7 +108,7 @@ quasar: hyprPlugins:
       delta
       lazygit
       micro
-      zed-editor
+      (if quasar.graphics.nvidia.enabled then zedGPU else zed-editor)
       nixd
     ]
     ++ (quasar.homePackages pkgs);
