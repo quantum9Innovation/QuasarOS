@@ -81,6 +81,7 @@ quasar: hyprPlugins:
       # utils
       fzf
       bat
+      live-server
 
       # system monitoring
       nix-output-monitor
