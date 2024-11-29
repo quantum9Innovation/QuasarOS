@@ -83,6 +83,7 @@ quasar: hyprPlugins: pack:
       fzf
       bat
       nodePackages.live-server
+      speechd # needed for zen browser and firefox speech features
 
       # system monitoring
       nix-output-monitor
