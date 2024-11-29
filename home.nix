@@ -1,8 +1,6 @@
 quasar: hyprPlugins:
 {
-  config,
   pkgs,
-  inputs,
   ...
 }:
 
