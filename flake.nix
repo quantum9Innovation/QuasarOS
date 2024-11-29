@@ -1,14 +1,14 @@
 {
 
-  #  /*****                                                 /******   /****  
-  #  |*    |  |*   |    **     ****     **    *****        |*    |  /*    * 
-  #  |*    |  |*   |   /* *   /*       /* *   |*   |      |*    |  |*       
-  #  |*    |  |*   |  /*   *   ****   /*   *  |*   /     |*    |   ****** 
-  #  |*  * |  |*   |  ******       |  ******  *****     |*    |         | 
-  #  |*   *   |*   |  |*   |   *   |  |*   |  |*  *    |*    |   *     | 
+  #  /*****                                                 /******   /****
+  #  |*    |  |*   |    **     ****     **    *****        |*    |  /*    *
+  #  |*    |  |*   |   /* *   /*       /* *   |*   |      |*    |  |*
+  #  |*    |  |*   |  /*   *   ****   /*   *  |*   /     |*    |   ******
+  #  |*  * |  |*   |  ******       |  ******  *****     |*    |         |
+  #  |*   *   |*   |  |*   |   *   |  |*   |  |*  *    |*    |   *     |
   #   **** *   ****   |*   |    ****  |*   |  |*   *   ******    *****
   #
-  #  ==========================================================================  
+  #  ==========================================================================
 
   # This is the default QuasarOS system configuration flake.
   # It is the entry point for all QuasarOS-based systems.
@@ -42,6 +42,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Up-and-coming packages that have yet to be merged into nixpkgs at any level;
+    # this is the bleeding edge of software development
+    zen-browser.url = "github:youwen5/zen-browser-flake";
+
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
@@ -60,6 +64,7 @@
       nixpkgs,
       nixpkgs-upstream,
       home-manager,
+      zen-browser,
       lanzaboote,
       ...
     }@inputs:
@@ -148,9 +153,16 @@
 
               home-manager.users.${user} = {
                 # Primary user Home Manager configuration module
-                imports = [
-                  (import ./home.nix quasar nixpkgs-upstream.legacyPackages.${system}.hyprlandPlugins)
-                ] ++ homeOverrides;
+                imports =
+                  let
+                    pack = [
+                      zen-browser
+                    ];
+                  in
+                  [
+                    (import ./home.nix quasar nixpkgs-upstream.legacyPackages.${system}.hyprlandPlugins pack)
+                  ]
+                  ++ homeOverrides;
               };
             }
           ];

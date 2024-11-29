@@ -1,4 +1,4 @@
-quasar: hyprPlugins:
+quasar: hyprPlugins: pack:
 {
   pkgs,
   ...
@@ -73,6 +73,7 @@ quasar: hyprPlugins:
       zettlr
       fastfetch
       nemo
+      muffon
 
       # archives
       zip
@@ -106,12 +107,14 @@ quasar: hyprPlugins:
       # editing
       delta
       lazygit
+      gitbutler
       micro
       (if quasar.graphics.nvidia.enabled then zedGPU else zed-editor)
       nixd
       nil
     ]
-    ++ (quasar.homePackages pkgs);
+    ++ (quasar.homePackages pkgs)
+    ++ pack;
 
   wayland.windowManager.hyprland = {
     enable = true;
