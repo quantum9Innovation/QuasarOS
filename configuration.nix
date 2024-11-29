@@ -104,7 +104,7 @@
   # Compatibility for running binaries not packaged for QuasarOS
   programs.nix-ld = {
     enable = true;
-    libraries = [ pkgs.icu ];
+    libraries = [ pkgs.icu pkgs.glibc ];
   };
 
   # Enable Hyprland
