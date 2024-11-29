@@ -155,6 +155,7 @@
   };
 
   # More user configuration
+  nix.optimise.automatic = true;
   nix.settings = {
     trusted-users = [
       "root"
