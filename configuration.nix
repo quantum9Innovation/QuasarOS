@@ -196,6 +196,14 @@
   # Git is an essential system package
   programs.git.enable = true;
 
+  # Yet another Nix CLI helper
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 14d --keep 12";
+    flake = quasar.flake;
+  };
+
   # Set default editor, among other things
   environment.variables = {
     EDITOR = "micro";
