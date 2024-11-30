@@ -341,4 +341,16 @@ quasar: hyprPlugins: pack:
 
   home.stateVersion = quasar.stateVersion;
   programs.home-manager.enable = true;
+
+  xdg.mimeApps = {
+    enable = true;
+
+    defaultApplications = {
+      "text/html" = "userapp-Zen Browser-092UX2.desktop";
+      "x-scheme-handler/http" = "userapp-Zen Browser-092UX2.desktop";
+      "x-scheme-handler/https" = "userapp-Zen Browser-092UX2.desktop";
+      "x-scheme-handler/about" = "userapp-Zen Browser-092UX2.desktop";
+      "x-scheme-handler/unknown" = "userapp-Zen Browser-092UX2.desktop";
+    };
+  };
 }
