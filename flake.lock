@@ -325,16 +325,15 @@
         "zen-browser-source": "zen-browser-source"
       },
       "locked": {
-        "lastModified": 1732866356,
+        "lastModified": 1732867384,
         "narHash": "sha256-7UxGBr+osvT5DXQ3TDtRCjjXziD3AGkwjB6qwdtHd3g=",
-        "owner": "quantum9innovation",
+        "owner": "youwen5",
         "repo": "zen-browser-flake",
-        "rev": "de0ea1ae5adab4a32d4b29d714733e7689f14d58",
+        "rev": "d9f8a099ba951c433cb29267103a8f6cec2d80a6",
         "type": "github"
       },
       "original": {
-        "owner": "quantum9innovation",
-        "ref": "patch-1",
+        "owner": "youwen5",
         "repo": "zen-browser-flake",
         "type": "github"
       }

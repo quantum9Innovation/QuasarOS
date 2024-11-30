@@ -44,7 +44,7 @@
 
     # Up-and-coming packages that have yet to be merged into nixpkgs at any level;
     # this is the bleeding edge of software development
-    zen-browser.url = "github:quantum9innovation/zen-browser-flake/patch-1";
+    zen-browser.url = "github:youwen5/zen-browser-flake";
 
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
