@@ -119,7 +119,7 @@ in
   bindm = [
     "$mod, mouse:272, movewindow"
     "$mod, mouse:273, resizewindow"
-    "$mod, Z, movewindow"
+    "$mod, Y, movewindow"
     "$mod, X, resizewindow"
   ];
   layerrule = [
