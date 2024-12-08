@@ -45,7 +45,7 @@ in
 
     # Window actions
     "$mod, ${hypr "kill" "C"}, killactive"
-    "$mod, ${hypr "exit" "M"}, exit"
+    "$mod, ${hypr "exit" "code:65307"}, exit"
     "$mod, ${hypr "float" "V"}, togglefloating"
     "$mod, ${hypr "full" "F"}, fullscreen, 0"
     "$mod+Alt, ${hypr "full" "F"}, fullscreen, 1"
