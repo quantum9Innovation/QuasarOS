@@ -49,7 +49,7 @@
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
-    # and is pinned to a specific release.
+    # and is pinned to a release.
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.1";
 
@@ -156,7 +156,7 @@
                 imports =
                   let
                     pack = [
-                      zen-browser.packages."${system}".specific
+                      zen-browser.packages."${system}".default
                     ];
                   in
                   [
