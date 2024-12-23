@@ -160,7 +160,7 @@
                     ];
                   in
                   [
-                    (import ./home.nix quasar nixpkgs-upstream.legacyPackages.${system}.hyprlandPlugins pack)
+                    (import ./home.nix quasar nixpkgs.legacyPackages.${system}.hyprlandPlugins pack)
                   ]
                   ++ homeOverrides;
               };
