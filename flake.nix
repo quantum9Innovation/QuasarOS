@@ -42,9 +42,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Up-and-coming packages that have yet to be merged into nixpkgs at any level;
-    # this is the bleeding edge of software development
-    zen-browser.url = "github:youwen5/zen-browser-flake";
+    # Zen browser, twilight edition
+    zen-browser = {
+      url = "https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.bz2";
+      flake = false;
+    };
+    zen-browser-flake = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.zen-browser-specific.follows = "zen-browser";
+    };
 
     # Recommended Hyprland utilities
     hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
@@ -67,7 +73,7 @@
       nixpkgs,
       nixpkgs-upstream,
       home-manager,
-      zen-browser,
+      zen-browser-flake,
       hyprland-qtutils,
       lanzaboote,
       ...
@@ -160,7 +166,7 @@
                 imports =
                   let
                     pack = [
-                      zen-browser.packages."${system}".default
+                      zen-browser-flake.packages."${system}".default
                       hyprland-qtutils.packages."${system}".default
                     ];
                   in

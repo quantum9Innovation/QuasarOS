@@ -60,7 +60,7 @@
     },
     "flake-utils": {
       "inputs": {
-        "systems": "systems"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1710146030,
@@ -118,6 +118,51 @@
         "type": "github"
       }
     },
+    "hyprland-qtutils": {
+      "inputs": {
+        "hyprutils": "hyprutils",
+        "nixpkgs": "nixpkgs",
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1734906472,
+        "narHash": "sha256-pWPRv/GA/X/iAwoE6gMNUqn/ZeJX1IeLPRpZI0tTPK0=",
+        "owner": "hyprwm",
+        "repo": "hyprland-qtutils",
+        "rev": "c77109d7e1ddbcdb87cafd32ce411f76328ae152",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprland-qtutils",
+        "type": "github"
+      }
+    },
+    "hyprutils": {
+      "inputs": {
+        "nixpkgs": [
+          "hyprland-qtutils",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland-qtutils",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734796073,
+        "narHash": "sha256-TnuKsa8OHrSJEmHm3TLGOWbPNA1gRjmZLsRzKrCqOsg=",
+        "owner": "hyprwm",
+        "repo": "hyprutils",
+        "rev": "c3331116ebd0b71df5ae8c6efe9a7f94148b03bf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprutils",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -149,13 +194,13 @@
       "locked": {
         "lastModified": 1734649271,
         "narHash": "sha256-4EVBRhOjMDuGtMaofAIqzJbg4Ql7Ai0PSeuVZTHjyKQ=",
-        "owner": "nixos",
+        "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
@@ -209,6 +254,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1734649271,
+        "narHash": "sha256-4EVBRhOjMDuGtMaofAIqzJbg4Ql7Ai0PSeuVZTHjyKQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": [
@@ -239,10 +300,12 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "hyprland-qtutils": "hyprland-qtutils",
         "lanzaboote": "lanzaboote",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-upstream": "nixpkgs-upstream",
-        "zen-browser": "zen-browser"
+        "zen-browser": "zen-browser",
+        "zen-browser-flake": "zen-browser-flake"
       }
     },
     "rust-overlay": {
@@ -272,6 +335,21 @@
     },
     "systems": {
       "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "systems_2": {
+      "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
         "owner": "nix-systems",
@@ -286,24 +364,16 @@
       }
     },
     "zen-browser": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2",
-        "zen-browser-aarch64": "zen-browser-aarch64",
-        "zen-browser-generic": "zen-browser-generic",
-        "zen-browser-specific": "zen-browser-specific"
-      },
+      "flake": false,
       "locked": {
-        "lastModified": 1734840442,
-        "narHash": "sha256-3N2HEvJPq6SQswGAxVKhwgHDQBVr6CKsdb7XZxmlEn0=",
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
-        "rev": "36555afeb6be07e86622b858a0919e4a07038db8",
-        "type": "github"
+        "lastModified": 1734994430,
+        "narHash": "sha256-TbQoiyowYBkjOGLQ+zVPC5wrNUIKx4pdz8icIcwOGEI=",
+        "type": "tarball",
+        "url": "https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.bz2"
       },
       "original": {
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.bz2"
       }
     },
     "zen-browser-aarch64": {
@@ -319,6 +389,29 @@
         "url": "https://github.com/zen-browser/desktop/releases/download/1.0.2-b.3/zen.linux-aarch64.tar.bz2"
       }
     },
+    "zen-browser-flake": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3",
+        "zen-browser-aarch64": "zen-browser-aarch64",
+        "zen-browser-generic": "zen-browser-generic",
+        "zen-browser-specific": [
+          "zen-browser"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734840442,
+        "narHash": "sha256-3N2HEvJPq6SQswGAxVKhwgHDQBVr6CKsdb7XZxmlEn0=",
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
+        "rev": "36555afeb6be07e86622b858a0919e4a07038db8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
+        "type": "github"
+      }
+    },
     "zen-browser-generic": {
       "flake": false,
       "locked": {
@@ -330,19 +423,6 @@
       "original": {
         "type": "tarball",
         "url": "https://github.com/zen-browser/desktop/releases/download/1.0.2-b.3/zen.linux-generic.tar.bz2"
-      }
-    },
-    "zen-browser-specific": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1734645803,
-        "narHash": "sha256-zAo93sHeB8cTW2JBAqxx0wo3CANcxCgjEcTQgbDeWT4=",
-        "type": "tarball",
-        "url": "https://github.com/zen-browser/desktop/releases/download/1.0.2-b.3/zen.linux-specific.tar.bz2"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/zen-browser/desktop/releases/download/1.0.2-b.3/zen.linux-specific.tar.bz2"
       }
     }
   },
