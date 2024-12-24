@@ -46,6 +46,9 @@
     # this is the bleeding edge of software development
     zen-browser.url = "github:youwen5/zen-browser-flake";
 
+    # Recommended Hyprland utilities
+    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
+
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
@@ -65,6 +68,7 @@
       nixpkgs-upstream,
       home-manager,
       zen-browser,
+      hyprland-qtutils,
       lanzaboote,
       ...
     }@inputs:
@@ -157,6 +161,7 @@
                   let
                     pack = [
                       zen-browser.packages."${system}".default
+                      hyprland-qtutils.packages."${system}".default
                     ];
                   in
                   [
