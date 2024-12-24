@@ -190,6 +190,7 @@
       pavucontrol
       inxi
       brightnessctl
+      treefmt2
     ]
     ++ (quasar.systemPackages pkgs);
 
