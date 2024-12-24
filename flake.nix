@@ -49,7 +49,8 @@
     };
     zen-browser-flake = {
       url = "github:youwen5/zen-browser-flake";
-      inputs.zen-browser-specific.follows = "zen-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.zen-browser-x86_64.follows = "zen-browser";
     };
 
     # Recommended Hyprland utilities
@@ -197,6 +198,14 @@
           };
         };
 
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      # Configure formatter for all supported systems
+      formatter =
+        let
+          systems = [
+            "x86_64-linux"
+          ];
+          forAll = value: nixpkgs.lib.genAttrs systems (key: value);
+        in
+        forAll nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };
 }
