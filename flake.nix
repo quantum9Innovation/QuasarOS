@@ -167,8 +167,9 @@
                 imports =
                   let
                     pack = [
-                      zen-browser-flake.packages."${system}".default
-                      hyprland-qtutils.packages."${system}".default
+                      zen-browser-flake.packages.${system}.default
+                      hyprland-qtutils.packages.${system}.default
+                      nixpkgs-upstream.legacyPackages.${system}.gitbutler
                     ];
                   in
                   [

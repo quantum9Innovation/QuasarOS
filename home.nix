@@ -108,7 +108,6 @@ quasar: hyprPlugins: pack:
       # editing
       delta
       lazygit
-      gitbutler
       micro
       (if quasar.graphics.nvidia.enabled then zedGPU else zed-editor)
       nixd
