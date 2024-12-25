@@ -312,7 +312,7 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
-      cascadia-code
+      nerd-fonts.caskaydia-mono
       lora
     ];
   };
