@@ -350,8 +350,8 @@
     "zen-browser": {
       "flake": false,
       "locked": {
-        "lastModified": 1735049933,
-        "narHash": "sha256-eXb/HTqBpmIAoQ8Vak5sNEihZAtaFCwFq/1Jeya3bck=",
+        "lastModified": 1735094417,
+        "narHash": "sha256-aZKLJDIuk5CMKreLNnJtYmbXO6Y5JKsRMb7GpwaWW5Q=",
         "type": "tarball",
         "url": "https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.bz2"
       },
@@ -363,14 +363,14 @@
     "zen-browser-aarch64": {
       "flake": false,
       "locked": {
-        "lastModified": 1734985825,
-        "narHash": "sha256-EL/54KHAQkUEzWlIlMMfYFQ2QncOcyXmScNwmmEiv+8=",
+        "lastModified": 1735043335,
+        "narHash": "sha256-nuGSRzwBloFwgNCIbc5xv3vGkiHQxzOQr4FUX4Cip7Y=",
         "type": "tarball",
-        "url": "https://github.com/zen-browser/desktop/releases/download/1.0.2-b.4/zen.linux-aarch64.tar.bz2"
+        "url": "https://github.com/zen-browser/desktop/releases/download/1.0.2-b.5/zen.linux-aarch64.tar.bz2"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/zen-browser/desktop/releases/download/1.0.2-b.4/zen.linux-aarch64.tar.bz2"
+        "url": "https://github.com/zen-browser/desktop/releases/download/1.0.2-b.5/zen.linux-aarch64.tar.bz2"
       }
     },
     "zen-browser-flake": {
@@ -384,11 +384,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735027011,
-        "narHash": "sha256-8cmNRIwQgniSCaEiYV2KAIrzRjuRxQQtb1L+zoQT4Vc=",
+        "lastModified": 1735099614,
+        "narHash": "sha256-FCQFeOhVg/SNOCdryvxVd/5eLqwXwVr6/48Xyh7wpwU=",
         "owner": "youwen5",
         "repo": "zen-browser-flake",
-        "rev": "4266f2a7b58d53dbd646c80013e9bfcc656e85f0",
+        "rev": "3e4af3607e303a88169782471a082857a3e80162",
         "type": "github"
       },
       "original": {
