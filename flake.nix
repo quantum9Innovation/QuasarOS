@@ -166,10 +166,15 @@
                 # Primary user Home Manager configuration module
                 imports =
                   let
+                    nixpkgs-upstream-unlocked = import nixpkgs-upstream {
+                      system = system;
+                      config.allowUnfree = true;
+                    };
+
                     pack = [
                       zen-browser-flake.packages.${system}.default
                       hyprland-qtutils.packages.${system}.default
-                      nixpkgs-upstream.legacyPackages.${system}.gitbutler
+                      nixpkgs-upstream-unlocked.gitbutler
                     ];
                   in
                   [

@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   quasar,
   ...
@@ -167,9 +168,6 @@
     substituters = [ "https://hyprland.cachix.org" ];
     trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
-
-  # Allow unfree packages for proprietary driver support
-  nixpkgs.config.allowUnfree = true;
 
   # Enable CUDA
   nixpkgs.config.cudaSupport = true;
