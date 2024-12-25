@@ -169,8 +169,27 @@
     trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
-  # Enable CUDA
-  nixpkgs.config.cudaSupport = true;
+  nixpkgs.config = {
+    # Enable CUDA
+    cudaSupport = true;
+
+    # Allow proprietary NVIDIA and CUDA drivers, if necessary
+    allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) (
+        if quasar.graphics.nvidia.enabled then
+          [
+            "nvidia-x11"
+            "cuda_cudart"
+            "libcublas"
+            "cuda_cccl"
+            "cuda_nvcc"
+            "nvidia-settings"
+          ]
+        else
+          [ ]
+      );
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
