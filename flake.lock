@@ -83,16 +83,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1735247422,
-        "narHash": "sha256-vx6Bi8MrPjWc20eaPplphD8z3dG82NNhJDTRXYIPEAc=",
-        "owner": "quantum9innovation",
+        "lastModified": 1735250548,
+        "narHash": "sha256-v/Ohimbhp2qFMHUIzbwpiS+dbz+4ZzjzyoE6IoWkWx0=",
+        "owner": "youwen5",
         "repo": "gitbutler-flake",
-        "rev": "89d3807961d26bb202e4cdbb34e501c8f47a8850",
+        "rev": "448e9a784f2310f73b0b2f4f16dc35d31b3bf8d9",
         "type": "github"
       },
       "original": {
-        "owner": "quantum9innovation",
-        "ref": "patch-1",
+        "owner": "youwen5",
         "repo": "gitbutler-flake",
         "type": "github"
       }
