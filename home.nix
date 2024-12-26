@@ -93,6 +93,7 @@ quasar: hyprPlugins: pack:
       rofi-wayland
       hyprshot
       clipse
+      hyprpicker
 
       # messaging apps
       signal-desktop

@@ -70,6 +70,7 @@ in
 
     # Utilities
     "Ctrl+Alt, H, exec, kitty --class clipse -e 'clipse'"
+    "Ctrl+Alt, C, exec, hyprpicker | wl-copy"
 
     # Resizing
     "$mod+Alt, 1, exec, hyprctl dispatch resizeactive exact 50% 89% && hyprctl dispatch scroller:admitwindow && hyprctl dispatch scroller:expelwindow"
