@@ -53,6 +53,12 @@
       inputs.zen-browser-x86_64.follows = "zen-browser";
     };
 
+    # GitButler
+    gitbutler = {
+      url = "github:quantum9innovation/gitbutler-flake/patch-1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Recommended Hyprland utilities
     hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
 
@@ -75,6 +81,7 @@
       nixpkgs-upstream,
       home-manager,
       zen-browser-flake,
+      gitbutler,
       hyprland-qtutils,
       lanzaboote,
       ...
@@ -166,15 +173,15 @@
                 # Primary user Home Manager configuration module
                 imports =
                   let
-                    nixpkgs-upstream-unlocked = import nixpkgs-upstream {
+                    nixpkgs-unlocked = import nixpkgs {
                       system = system;
                       config.allowUnfree = true;
                     };
 
-                    gitbutlerGPU = nixpkgs-upstream-unlocked.stdenv.mkDerivation rec {
+                    gitbutlerGPU = nixpkgs-unlocked.stdenv.mkDerivation rec {
                       name = "gitbutler-gpu";
-                      src = nixpkgs-upstream-unlocked.gitbutler;
-                      buildInputs = [ nixpkgs-upstream-unlocked.makeWrapper ];
+                      src = gitbutler;
+                      buildInputs = [ nixpkgs-unlocked.makeWrapper ];
                       installPhase = ''
                         mkdir -p $out/bin
                         makeWrapper ${src}/bin/gitbutler-tauri $out/bin/gitbutler-tauri \
@@ -183,7 +190,7 @@
                           --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
                           --set __VK_LAYER_NV_optimus "NVIDIA_only"
                       '';
-                      meta = with nixpkgs-upstream-unlocked.lib; {
+                      meta = with nixpkgs-unlocked.lib; {
                         description = "NVIDIA GPU offloading for GitButler";
                         license = licenses.fsl11Mit;
                       };

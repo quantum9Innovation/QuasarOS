@@ -83,8 +83,6 @@ quasar: hyprPlugins: pack:
       fzf
       bat
       nodePackages.live-server
-      speechd # needed for zen browser and firefox speech features
-      gnome-keyring # needed for gitbutler credential management
 
       # system monitoring
       nix-output-monitor

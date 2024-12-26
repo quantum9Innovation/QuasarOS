@@ -76,6 +76,27 @@
         "type": "github"
       }
     },
+    "gitbutler": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735246039,
+        "narHash": "sha256-N5gO5Qrnrd8em8CmYgKEDBPX9701xipqvu4ILAUGDwc=",
+        "owner": "quantum9innovation",
+        "repo": "gitbutler-flake",
+        "rev": "6f2f532e6dae64401c21f4658126283e6019a2a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "quantum9innovation",
+        "ref": "patch-1",
+        "repo": "gitbutler-flake",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -224,11 +245,11 @@
     },
     "nixpkgs-upstream": {
       "locked": {
-        "lastModified": 1735140310,
-        "narHash": "sha256-NuhGCcev/etYS4qAsh905St1Co0tK8FjgGDovUeCVjo=",
+        "lastModified": 1735226532,
+        "narHash": "sha256-4UYXERaJPiiy+JxjKo+IWuHN7kgwmlYdV5x8Ew+YNGQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "bb881a68c1174d38ee466a35f5e23d03a938b186",
+        "rev": "03539677da5a6caba6a6b3d2143ec63b116902d3",
         "type": "github"
       },
       "original": {
@@ -283,6 +304,7 @@
     },
     "root": {
       "inputs": {
+        "gitbutler": "gitbutler",
         "home-manager": "home-manager",
         "hyprland-qtutils": "hyprland-qtutils",
         "lanzaboote": "lanzaboote",
