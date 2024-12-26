@@ -335,17 +335,6 @@ quasar: hyprPlugins: pack:
         "TextEditor"
       ];
     };
-
-    gitbutler = {
-      name = "GitButler";
-      genericName = "Git Client";
-      exec = "gitbutler-tauri";
-      terminal = false;
-      categories = [
-        "Utility"
-        "Development"
-      ];
-    };
   };
 
   programs.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
