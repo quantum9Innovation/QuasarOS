@@ -140,8 +140,19 @@ quasar: hyprPlugins: pack:
   programs.fzf.enable = true;
   programs.wlogout.enable = true;
   programs.lazygit.enable = true;
-  programs.nushell.enable = true;
   programs.bash.enable = true;
+
+  programs.nushell = {
+    enable = true;
+    configFile = {
+      text = ''
+        let $config = {
+          show_banner: false
+          buffer_editor: 'micro'
+        }
+      '';
+    };
+  };
 
   programs.fish = {
     enable = true;
