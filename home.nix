@@ -91,6 +91,7 @@ quasar: hyprPlugins: pack:
       # wayland desktop utils
       wl-clipboard
       rofi-wayland
+      hyprshot
 
       # messaging apps
       signal-desktop
