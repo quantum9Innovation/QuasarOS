@@ -332,7 +332,19 @@ quasar: hyprPlugins: pack:
       terminal = false;
       categories = [
         "Utility"
+        "Development"
         "TextEditor"
+      ];
+    };
+
+    gitbutler = {
+      name = "GitButler";
+      genericName = "Git Client";
+      exec = "gitbutler-tauri";
+      terminal = false;
+      categories = [
+        "Utility"
+        "Development"
       ];
     };
   };
