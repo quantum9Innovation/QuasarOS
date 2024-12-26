@@ -42,6 +42,7 @@ in
     "$mod, ${hypr "fileKey" "E"}, exec, ${hypr "file" "nemo"}"
     "$mod, ${hypr "mailKey" "U"}, exec, ${hypr "mail" "thunderbird"}"
     "$mod, ${hypr "docKey" "Z"}, exec, ${hypr "doc" "zettlr"}"
+    "$mod, ${hypr "docKey" "G"}, exec, ${hypr "doc" "gitbutler-tauri"}"
 
     # Window actions
     "$mod, ${hypr "kill" "C"}, killactive"
