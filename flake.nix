@@ -55,7 +55,7 @@
 
     # GitButler
     gitbutler = {
-      url = "github:quantum9innovation/gitbutler-flake/patch-1";
+      url = "github:youwen5/gitbutler-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -176,7 +176,17 @@
                     pack = [
                       zen-browser-flake.packages.${system}.default
                       hyprland-qtutils.packages.${system}.default
-                      gitbutler.packages.${system}.default
+                      (gitbutler.packages.${system}.default.overrideAttrs (
+                        final: prev: {
+                          postFixup = ''
+                            wrapProgram $out/bin/gitbutler-tauri \
+                              --set __NV_PRIME_RENDER_OFFLOAD 1 \
+                              --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
+                              --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
+                              --set __VK_LAYER_NV_optimus "NVIDIA_only"
+                          '';
+                        }
+                      ))
                     ];
                   in
                   [
