@@ -59,6 +59,14 @@ in
     "$mod+Shift, $Up, scroller:cyclesize, +1"
     "$mod+Shift, $Down, scroller:cyclesize, -1"
 
+    # Hyprshot
+    "$mod+Shift, ${hypr "window" "W"}, exec, hyprshot -m window --clipboard-only"
+    "$mod+Alt, ${hypr "window" "W"}, exec, hyprshot -m window"
+    "$mod+Shift, ${hypr "monitor" "M"}, exec, hyprshot -m output --clipboard-only"
+    "$mod+Alt, ${hypr "monitor" "M"}, exec, hyprshot -m output"
+    "$mod+Shift, ${hypr "region" "R"}, exec, hyprshot -m region --clipboard-only"
+    "$mod+Alt, ${hypr "region" "R"}, exec, hyprshot -m region"
+
     # Resizing
     "$mod+Alt, 1, exec, hyprctl dispatch resizeactive exact 50% 89% && hyprctl dispatch scroller:admitwindow && hyprctl dispatch scroller:expelwindow"
     "$mod+Alt, 2, resizeactive, exact 50% 47%"
