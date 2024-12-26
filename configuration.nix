@@ -249,6 +249,9 @@
     enableSSHSupport = quasar.ssh.enabled;
   };
 
+  # Setup GNOME keyring
+  services.gnome.gnome-keyring.enable = true;
+
   # Enable the OpenSSH daemon
   services.openssh.enable = quasar.ssh.enabled;
 
