@@ -173,33 +173,10 @@
                 # Primary user Home Manager configuration module
                 imports =
                   let
-                    nixpkgs-unlocked = import nixpkgs {
-                      system = system;
-                      config.allowUnfree = true;
-                    };
-
-                    gitbutlerGPU = nixpkgs-unlocked.stdenv.mkDerivation rec {
-                      name = "gitbutler-gpu";
-                      src = gitbutler;
-                      buildInputs = [ nixpkgs-unlocked.makeWrapper ];
-                      installPhase = ''
-                        mkdir -p $out/bin
-                        makeWrapper ${src}/bin/gitbutler-tauri $out/bin/gitbutler-tauri \
-                          --set __NV_PRIME_RENDER_OFFLOAD 1 \
-                          --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
-                          --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
-                          --set __VK_LAYER_NV_optimus "NVIDIA_only"
-                      '';
-                      meta = with nixpkgs-unlocked.lib; {
-                        description = "NVIDIA GPU offloading for GitButler";
-                        license = licenses.fsl11Mit;
-                      };
-                    };
-
                     pack = [
                       zen-browser-flake.packages.${system}.default
                       hyprland-qtutils.packages.${system}.default
-                      gitbutlerGPU
+                      gitbutler.packages.${system}.default
                     ];
                   in
                   [
