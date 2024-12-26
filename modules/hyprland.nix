@@ -23,6 +23,7 @@ in
 
   exec-once = [
     "swww-daemon; swww restore;"
+    "clipse -listen"
   ];
   "$mod" = hypr "mod" "SUPER";
   "$Left" = hypr "left" "Left";
@@ -66,6 +67,9 @@ in
     "$mod+Alt, ${hypr "monitor" "M"}, exec, hyprshot -m output"
     "$mod+Shift, ${hypr "region" "R"}, exec, hyprshot -m region --clipboard-only"
     "$mod+Alt, ${hypr "region" "R"}, exec, hyprshot -m region"
+
+    # Utilities
+    "Ctrl+Alt, H, exec, kitty --class clipse -e 'clipse'"
 
     # Resizing
     "$mod+Alt, 1, exec, hyprctl dispatch resizeactive exact 50% 89% && hyprctl dispatch scroller:admitwindow && hyprctl dispatch scroller:expelwindow"
@@ -140,6 +144,10 @@ in
     "ignorezero,swaync-notification-window"
     "blur,swaync-control-center"
     "ignorezero,swaync-control-center"
+  ];
+  windowrulev2 = [
+    "float,class:(clipse)"
+    "size 622 652,class:(clipse)"
   ];
   monitor = hyprland.monitors;
   animations = {

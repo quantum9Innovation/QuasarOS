@@ -92,6 +92,7 @@ quasar: hyprPlugins: pack:
       wl-clipboard
       rofi-wayland
       hyprshot
+      clipse
 
       # messaging apps
       signal-desktop
