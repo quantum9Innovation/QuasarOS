@@ -146,7 +146,7 @@ quasar: hyprPlugins: pack:
     enable = true;
     configFile = {
       text = ''
-        let $config = {
+        $env.config = {
           show_banner: false
           buffer_editor: 'micro'
         }
