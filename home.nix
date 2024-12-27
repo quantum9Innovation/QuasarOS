@@ -98,7 +98,6 @@ quasar: hyprPlugins: pack:
       # messaging apps
       signal-desktop
       vesktop
-      slack-term
 
       # ricing
       swww
