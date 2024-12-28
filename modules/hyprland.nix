@@ -23,7 +23,6 @@ in
 
   exec-once = [
     "swww-daemon; swww restore;"
-    "timedatectl set-timezone $(tzupdate -p)"
     "clipse -listen"
   ];
   "$mod" = hypr "mod" "SUPER";

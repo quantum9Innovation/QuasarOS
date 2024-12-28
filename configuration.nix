@@ -91,8 +91,17 @@
   };
 
   systemd.services = {
-    # Faster boot times
-    NetworkManager-wait-online.enable = false;
+    # Ensure network uplink on boot
+    NetworkManager-wait-online.enable = true;
+
+    # Automatic time zone switching
+    updateTimezone = {
+      description = "Automatically update timezone using `timedatectl` and `tzupdate`";
+      wantedBy = [ "multi-user.target" ];
+      script = ''
+        timedatectl set-timezone $(tzupdate -p)
+      '';
+    };
   };
 
   # Disable the X11 windowing system,
@@ -220,7 +229,6 @@
       brightnessctl
       treefmt2
       at
-      timedatectl
       tzupdate
     ]
     ++ (quasar.systemPackages pkgs);
