@@ -88,44 +88,40 @@
     }@inputs:
     {
       make =
-        {
-          hostname,
-          user,
-          name,
-          git,
-          hardware,
-          system ? "x86_64-linux",
-          kernel ? "zen",
-          secureboot ? {
-            enabled = true;
-          },
-          stateVersion ? "24.05",
-          systemPackages,
-          homePackages,
-          autoLogin ? true,
-          ssh ? {
-            enabled = false;
-          },
-          locale ? "en_US.UTF-8",
-          hyprland ? {
-            mod = "SUPER";
-          },
-          graphics ? {
-            opengl = true;
-            nvidia = {
-              enabled = true;
-              intelBusId = null;
-              nvidiaBusId = null;
-            };
-          },
-          audio ? {
-            jack = false;
-          },
-          overrides ? [ ],
-          homeOverrides ? [ ],
-          ...
-        }@quasar:
+        config:
         let
+          # Default values
+          defaults = {
+            system = "x86_64-linux";
+            kernel = "zen";
+            secureboot = {
+              enabled = true;
+            };
+            stateVersion = "24.05";
+            autoLogin = true;
+            ssh = {
+              enabled = true;
+            };
+            locale = "en_US.UTF-8";
+            hyprland = {
+              mod = "SUPER";
+            };
+            graphics = {
+              opengl = true;
+              nvidia = {
+                enabled = true;
+              };
+            };
+            audio = {
+              jack = false;
+            };
+            overrides = [ ];
+            homeOverrides = [ ];
+          };
+
+          # Fill in defaults
+          quasar = defaults // config;
+
           # Secure boot configuration
           secureBoot = [
             lanzaboote.nixosModules.lanzaboote
@@ -169,14 +165,14 @@
               # Home Manager backup files will end in .backup
               home-manager.backupFileExtension = "backup";
 
-              home-manager.users.${user} = {
+              home-manager.users.${quasar.user} = {
                 # Primary user Home Manager configuration module
                 imports =
                   let
                     pack = [
-                      zen-browser-flake.packages.${system}.default
-                      hyprland-qtutils.packages.${system}.default
-                      (gitbutler.packages.${system}.default.overrideAttrs (
+                      zen-browser-flake.packages.${quasar.system}.default
+                      hyprland-qtutils.packages.${quasar.system}.default
+                      (gitbutler.packages.${quasar.system}.default.overrideAttrs (
                         final: prev: {
                           postFixup = ''
                             wrapProgram $out/bin/gitbutler-tauri \
@@ -190,15 +186,15 @@
                     ];
                   in
                   [
-                    (import ./home.nix quasar nixpkgs.legacyPackages.${system}.hyprlandPlugins pack)
+                    (import ./home.nix quasar nixpkgs.legacyPackages.${quasar.system}.hyprlandPlugins pack)
                   ]
-                  ++ homeOverrides;
+                  ++ quasar.homeOverrides;
               };
             }
           ];
 
           # Modules with conditional add-ons
-          modules = if secureboot.enabled then baseModules ++ secureBoot else baseModules;
+          modules = if quasar.secureboot.enabled then baseModules ++ secureBoot else baseModules;
         in
         {
           system = nixpkgs.lib.nixosSystem {
@@ -209,7 +205,7 @@
             };
 
             # Official support is currently for x86_64-linux only
-            system = system;
+            system = quasar.system;
 
             # This does the heavy lifting of configuring the system
             modules = modules;
