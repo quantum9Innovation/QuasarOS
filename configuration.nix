@@ -72,6 +72,7 @@
   services.blueman.enable = true;
 
   # Set time zone automatically
+  time.timeZone = lib.mkForce null;
   services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties
