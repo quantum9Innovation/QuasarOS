@@ -71,8 +71,9 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
-  # Set time zone automatically
-  services.automatic-timezoned.enable = true;
+  # Set time zone automatically and sync with network time
+  time.timeZone = lib.mkForce null;
+  services.timesyncd.enable = true;
 
   # Select internationalisation properties
   i18n.defaultLocale = quasar.locale;
@@ -89,9 +90,18 @@
     LC_TIME = quasar.locale;
   };
 
-  # Faster boot times
   systemd.services = {
-    NetworkManager-wait-online.enable = false;
+    # Ensure network uplink on boot
+    NetworkManager-wait-online.enable = true;
+
+    # Automatic time zone switching
+    updateTimezone = {
+      description = "Automatically update timezone using `timedatectl` and `tzupdate`";
+      wantedBy = [ "multi-user.target" ];
+      script = ''
+        timedatectl set-timezone $("${pkgs.tzupdate}/bin/tzupdate" -p)
+      '';
+    };
   };
 
   # Disable the X11 windowing system,
@@ -154,6 +164,16 @@
     shell = pkgs.fish;
   };
 
+  # Polkit rules
+  security.polkit.enable = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+        if (action.id == "org.freedesktop.timedate1.set-timezone") {
+            return polkit.Result.YES;
+        }
+    });
+  '';
+
   # More user configuration
   nix.optimise.automatic = true;
   nix.settings = {
@@ -208,6 +228,8 @@
       inxi
       brightnessctl
       treefmt2
+      at
+      tzupdate
     ]
     ++ (quasar.systemPackages pkgs);
 
@@ -251,6 +273,9 @@
 
   # Setup GNOME keyring
   services.gnome.gnome-keyring.enable = true;
+
+  # Enable `at` for job scheduling
+  services.atd.enable = true;
 
   # Enable the OpenSSH daemon
   services.openssh.enable = quasar.ssh.enabled;
