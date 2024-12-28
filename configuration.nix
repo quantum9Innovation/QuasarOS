@@ -89,9 +89,9 @@
     LC_TIME = quasar.locale;
   };
 
-  # Ensure network connectivity on boot
+  # Faster boot times
   systemd.services = {
-    NetworkManager-wait-online.enable = true;
+    NetworkManager-wait-online.enable = false;
   };
 
   # Disable the X11 windowing system,
@@ -218,6 +218,7 @@
       inxi
       brightnessctl
       treefmt2
+      at
     ]
     ++ (quasar.systemPackages pkgs);
 
