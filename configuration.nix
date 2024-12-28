@@ -99,7 +99,7 @@
       description = "Automatically update timezone using `timedatectl` and `tzupdate`";
       wantedBy = [ "multi-user.target" ];
       script = ''
-        timedatectl set-timezone $(tzupdate -p)
+        timedatectl set-timezone $("${pkgs.tzupdate}/bin/tzupdate" -p)
       '';
     };
   };
