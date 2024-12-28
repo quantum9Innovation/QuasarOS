@@ -72,9 +72,8 @@
   services.blueman.enable = true;
 
   # Set time zone automatically and sync with network time
-  time.timeZone = lib.mkForce null;
+  services.automatic-timezoned.enable = true;
   services.timesyncd.enable = true;
-  services.systemd.timedatectl.enable = true;
   services.geoclue2.enable = true;
 
   # Select internationalisation properties
@@ -223,6 +222,7 @@
       treefmt2
       at
       geoclue2
+      automatic-timezoned
     ]
     ++ (quasar.systemPackages pkgs);
 
