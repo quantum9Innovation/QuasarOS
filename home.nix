@@ -125,6 +125,9 @@ quasar: hyprPlugins: pack:
     settings = import ./modules/hyprland.nix quasar;
   };
 
+  # Setup GNOME keyring
+  services.gnome-keyring.enable = true;
+
   services.dunst = {
     enable = true;
     iconTheme = {
