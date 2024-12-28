@@ -218,6 +218,7 @@
       inxi
       brightnessctl
       treefmt2
+      at
     ]
     ++ (quasar.systemPackages pkgs);
 
@@ -261,6 +262,9 @@
 
   # Setup GNOME keyring
   services.gnome.gnome-keyring.enable = true;
+
+  # Enable `at` for job scheduling
+  services.atd.enable = true;
 
   # Enable the OpenSSH daemon
   services.openssh.enable = quasar.ssh.enabled;

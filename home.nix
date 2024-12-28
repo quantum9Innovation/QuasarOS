@@ -80,7 +80,6 @@ quasar: hyprPlugins: pack:
       unzip
 
       # utils
-      at
       fzf
       bat
       nodePackages.live-server
