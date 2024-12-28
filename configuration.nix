@@ -71,8 +71,11 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
-  # Set time zone automatically later
+  # Set time zone automatically and sync with network time
   time.timeZone = lib.mkForce null;
+  services.timesyncd.enable = true;
+  services.systemd.timedatectl.enable = true;
+  services.geoclue2.enable = true;
 
   # Select internationalisation properties
   i18n.defaultLocale = quasar.locale;
@@ -219,6 +222,7 @@
       brightnessctl
       treefmt2
       at
+      geoclue2
     ]
     ++ (quasar.systemPackages pkgs);
 
