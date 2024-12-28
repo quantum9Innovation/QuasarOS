@@ -71,9 +71,8 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
-  # Set time zone automatically
+  # Set time zone automatically later
   time.timeZone = lib.mkForce null;
-  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties
   i18n.defaultLocale = quasar.locale;
@@ -154,6 +153,14 @@
     ];
     shell = pkgs.fish;
   };
+
+  # Sudoers
+  security.sudo.extraRules = [
+    {
+      groups = [ "wheel" ];
+      commands = [ "/etc/profiles/per-user/${quasar.user}/bin/timedatectl" ];
+    }
+  ];
 
   # More user configuration
   nix.optimise.automatic = true;
