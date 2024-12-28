@@ -154,13 +154,14 @@
     shell = pkgs.fish;
   };
 
-  # Sudoers
-  security.sudo.extraRules = [
-    {
-      groups = [ "wheel" ];
-      commands = [ "/etc/profiles/per-user/${quasar.user}/bin/timedatectl" ];
+  # Polkit rules
+  security.polkit.extraConfig = ''
+    polkit.addRule((action, subject) => {
+        if (action.id == "org.freedesktop.timedate1.set-timezone") {
+            return polkit.Result.YES
+        }
     }
-  ];
+  '';
 
   # More user configuration
   nix.optimise.automatic = true;
