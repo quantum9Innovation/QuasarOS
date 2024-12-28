@@ -218,7 +218,6 @@
       inxi
       brightnessctl
       treefmt2
-      at
     ]
     ++ (quasar.systemPackages pkgs);
 
