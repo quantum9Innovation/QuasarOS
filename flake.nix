@@ -122,6 +122,24 @@
           # Fill in defaults
           quasar = defaults // config;
 
+          # GPU patching
+          patch =
+            name: app:
+            if quasar.graphics.nvidia.enabled then
+              app.overrideAttrs (
+                final: prev: {
+                  postFixup = ''
+                    wrapProgram $out/bin/${name} \
+                      --set __NV_PRIME_RENDER_OFFLOAD 1 \
+                      --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
+                      --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
+                      --set __VK_LAYER_NV_optimus "NVIDIA_only"
+                  '';
+                }
+              )
+            else
+              app;
+
           # Secure boot configuration
           secureBoot = [
             lanzaboote.nixosModules.lanzaboote
@@ -153,17 +171,7 @@
                     pack = [
                       zen-browser-flake.packages.${quasar.system}.default
                       hyprland-qtutils.packages.${quasar.system}.default
-                      (gitbutler.packages.${quasar.system}.default.overrideAttrs (
-                        final: prev: {
-                          postFixup = ''
-                            wrapProgram $out/bin/gitbutler-tauri \
-                              --set __NV_PRIME_RENDER_OFFLOAD 1 \
-                              --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
-                              --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
-                              --set __VK_LAYER_NV_optimus "NVIDIA_only"
-                          '';
-                        }
-                      ))
+                      (patch "gitbutler-tauri" gitbutler.packages.${quasar.system}.default)
                     ];
                   in
                   [
