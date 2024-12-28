@@ -149,6 +149,7 @@
                 # Primary user Home Manager configuration module
                 imports =
                   let
+                    # Custom packages to inject
                     pack = [
                       zen-browser-flake.packages.${quasar.system}.default
                       hyprland-qtutils.packages.${quasar.system}.default
