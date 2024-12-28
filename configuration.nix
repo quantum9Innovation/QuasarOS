@@ -155,12 +155,13 @@
   };
 
   # Polkit rules
+  security.polkit.enable = true;
   security.polkit.extraConfig = ''
-    polkit.addRule((action, subject) => {
+    polkit.addRule(function(action, subject) {
         if (action.id == "org.freedesktop.timedate1.set-timezone") {
-            return polkit.Result.YES
+            return polkit.Result.YES;
         }
-    }
+    });
   '';
 
   # More user configuration
