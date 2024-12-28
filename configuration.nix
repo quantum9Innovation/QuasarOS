@@ -72,9 +72,8 @@
   services.blueman.enable = true;
 
   # Set time zone automatically and sync with network time
-  services.automatic-timezoned.enable = true;
+  time.timeZone = lib.mkForce null;
   services.timesyncd.enable = true;
-  services.geoclue2.enable = true;
 
   # Select internationalisation properties
   i18n.defaultLocale = quasar.locale;
@@ -91,8 +90,8 @@
     LC_TIME = quasar.locale;
   };
 
-  # Faster boot times
   systemd.services = {
+    # Faster boot times
     NetworkManager-wait-online.enable = false;
   };
 
@@ -221,8 +220,8 @@
       brightnessctl
       treefmt2
       at
-      geoclue2
-      automatic-timezoned
+      timedatectl
+      tzupdate
     ]
     ++ (quasar.systemPackages pkgs);
 
