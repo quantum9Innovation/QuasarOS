@@ -94,6 +94,7 @@ quasar: hyprPlugins: pack:
       hyprshot
       clipse
       hyprpicker
+      tzupdate
 
       # messaging apps
       signal-desktop
