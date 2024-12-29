@@ -136,9 +136,16 @@
                 # Primary user Home Manager configuration module
                 imports =
                   let
+                    # Allow unfree licenses for certain packages (GitButler)
+                    nixpkgs-upstream-unlocked = import nixpkgs-upstream {
+                      system = quasar.system;
+                      config.allowUnfree = true;
+                    };
+
                     # Custom packages to inject
                     pack = [
                       zen-browser-flake.packages.${quasar.system}.default
+                      nixpkgs-upstream-unlocked.gitbutler
                     ];
                   in
                   [
