@@ -35,8 +35,6 @@
     # You should use Home Manager integrations
     # to configure all installed applications
     # in order to ensure complete reproducibility.
-    # Home Manager is a critical system package
-    # and is pinned to a specific release.
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,15 +51,6 @@
       inputs.zen-browser-x86_64.follows = "zen-browser";
     };
 
-    # GitButler
-    gitbutler = {
-      url = "github:youwen5/gitbutler-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Recommended Hyprland utilities
-    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
-
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
@@ -69,7 +58,7 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.1";
 
-      # Optional but recommended to limit the size of your system closure.
+      # Optional but recommended to limit the size of your system closure
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -81,8 +70,6 @@
       nixpkgs-upstream,
       home-manager,
       zen-browser-flake,
-      gitbutler,
-      hyprland-qtutils,
       lanzaboote,
       ...
     }@inputs:
@@ -149,16 +136,9 @@
                 # Primary user Home Manager configuration module
                 imports =
                   let
-                    # Patching
-                    utils = (import ./utils.nix);
-
                     # Custom packages to inject
                     pack = [
                       zen-browser-flake.packages.${quasar.system}.default
-                      hyprland-qtutils.packages.${quasar.system}.default
-                      (utils.patch quasar.graphics.nvidia.enabled "gitbutler-tauri"
-                        gitbutler.packages.${quasar.system}.default
-                      )
                     ];
                   in
                   [
