@@ -51,6 +51,12 @@
       inputs.zen-browser-x86_64.follows = "zen-browser";
     };
 
+    # GitButler
+    gitbutler = {
+      url = "github:youwen5/gitbutler-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
@@ -70,6 +76,7 @@
       nixpkgs-upstream,
       home-manager,
       zen-browser-flake,
+      gitbutler,
       lanzaboote,
       ...
     }@inputs:
@@ -136,16 +143,15 @@
                 # Primary user Home Manager configuration module
                 imports =
                   let
-                    # Allow unfree licenses for certain packages (GitButler)
-                    nixpkgs-upstream-unlocked = import nixpkgs-upstream {
-                      system = quasar.system;
-                      config.allowUnfree = true;
-                    };
+                    # Patching
+                    utils = (import ./utils.nix);
 
                     # Custom packages to inject
                     pack = [
                       zen-browser-flake.packages.${quasar.system}.default
-                      nixpkgs-upstream-unlocked.gitbutler
+                      (utils.patch quasar.graphics.nvidia.enabled "gitbutler-tauri"
+                        gitbutler.packages.${quasar.system}.default
+                      )
                     ];
                   in
                   [

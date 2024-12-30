@@ -76,6 +76,26 @@
         "type": "github"
       }
     },
+    "gitbutler": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735250548,
+        "narHash": "sha256-v/Ohimbhp2qFMHUIzbwpiS+dbz+4ZzjzyoE6IoWkWx0=",
+        "owner": "youwen5",
+        "repo": "gitbutler-flake",
+        "rev": "448e9a784f2310f73b0b2f4f16dc35d31b3bf8d9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "youwen5",
+        "repo": "gitbutler-flake",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -222,6 +242,7 @@
     },
     "root": {
       "inputs": {
+        "gitbutler": "gitbutler",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
