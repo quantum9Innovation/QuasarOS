@@ -1,14 +1,111 @@
 # QuasarOS
 
-    /*****                                                 /******   /****  
-    |*    |  |*   |    **     ****     **    *****        |*    |  /*    * 
-    |*    |  |*   |   /* *   /*       /* *   |*   |      |*    |  |*       
-    |*    |  |*   |  /*   *   ****   /*   *  |*   /     |*    |   ****** 
-    |*  * |  |*   |  ******       |  ******  *****     |*    |         | 
-    |*   *   |*   |  |*   |   *   |  |*   |  |*  *    |*    |   *     | 
+    /*****                                                 /******   /****
+    |*    |  |*   |    **     ****     **    *****        |*    |  /*    *
+    |*    |  |*   |   /* *   /*       /* *   |*   |      |*    |  |*
+    |*    |  |*   |  /*   *   ****   /*   *  |*   /     |*    |   ******
+    |*  * |  |*   |  ******       |  ******  *****     |*    |         |
+    |*   *   |*   |  |*   |   *   |  |*   |  |*  *    |*    |   *     |
      **** *   ****   |*   |    ****  |*   |  |*   *   ******    *****
 
 My highly experimental Nix (and *nix) based OS
+
+## Technical Overview
+
+```mermaid
+flowchart TB
+    %% Styles
+    classDef userConfig fill:#a8d1f0,stroke:#000
+    classDef quasarOS fill:#d4b3e8,stroke:#000
+    classDef nixos fill:#90EE90,stroke:#000
+    classDef kernel fill:#d3d3d3,stroke:#000
+    classDef external fill:#FFE4B5,stroke:#000
+    classDef process fill:#F0F8FF,stroke:#000
+
+    subgraph "User Configuration Layer"
+        UC["User Config"]
+        HC["Hardware Config"]
+        RC["Remote Config"]
+    end
+
+    subgraph "QuasarOS Layer"
+        FS["Flake System"]
+        CSC["Core System Configuration"]
+        HMC["Home Manager Config"]
+
+        subgraph "Modules"
+            WM["Window Manager (Hyprland)"]
+            SB["Secure Boot (Lanzaboote)"]
+            SBS["Status Bar Styling"]
+            UF["Utility Functions"]
+        end
+    end
+
+    subgraph "NixOS Layer"
+        ND["Nix Derivations"]
+        NPM["Nix Package Manager"]
+        NM["NixOS Modules"]
+    end
+
+    subgraph "Linux Kernel Layer"
+        LK["Linux Kernel"]
+    end
+
+    subgraph "External Sources"
+        GR["Git Repositories"]
+        NPR["Nix Package Registry"]
+    end
+
+    %% Relationships
+    UC --> FS
+    HC --> CSC
+    RC --> FS
+
+    FS --> CSC
+    CSC --> HMC
+    CSC --> WM
+    CSC --> SB
+    CSC --> SBS
+
+    WM --> ND
+    SB --> ND
+    HMC --> ND
+
+    ND --> NPM
+    NPM --> NM
+    NM --> LK
+
+    GR -.-> FS
+    NPR -.-> NPM
+
+    %% Click Events
+    click FS "https://github.com/quantum9innovation/quasaros/blob/main/flake.nix"
+    click CSC "https://github.com/quantum9innovation/quasaros/blob/main/configuration.nix"
+    click HMC "https://github.com/quantum9innovation/quasaros/blob/main/home.nix"
+    click WM "https://github.com/quantum9innovation/quasaros/blob/main/modules/hyprland.nix"
+    click SB "https://github.com/quantum9innovation/quasaros/blob/main/modules/lanzaboote.nix"
+    click SBS "https://github.com/quantum9innovation/quasaros/blob/main/modules/waybar.css"
+    click UF "https://github.com/quantum9innovation/quasaros/blob/main/utils.nix"
+
+    %% Legend
+    subgraph Legend
+        L1["→ Direct Flow"]
+        L2["--> Dependency"]
+        L3["User Config"]:::userConfig
+        L4["QuasarOS"]:::quasarOS
+        L5["NixOS"]:::nixos
+        L6["Kernel"]:::kernel
+    end
+
+    %% Apply styles
+    class UC,HC,RC userConfig
+    class FS,CSC,HMC,WM,SB,SBS,UF quasarOS
+    class ND,NPM,NM nixos
+    class LK kernel
+    class GR,NPR external
+```
+
+Generated with [GitDiagram](https://gitdiagram.com/quantum9innovation/quasaros).
 
 ## Development
 
