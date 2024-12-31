@@ -247,8 +247,7 @@
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
         "nixpkgs-upstream": "nixpkgs-upstream",
-        "zen-browser": "zen-browser",
-        "zen-browser-flake": "zen-browser-flake"
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -292,52 +291,22 @@
       }
     },
     "zen-browser": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735353562,
-        "narHash": "sha256-inBvDVGrjPQXuJFCEuKQ23Qo1Ttk8U4nNKgoYlpEaDk=",
-        "type": "tarball",
-        "url": "https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.bz2"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.bz2"
-      }
-    },
-    "zen-browser-aarch64": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735043335,
-        "narHash": "sha256-nuGSRzwBloFwgNCIbc5xv3vGkiHQxzOQr4FUX4Cip7Y=",
-        "type": "tarball",
-        "url": "https://github.com/zen-browser/desktop/releases/download/1.0.2-b.5/zen.linux-aarch64.tar.bz2"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/zen-browser/desktop/releases/download/1.0.2-b.5/zen.linux-aarch64.tar.bz2"
-      }
-    },
-    "zen-browser-flake": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "zen-browser-aarch64": "zen-browser-aarch64",
-        "zen-browser-x86_64": [
-          "zen-browser"
         ]
       },
       "locked": {
-        "lastModified": 1735358795,
-        "narHash": "sha256-IgzkEpt2GQwkTI8EYYxcD1XxQXHU6gO/aqoSEkj1xFM=",
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
-        "rev": "ebfc7207cb66087a6d13bf4e179a0f110ed2fd3c",
+        "lastModified": 1735602790,
+        "narHash": "sha256-t5yiupAqYyEwqkZLOfPBzNskCiQ4k/2U2uJraILFrGc=",
+        "owner": "quantum9innovation",
+        "repo": "zen-browser-twilight-flake",
+        "rev": "596ff1352e49dfadfb587c28b855ae8c0e3a0a78",
         "type": "github"
       },
       "original": {
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
+        "owner": "quantum9innovation",
+        "repo": "zen-browser-twilight-flake",
         "type": "github"
       }
     }

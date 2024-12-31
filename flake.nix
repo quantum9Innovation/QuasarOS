@@ -42,13 +42,8 @@
 
     # Zen browser, twilight edition
     zen-browser = {
-      url = "https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.bz2";
-      flake = false;
-    };
-    zen-browser-flake = {
-      url = "github:youwen5/zen-browser-flake";
+      url = "github:quantum9innovation/zen-browser-twilight-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.zen-browser-x86_64.follows = "zen-browser";
     };
 
     # GitButler
@@ -75,7 +70,7 @@
       nixpkgs,
       nixpkgs-upstream,
       home-manager,
-      zen-browser-flake,
+      zen-browser,
       gitbutler,
       lanzaboote,
       ...
@@ -148,7 +143,7 @@
 
                     # Custom packages to inject
                     pack = [
-                      zen-browser-flake.packages.${quasar.system}.default
+                      zen-browser.packages.${quasar.system}.default
                       (utils.patch quasar.graphics.nvidia.enabled "gitbutler-tauri"
                         gitbutler.packages.${quasar.system}.default
                       )
