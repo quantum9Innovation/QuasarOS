@@ -38,6 +38,18 @@
     (self: super: {
       neatvnc = inputs.nixpkgs-upstream.legacyPackages.${pkgs.system}.neatvnc;
     })
+
+    (final: prev: {
+      aquamarine = prev.aquamarine.overrideAttrs {
+        version = "0.5.0";
+        src = prev.fetchFromGitHub {
+          owner = "hyprwm";
+          repo = "aquamarine";
+          rev = "v${final.aquamarine.version}";
+          hash = "sha256-1Dxryiw8u2ejntxrrv3sMtIE8WHKxmlN4KeH+uMGbmc=";
+        };
+      };
+    })
   ];
 
   # Bootloader
