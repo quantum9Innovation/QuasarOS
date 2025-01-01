@@ -102,18 +102,24 @@
     LC_TIME = quasar.locale;
   };
 
+  # Custom system services
   systemd.services = {
-    # Ensure network uplink on boot
-    NetworkManager-wait-online.enable = true;
-
     # Automatic time zone switching
     updateTimezone = {
       description = "Automatically update timezone using `timedatectl` and `tzupdate`";
       wantedBy = [ "multi-user.target" ];
+      after = [ "network-online.target" ];
+      requires = [ "network-online.target" ];
       script = ''
         timedatectl set-timezone $("${pkgs.tzupdate}/bin/tzupdate" -p)
       '';
     };
+  };
+
+  # Enable NetworkManager-wait-online for reliable networking on boot
+  networking.networkmanager = {
+    enable = true;
+    waitOnline = true;
   };
 
   # Disable the X11 windowing system,
