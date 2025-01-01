@@ -41,7 +41,7 @@
 
     (final: prev: {
       aquamarine = prev.aquamarine.overrideAttrs {
-        version = builtins.readFile "${inputs.aq}/VERSION";
+        version = inputs.aq.rev;
         src = inputs.aq;
       };
     })
