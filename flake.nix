@@ -64,7 +64,7 @@
     };
 
     aq = {
-      url = "github:hyprwm/aquamarine/7dea26bba0a0a1ecd2ed49d026d35bde9e0f6144";
+      url = "github:hyprwm/aquamarine/4468981c1c50999f315baa1508f0e53c4ee70c52";
       flake = false;
     };
   };
