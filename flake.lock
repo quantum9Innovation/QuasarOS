@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "aq": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734129756,
+        "narHash": "sha256-Gxv1kTz5jEvIzmkF6XgsdKglL2jmjJOQdZ+hO9uVnlQ=",
+        "owner": "hyprwm",
+        "repo": "aquamarine",
+        "rev": "9441860f40ea6da65424539c4f6fcc26a1603420",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "aquamarine",
+        "rev": "9441860f40ea6da65424539c4f6fcc26a1603420",
+        "type": "github"
+      }
+    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -242,6 +259,7 @@
     },
     "root": {
       "inputs": {
+        "aq": "aq",
         "gitbutler": "gitbutler",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
