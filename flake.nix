@@ -62,6 +62,11 @@
       # Optional but recommended to limit the size of your system closure
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    aq = {
+      url = "https://github.com/hyprwm/aquamarine";
+      flake = false;
+    };
   };
 
   outputs =

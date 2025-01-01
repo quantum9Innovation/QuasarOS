@@ -41,13 +41,8 @@
 
     (final: prev: {
       aquamarine = prev.aquamarine.overrideAttrs {
-        version = "0.5.0";
-        src = prev.fetchFromGitHub {
-          owner = "hyprwm";
-          repo = "aquamarine";
-          rev = "b31a6a4da8199ae3489057db7d36069a70749a56";
-          hash = "";
-        };
+        version = builtins.readFile "${inputs.aq}/VERSION";
+        src = inputs.aq;
       };
     })
   ];
