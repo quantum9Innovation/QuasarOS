@@ -75,11 +75,8 @@
     }
     .${quasar.kernel};
 
-  # Enable reliable networking
-  networking.networkmanager = {
-    enable = true;
-    waitOnline = true;
-  };
+  # Enable networking
+  networking.networkmanager.enable = true;
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -107,6 +104,9 @@
 
   # Custom system services
   systemd.services = {
+    # Ensure network uplink on boot
+    NetworkManager-wait-online.enable = true;
+
     # Automatic time zone switching
     updateTimezone = {
       description = "Automatically update timezone using `timedatectl` and `tzupdate`";
