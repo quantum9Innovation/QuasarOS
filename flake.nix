@@ -64,7 +64,7 @@
     };
 
     aq = {
-      url = "github:hyprwm/aquamarine/f7082bef8162faad5ab7c4ad9b212f6182fd8971";
+      url = "github:quantum9innovation/aquamarine/patch-125";
       flake = false;
     };
   };

@@ -3,17 +3,17 @@
     "aq": {
       "flake": false,
       "locked": {
-        "lastModified": 1735763806,
-        "narHash": "sha256-241+dmABHKEXna8ADZwoAJXrSQeyNvv9Itb983sjOtM=",
-        "owner": "hyprwm",
+        "lastModified": 1735773489,
+        "narHash": "sha256-QQ1pLNuh3pyS3uf8QnSor//isIwy2BkZ/6fbjBZxrpw=",
+        "owner": "quantum9innovation",
         "repo": "aquamarine",
-        "rev": "f7082bef8162faad5ab7c4ad9b212f6182fd8971",
+        "rev": "132fdc696c550320c3bca365e436e4f142d9b5a8",
         "type": "github"
       },
       "original": {
-        "owner": "hyprwm",
+        "owner": "quantum9innovation",
+        "ref": "patch-125",
         "repo": "aquamarine",
-        "rev": "f7082bef8162faad5ab7c4ad9b212f6182fd8971",
         "type": "github"
       }
     },
