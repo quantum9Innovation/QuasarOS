@@ -75,8 +75,11 @@
     }
     .${quasar.kernel};
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+  # Enable reliable networking
+  networking.networkmanager = {
+    enable = true;
+    waitOnline = true;
+  };
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -114,12 +117,6 @@
         timedatectl set-timezone $("${pkgs.tzupdate}/bin/tzupdate" -p)
       '';
     };
-  };
-
-  # Enable NetworkManager-wait-online for reliable networking on boot
-  networking.networkmanager = {
-    enable = true;
-    waitOnline = true;
   };
 
   # Disable the X11 windowing system,
