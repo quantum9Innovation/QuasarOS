@@ -102,6 +102,7 @@
     LC_TIME = quasar.locale;
   };
 
+  # Custom system services
   systemd.services = {
     # Ensure network uplink on boot
     NetworkManager-wait-online.enable = true;
@@ -110,6 +111,8 @@
     updateTimezone = {
       description = "Automatically update timezone using `timedatectl` and `tzupdate`";
       wantedBy = [ "multi-user.target" ];
+      after = [ "network-online.target" ];
+      requires = [ "network-online.target" ];
       script = ''
         timedatectl set-timezone $("${pkgs.tzupdate}/bin/tzupdate" -p)
       '';
