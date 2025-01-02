@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "aq": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735775001,
+        "narHash": "sha256-qg3yw/525LwxAO6QlLIZ941yGfmLIGUL5VULiVcYnnA=",
+        "owner": "quantum9innovation",
+        "repo": "aquamarine",
+        "rev": "6004e4f76a13b14282f06f6d06bd6da63da6b225",
+        "type": "github"
+      },
+      "original": {
+        "owner": "quantum9innovation",
+        "ref": "patch-125",
+        "repo": "aquamarine",
+        "type": "github"
+      }
+    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -242,6 +259,7 @@
     },
     "root": {
       "inputs": {
+        "aq": "aq",
         "gitbutler": "gitbutler",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",

@@ -62,6 +62,11 @@
       # Optional but recommended to limit the size of your system closure
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    aq = {
+      url = "github:quantum9innovation/aquamarine/patch-125";
+      flake = false;
+    };
   };
 
   outputs =
