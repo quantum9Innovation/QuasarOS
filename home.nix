@@ -385,7 +385,7 @@ quasar: hyprPlugins: pack:
         grace = 1;
       };
       background = {
-        monitor = "";
+        monitor = "eDP-1";
         path = "/tmp/__hyprlock-monitor-screenshot.png";
         blur_passes = 3;
         blur_size = 7;
@@ -396,7 +396,7 @@ quasar: hyprPlugins: pack:
         vibrancy_darkness = 0.0;
       };
       input-field = {
-        monitor = "";
+        monitor = "eDP-1";
         size = "200, 50";
         outline_thickness = 3;
         dots_size = 0.33;
