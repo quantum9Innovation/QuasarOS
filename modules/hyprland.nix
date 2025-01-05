@@ -5,7 +5,7 @@ let
     mod: attr: fallback:
     if builtins.hasAttr attr mod then mod.${attr} else fallback;
   hypr = attr: fallback: default hyprland attr fallback;
-  inherit (quasar) config;
+  inherit (quasar) config lib;
 in
 {
 
@@ -179,8 +179,8 @@ in
       # the dot is a hyprland name, not nix syntax, so we escape it
       # "col.active_border" = "rgba(1966ffff) rgba(00ff99ee) 45deg";
       # "col.inactive_border" = "rgba(00000000)";
-      "col.active_border" = "rgba(${colors.base0A}ff) rgba(${colors.base09}ff) 45deg";
-      "col.inactive_border" = "rgba(${colors.base01}cc) rgba(${colors.base02}cc) 45deg";
+      "col.active_border" = lib.mkForce "rgba(${colors.base0A}ff) rgba(${colors.base09}ff) 45deg";
+      "col.inactive_border" = lib.mkForce "rgba(${colors.base01}cc) rgba(${colors.base02}cc) 45deg";
       layout = "scroller";
       resize_on_border = "true";
       allow_tearing = "false";

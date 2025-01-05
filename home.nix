@@ -2,6 +2,7 @@ quasar: hyprPlugins: pack:
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 
@@ -127,7 +128,7 @@ quasar: hyprPlugins: pack:
     settings = import ./modules/hyprland.nix (
       quasar
       // {
-        inherit config;
+        inherit config lib;
       }
     );
   };
