@@ -338,19 +338,33 @@
     else
       null;
 
+  stylix.enable = true;
+  stylix.image = ./walls/default.jpg;
+  stylix.fonts = {
+    serif = {
+      package = pkgs.noto-fonts;
+      name = "Noto Serif";
+    };
+    sansSerif = {
+      package = pkgs.noto-fonts;
+      name = "Noto Sans";
+    };
+    monospace = {
+      package = pkgs.nerd-fonts.caskaydia-cove;
+      name = "CaskaydiaCove Nerd Font";
+    };
+  };
+  stylix.targets.waybar.enable = false;
+  stylix.cursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 26;
+  };
+
   fonts = {
     enableDefaultPackages = true;
-    fontconfig = {
-      defaultFonts = {
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Noto Sans" ];
-      };
-    };
     packages = with pkgs; [
-      noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
-      nerd-fonts.caskaydia-mono
       lora
     ];
   };

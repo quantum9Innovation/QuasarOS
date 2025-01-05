@@ -67,6 +67,11 @@
       url = "github:quantum9innovation/aquamarine/patch-125";
       flake = false;
     };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

@@ -192,8 +192,6 @@ quasar: hyprPlugins: pack:
 
   programs.kitty = {
     enable = true;
-    themeFile = "Dracula";
-    font.name = "CaskaydiaCove Nerd Font";
     settings = {
       font_size = 11;
       window_padding_width = "8 8 0";
@@ -318,10 +316,6 @@ quasar: hyprPlugins: pack:
 
   gtk = {
     enable = true;
-    cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      size = 26;
-    };
     iconTheme = {
       name = "Papirus-Dark";
     };
