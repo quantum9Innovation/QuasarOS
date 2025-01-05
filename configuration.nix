@@ -316,11 +316,11 @@
 
   # Install and configure appropriate NVIDIA drivers
   # Do not attempt to disable unfree software packages if you enable this
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia =
     if quasar.graphics.nvidia.enabled then
       {
         package = config.boot.kernelPackages.nvidiaPackages.beta;
-        services.xserver.videoDrivers = [ "nvidia" ];
         modesetting.enable = true;
         powerManagement.enable = true;
         powerManagement.finegrained = true;
