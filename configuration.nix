@@ -354,7 +354,6 @@
       name = "CaskaydiaCove Nerd Font";
     };
   };
-  stylix.targets.waybar.enable = false;
   stylix.cursor = {
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;

@@ -321,6 +321,8 @@ quasar: hyprPlugins: pack:
     };
   };
 
+  stylix.targets.waybar.enable = false;
+
   qt = {
     enable = true;
     platformTheme.name = "qtct";
