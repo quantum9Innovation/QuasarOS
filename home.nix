@@ -199,7 +199,6 @@ quasar: hyprPlugins: pack:
       shell = "nu";
       shell_integration = "enabled";
       enable_audio_bell = true;
-      background_opacity = "1.0";
     };
   };
 
