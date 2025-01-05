@@ -164,8 +164,6 @@
                   in
                   [
                     (import ./home.nix quasar nixpkgs.legacyPackages.${quasar.system}.hyprlandPlugins pack)
-
-                    stylix.homeManagerModules.stylix
                   ]
                   ++ quasar.homeOverrides;
               };
