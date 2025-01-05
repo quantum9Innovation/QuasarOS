@@ -83,6 +83,7 @@
       zen-browser,
       gitbutler,
       lanzaboote,
+      stylix,
       ...
     }@inputs:
     {
@@ -131,6 +132,8 @@
           baseModules = [
             # Primary system configuration module
             ./configuration.nix
+
+            stylix.nixosModules.stylix
 
             # Home Manager setup
             home-manager.nixosModules.home-manager
