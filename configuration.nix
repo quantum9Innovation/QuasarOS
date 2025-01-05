@@ -246,6 +246,9 @@
   # Git is an essential system package
   programs.git.enable = true;
 
+  # Tunes laptop power.
+  services.tlp.enable = true;
+
   # Yet another Nix CLI helper
   programs.nh = {
     enable = true;
