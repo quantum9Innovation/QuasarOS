@@ -346,7 +346,7 @@
 
   # Forces light or dark mode.
   # polarity :: "light" || "dark"
-  polarity = "light";
+  stylix.polarity = "light";
 
   # Set a base16 scheme to override the wallpaper generated color scheme. You
   # can use any theme in tinted-theming.
