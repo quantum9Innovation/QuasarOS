@@ -328,6 +328,7 @@ quasar: hyprPlugins: pack:
   };
 
   stylix.targets.waybar.enable = false;
+  stylix.targets.hyprlock.enable = false;
 
   qt = {
     enable = true;
