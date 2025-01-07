@@ -73,6 +73,7 @@ quasar: hyprPlugins: pack:
       firefox
       thunderbird
       zettlr
+      sleek-todo
       fastfetch
       nemo
       muffon
