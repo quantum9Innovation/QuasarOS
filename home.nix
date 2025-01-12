@@ -223,13 +223,16 @@ quasar: hyprPlugins: pack:
           "<CFOUR>"
           "<CFIVE>"
         ]
-        (with config.lib.stylix.colors; [
-          base01
-          base02
-          base03
-          base04
-          base05
-        ])
+        (map (s: "#" + s) (
+          with config.lib.stylix.colors;
+          [
+            base01
+            base02
+            base03
+            base04
+            base05
+          ]
+        ))
         (builtins.readFile modules/waybar.css);
     settings = {
       mainbar = {
