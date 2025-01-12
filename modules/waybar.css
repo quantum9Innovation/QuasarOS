@@ -1,18 +1,18 @@
 @keyframes wave {
 	0% {
-		background: linear-gradient(to right, <CONE>80 0%, <CTWO>80 50%, <CONE>80 100%);
+		background: linear-gradient(to right, <CONE> 0%, <CTWO> 50%, <CONE> 100%);
 	}
 	25% {
-		background: linear-gradient(to right, <CTWO>80 0%, <CTHREE>80 50%, <CTWO>80 100%);
+		background: linear-gradient(to right, <CTWO> 0%, <CTHREE> 50%, <CTWO> 100%);
 	}
 	50% {
-		background: linear-gradient(to right, <CTHREE>80 0%, <CFOUR>80 50%, <CTHREE>80 100%);
+		background: linear-gradient(to right, <CTHREE> 0%, <CFOUR> 50%, <CTHREE> 100%);
 	}
 	75% {
-		background: linear-gradient(to right, <CTWO>80 0%, <CTHREE>80 50%, <CTWO>80 100%);
+		background: linear-gradient(to right, <CTWO> 0%, <CTHREE> 50%, <CTWO> 100%);
 	}
 	100% {
-		background: linear-gradient(to right, <CONE>80 0%, <CTWO>80 50%, <CONE>80 100%);
+		background: linear-gradient(to right, <CONE> 0%, <CTWO> 50%, <CONE> 100%);
 	}
 }
 

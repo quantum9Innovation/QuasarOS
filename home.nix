@@ -223,14 +223,14 @@ quasar: hyprPlugins: pack:
           "<CFOUR>"
           "<CFIVE>"
         ]
-        (map (s: "#" + s) (
+        (map (s: s) (
           with config.lib.stylix.colors;
           [
-            base01
-            base02
-            base03
-            base04
-            base05
+            "rgba(200, 100, 200, 0.8)"
+            "rgba(100, 100, 200, 0.8)"
+            "rgba(200, 100, 100, 0.8)"
+            "rgba(200, 100, 150, 0.8)"
+            "rgba(150, 100, 200, 0.8)"
           ]
         ))
         (builtins.readFile modules/waybar.css);
