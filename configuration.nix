@@ -338,20 +338,52 @@
     else
       null;
 
+  stylix.enable = true;
+  # Set a wallpaper (mandatory)
+  # Run `systemctl restart --user -u hyprpaper.service` to refresh wallpaper
+  # After editing and rebuilding
+  stylix.image = ./walls/default.jpg;
+
+  # Forces light or dark mode.
+  # polarity :: "light" || "dark"
+  stylix.polarity = "light";
+
+  # Set a base16 scheme to override the wallpaper generated color scheme. You
+  # can use any theme in tinted-theming.
+  # <https://github.com/tinted-theming/schemes/tree/spec-0.11/base16>
+  # An example is below:
+  # base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+
+  # Font config, preferred over NixOS built-in font configuration
+  stylix.fonts = {
+    serif = {
+      package = pkgs.noto-fonts;
+      name = "Noto Serif";
+    };
+    sansSerif = {
+      package = pkgs.noto-fonts;
+      name = "Noto Sans";
+    };
+    monospace = {
+      package = pkgs.nerd-fonts.caskaydia-cove;
+      name = "CaskaydiaCove Nerd Font";
+    };
+  };
+
+  # Set cursor. Takes effect for Hyprland, GTK, etc.
+  stylix.cursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 26;
+  };
+
+  # Additional system fonts
   fonts = {
     enableDefaultPackages = true;
-    fontconfig = {
-      defaultFonts = {
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Noto Sans" ];
-      };
-    };
     packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
-      nerd-fonts.caskaydia-mono
-      lora
     ];
   };
 }

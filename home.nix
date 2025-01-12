@@ -1,6 +1,8 @@
 quasar: hyprPlugins: pack:
 {
   pkgs,
+  config,
+  lib,
   ...
 }:
 
@@ -123,11 +125,18 @@ quasar: hyprPlugins: pack:
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [ hyprPlugins.hyprscroller ];
-    settings = import ./modules/hyprland.nix quasar;
+    settings = import ./modules/hyprland.nix quasar // {
+      inherit config lib;
+    };
   };
 
   # Setup GNOME keyring
   services.gnome-keyring.enable = true;
+
+  # Stylix config
+  services.hyprpaper.enable = true;
+  stylix.targets.waybar.enable = false;
+  stylix.targets.hyprlock.enable = false;
 
   services.dunst = {
     enable = true;
