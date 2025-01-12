@@ -40,6 +40,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Stylix is an auto-ricing utility that applies a consistent theme to
+    # a variety of apps installed on QuasarOS.
+    # This is the primary tool used for specifying rices.
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Zen browser, twilight edition
     zen-browser = {
       url = "github:quantum9innovation/zen-browser-twilight-flake";
@@ -49,6 +57,12 @@
     # GitButler
     gitbutler = {
       url = "github:youwen5/gitbutler-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Betterbird
+    betterbird = {
+      url = "git+https://code.youwen.dev/youwen5/betterbird-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -67,11 +81,6 @@
       url = "github:quantum9innovation/aquamarine/patch-125";
       flake = false;
     };
-
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -82,6 +91,7 @@
       home-manager,
       zen-browser,
       gitbutler,
+      betterbird,
       lanzaboote,
       stylix,
       ...
@@ -158,6 +168,7 @@
                     # Custom packages to inject
                     pack = [
                       zen-browser.packages.${quasar.system}.default
+                      betterbird.packages.${quasar.system}.default
                       (utils.patch quasar.graphics.nvidia.enabled "gitbutler-tauri"
                         gitbutler.packages.${quasar.system}.default
                       )
