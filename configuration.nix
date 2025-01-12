@@ -78,10 +78,6 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
-  # Logitech support
-  hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true;
-
   # Set time zone automatically and sync with network time
   time.timeZone = lib.mkForce null;
   services.timesyncd.enable = true;
@@ -249,9 +245,6 @@
 
   # Git is an essential system package
   programs.git.enable = true;
-
-  # Tunes laptop power.
-  services.tlp.enable = true;
 
   # Yet another Nix CLI helper
   programs.nh = {
