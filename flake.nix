@@ -52,6 +52,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Betterbird
+    betterbird = {
+      url = "git+https://code.youwen.dev/youwen5/betterbird-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Stylix is an auto-ricing utility that applies a consistent theme to
+    # a variety of apps installed on QuasarOS.
+    # This is the primary tool used for specifying rices.
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
@@ -77,7 +91,9 @@
       home-manager,
       zen-browser,
       gitbutler,
+      betterbird,
       lanzaboote,
+      stylix,
       ...
     }@inputs:
     {
@@ -127,6 +143,9 @@
             # Primary system configuration module
             ./configuration.nix
 
+            # Stylix autoricer
+            stylix.nixosModules.stylix
+
             # Home Manager setup
             home-manager.nixosModules.home-manager
             {
@@ -149,6 +168,7 @@
                     # Custom packages to inject
                     pack = [
                       zen-browser.packages.${quasar.system}.default
+                      betterbird.packages.${quasar.system}.default
                       (utils.patch quasar.graphics.nvidia.enabled "gitbutler-tauri"
                         gitbutler.packages.${quasar.system}.default
                       )

@@ -1,6 +1,8 @@
 quasar: hyprPlugins: pack:
 {
   pkgs,
+  config,
+  lib,
   ...
 }:
 
@@ -71,6 +73,7 @@ quasar: hyprPlugins: pack:
       firefox
       thunderbird
       zettlr
+      sleek-todo
       fastfetch
       nemo
       muffon
@@ -123,7 +126,12 @@ quasar: hyprPlugins: pack:
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [ hyprPlugins.hyprscroller ];
-    settings = import ./modules/hyprland.nix quasar;
+    settings = import ./modules/hyprland.nix (
+      quasar
+      // {
+        inherit config lib;
+      }
+    );
   };
 
   # Setup GNOME keyring
@@ -192,8 +200,6 @@ quasar: hyprPlugins: pack:
 
   programs.kitty = {
     enable = true;
-    themeFile = "Dracula";
-    font.name = "CaskaydiaCove Nerd Font";
     settings = {
       font_size = 11;
       window_padding_width = "8 8 0";
@@ -201,7 +207,6 @@ quasar: hyprPlugins: pack:
       shell = "nu";
       shell_integration = "enabled";
       enable_audio_bell = true;
-      background_opacity = "1.0";
     };
   };
 
@@ -209,7 +214,26 @@ quasar: hyprPlugins: pack:
     enable = true;
     systemd.enable = true;
     package = pkgs.waybar;
-    style = builtins.readFile modules/waybar.css;
+    style =
+      builtins.replaceStrings
+        [
+          "<CONE>"
+          "<CTWO>"
+          "<CTHREE>"
+          "<CFOUR>"
+          "<CFIVE>"
+        ]
+        (map (s: s) (
+          with config.lib.stylix.colors;
+          [
+            "rgba(200, 100, 200, 0.8)"
+            "rgba(100, 100, 200, 0.8)"
+            "rgba(200, 100, 100, 0.8)"
+            "rgba(200, 100, 150, 0.8)"
+            "rgba(150, 100, 200, 0.8)"
+          ]
+        ))
+        (builtins.readFile modules/waybar.css);
     settings = {
       mainbar = {
         "layer" = "top";
@@ -318,14 +342,13 @@ quasar: hyprPlugins: pack:
 
   gtk = {
     enable = true;
-    cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      size = 26;
-    };
     iconTheme = {
       name = "Papirus-Dark";
     };
   };
+
+  stylix.targets.waybar.enable = false;
+  stylix.targets.hyprlock.enable = false;
 
   qt = {
     enable = true;
@@ -372,4 +395,84 @@ quasar: hyprPlugins: pack:
 
   home.stateVersion = quasar.stateVersion;
   programs.home-manager.enable = true;
+
+  services.hyprpaper.enable = true;
+
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      general = {
+        hide_cursor = true;
+        grace = 1;
+      };
+      background = {
+        monitor = "eDP-1";
+        path = "/tmp/__hyprlock-monitor-screenshot.png";
+        blur_passes = 3;
+        blur_size = 7;
+        noise = 0.0117;
+        contrast = 0.8916;
+        brightness = 0.8172;
+        vibrancy = 0.1696;
+        vibrancy_darkness = 0.0;
+      };
+      input-field = {
+        monitor = "eDP-1";
+        size = "200, 50";
+        outline_thickness = 3;
+        dots_size = 0.33;
+        dots_spacing = 0.15;
+        dots_center = false;
+        dots_rounding = -1;
+        outer_color = "rgb(151515)";
+        inner_color = "rgb(200, 200, 200)";
+        font_color = "rgb(10, 10, 10)";
+        fade_on_empty = true;
+        fade_timeout = 1000;
+        placeholder_text = "<i>Input Password...</i>";
+        hide_input = false;
+        rounding = -1;
+        check_color = "rgb(204, 136, 34)";
+        fail_color = "rgb(204, 34, 34)";
+        fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
+        fail_timeout = 2000;
+        fail_transition = 300;
+        capslock_color = -1;
+        numlock_color = -1;
+        bothlock_color = -1;
+        invert_numlock = false;
+        swap_font_color = false;
+
+        position = "0, -20";
+        halign = "center";
+        valign = "center";
+      };
+    };
+  };
+
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        lock_cmd = "pidof hyprlock || ${pkgs.grim}/bin/grim -o ${config.programs.hyprlock.settings.background.monitor} /tmp/__hyprlock-monitor-screenshot.png && ${pkgs.hyprlock}/bin/hyprlock"; # avoid starting multiple hyprlock instances.
+        before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
+        after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+      };
+      listener = [
+        {
+          timeout = 1500;
+          on-timeout = "loginctl lock-session";
+        }
+        {
+          timeout = 330; # 5.5min
+          on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
+          on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+        }
+        {
+          timeout = 1800;
+          on-timeout = "systemctl suspend";
+        }
+      ];
+    };
+  };
 }

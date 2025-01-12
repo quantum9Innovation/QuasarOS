@@ -1,18 +1,18 @@
 @keyframes wave {
 	0% {
-		background: linear-gradient(to right, rgba(0, 100, 255, 0.5) 0%, rgba(240, 0, 200, 0.5) 50%, rgba(0, 100, 255, 0.5) 100%);
+		background: linear-gradient(to right, <CONE> 0%, <CTWO> 50%, <CONE> 100%);
 	}
 	25% {
-		background: linear-gradient(to right, rgba(240, 0, 200, 0.5) 0%, rgba(0, 40, 200, 0.5) 50%, rgba(240, 0, 200, 0.5) 100%);
+		background: linear-gradient(to right, <CTWO> 0%, <CTHREE> 50%, <CTWO> 100%);
 	}
 	50% {
-		background: linear-gradient(to right, rgba(0, 40, 200, 0.5) 0%, rgba(20, 0, 170, 0.5) 50%, rgba(0, 40, 200, 0.5) 100%);
+		background: linear-gradient(to right, <CTHREE> 0%, <CFOUR> 50%, <CTHREE> 100%);
 	}
 	75% {
-		background: linear-gradient(to right, rgba(240, 0, 200, 0.5) 0%, rgba(0, 40, 200, 0.5) 50%, rgba(240, 0, 200, 0.5) 100%);
+		background: linear-gradient(to right, <CTWO> 0%, <CTHREE> 50%, <CTWO> 100%);
 	}
 	100% {
-		background: linear-gradient(to right, rgba(0, 100, 255, 0.5) 0%, rgba(240, 0, 200, 0.5) 50%, rgba(0, 100, 255, 0.5) 100%);
+		background: linear-gradient(to right, <CONE> 0%, <CTWO> 50%, <CONE> 100%);
 	}
 }
 
@@ -110,16 +110,16 @@
 
 #workspaces button:hover {
     background-color: rgba(255, 255, 255, 0.5);
-    color: #002aff;
+    color: <CFIVE>;
 }
 
 #workspaces button.focused {
     border-color: #ffffff;
-    color: #002aff;
+    color: <CFIVE>;
     border: 2px solid #ffffff;
 }
 
 #workspaces button.active {
     background-color: #ffffff;
-    color: #002aff;
+    color: <CFIVE>;
 }
