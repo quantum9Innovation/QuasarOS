@@ -214,7 +214,23 @@ quasar: hyprPlugins: pack:
     enable = true;
     systemd.enable = true;
     package = pkgs.waybar;
-    style = builtins.readFile modules/waybar.css;
+    style =
+      builtins.replaceStrings
+        [
+          "<CONE>"
+          "<CTWO>"
+          "<CTHREE>"
+          "<CFOUR>"
+          "<CFIVE>"
+        ]
+        (with config.lib.stylix.colors; [
+          base01
+          base02
+          base03
+          base04
+          base05
+        ])
+        (builtins.readFile modules/waybar.css);
     settings = {
       mainbar = {
         "layer" = "top";
