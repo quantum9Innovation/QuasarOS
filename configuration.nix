@@ -354,7 +354,7 @@
   # An example is below:
   # base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
 
-  # Font config, preferred over NixOS builtin font configuration
+  # Font config, preferred over NixOS built-in font configuration
   stylix.fonts = {
     serif = {
       package = pkgs.noto-fonts;
@@ -377,12 +377,12 @@
     size = 26;
   };
 
-  # Install additional fonts.
+  # Additional system fonts.
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
       noto-fonts-cjk-sans
-      lora
+      noto-fonts-emoji
     ];
   };
 }

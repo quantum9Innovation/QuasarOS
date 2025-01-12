@@ -58,6 +58,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Stylix is an auto-ricing utility that applies a consistent theme to
+    # a variety of apps installed on QuasarOS.
+    # This is the primary tool used for specifying rices.
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
@@ -72,11 +80,6 @@
     aq = {
       url = "github:quantum9innovation/aquamarine/patch-125";
       flake = false;
-    };
-
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -140,6 +143,7 @@
             # Primary system configuration module
             ./configuration.nix
 
+            # Stylix autoricer
             stylix.nixosModules.stylix
 
             # Home Manager setup
