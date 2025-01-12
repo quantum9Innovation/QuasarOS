@@ -82,6 +82,9 @@
   time.timeZone = lib.mkForce null;
   services.timesyncd.enable = true;
 
+  # Efficient power management
+  services.tlp.enable = true;
+
   # Select internationalisation properties
   i18n.defaultLocale = quasar.locale;
 
