@@ -3,11 +3,11 @@
     "aq": {
       "flake": false,
       "locked": {
-        "lastModified": 1736050555,
-        "narHash": "sha256-TUoKhJ2QMK2AYTRvBCRpYFmaSihiF/OgB+HDZjamZtI=",
+        "lastModified": 1735775001,
+        "narHash": "sha256-qg3yw/525LwxAO6QlLIZ941yGfmLIGUL5VULiVcYnnA=",
         "owner": "quantum9innovation",
         "repo": "aquamarine",
-        "rev": "546ce7963d18cbd30b32bf8d464f9ab3f6d54f74",
+        "rev": "6004e4f76a13b14282f06f6d06bd6da63da6b225",
         "type": "github"
       },
       "original": {
@@ -15,92 +15,6 @@
         "ref": "patch-125",
         "repo": "aquamarine",
         "type": "github"
-      }
-    },
-    "base16": {
-      "inputs": {
-        "fromYaml": "fromYaml"
-      },
-      "locked": {
-        "lastModified": 1732200724,
-        "narHash": "sha256-+R1BH5wHhfnycySb7Sy5KbYEaTJZWm1h+LW1OtyhiTs=",
-        "owner": "SenchoPens",
-        "repo": "base16.nix",
-        "rev": "153d52373b0fb2d343592871009a286ec8837aec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "SenchoPens",
-        "repo": "base16.nix",
-        "type": "github"
-      }
-    },
-    "base16-fish": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1622559957,
-        "narHash": "sha256-PebymhVYbL8trDVVXxCvZgc0S5VxI7I1Hv4RMSquTpA=",
-        "owner": "tomyun",
-        "repo": "base16-fish",
-        "rev": "2f6dd973a9075dabccd26f1cded09508180bf5fe",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tomyun",
-        "repo": "base16-fish",
-        "type": "github"
-      }
-    },
-    "base16-helix": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1725860795,
-        "narHash": "sha256-Z2o8VBPW3I+KKTSfe25kskz0EUj7MpUh8u355Z1nVsU=",
-        "owner": "tinted-theming",
-        "repo": "base16-helix",
-        "rev": "7f795bf75d38e0eea9fed287264067ca187b88a9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tinted-theming",
-        "repo": "base16-helix",
-        "type": "github"
-      }
-    },
-    "base16-vim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1731949548,
-        "narHash": "sha256-XIDexXM66sSh5j/x70e054BnUsviibUShW7XhbDGhYo=",
-        "owner": "tinted-theming",
-        "repo": "base16-vim",
-        "rev": "61165b1632409bd55e530f3dbdd4477f011cadc6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tinted-theming",
-        "repo": "base16-vim",
-        "type": "github"
-      }
-    },
-    "betterbird": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1735952316,
-        "narHash": "sha256-F/DrcKNMbQvJte7JvjYCmR2iPytG/jYljMLuzOYles8=",
-        "ref": "refs/heads/main",
-        "rev": "89ff2f3f67caf2481763d560c3c2f2637881b3c3",
-        "revCount": 1,
-        "type": "git",
-        "url": "https://code.youwen.dev/youwen5/betterbird-flake"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://code.youwen.dev/youwen5/betterbird-flake"
       }
     },
     "crane": {
@@ -490,7 +404,6 @@
     "root": {
       "inputs": {
         "aq": "aq",
-        "betterbird": "betterbird",
         "gitbutler": "gitbutler",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
