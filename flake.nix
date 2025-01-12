@@ -44,7 +44,7 @@
     # a variety of apps installed on QuasarOS.
     # This is the primary tool used for specifying rices.
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:danth/stylix/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
