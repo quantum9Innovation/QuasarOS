@@ -78,6 +78,10 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
+  # Logitech peripheral support
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
+
   # Set time zone automatically and sync with network time
   time.timeZone = lib.mkForce null;
   services.timesyncd.enable = true;
