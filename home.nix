@@ -223,16 +223,30 @@ quasar: hyprPlugins: pack:
           "<CFOUR>"
           "<CFIVE>"
         ]
-        (map (s: s) (
-          with config.lib.stylix.colors;
-          [
-            "rgba(200, 100, 200, 0.8)"
-            "rgba(100, 100, 200, 0.8)"
-            "rgba(200, 100, 100, 0.8)"
-            "rgba(200, 100, 150, 0.8)"
-            "rgba(150, 100, 200, 0.8)"
-          ]
-        ))
+        (map
+          (
+            hex:
+            let
+              r = builtins.substring 0 2 hex;
+              g = builtins.substring 2 2 hex;
+              b = builtins.substring 4 2 hex;
+              R = (builtins.fromTOML "n1 = 0x${r}").n1;
+              G = (builtins.fromTOML "m2 = 0x${g}").m2;
+              B = (builtins.fromTOML "p3 = 0x${b}").p3;
+            in
+            "rgba(${toString R}, ${toString G}, ${toString B}, 0.8)"
+          )
+          (
+            with config.lib.stylix.colors;
+            [
+              base04
+              base06
+              base08
+              base09
+              base0A
+            ]
+          )
+        )
         (builtins.readFile modules/waybar.css);
     settings = {
       mainbar = {
