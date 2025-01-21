@@ -70,6 +70,27 @@
     }
     .${quasar.kernel};
 
+  # Intel S2Idle[deep] Sleeping
+  boot = {
+    consoleLogLevel = 3;
+    initrd.systemd.enable = true;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+      "mem_sleep_default=deep"
+    ];
+  };
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=yes
+    AllowHibernation=yes
+    AllowHybridSleep=yes
+    AllowSuspendThenHibernate=yes
+  '';
   # Enable networking
   networking.networkmanager.enable = true;
 
