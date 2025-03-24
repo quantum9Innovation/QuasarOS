@@ -220,6 +220,7 @@
             "cuda_nvcc"
             "nvidia-settings"
             "libnpp"
+            "libcufft"
           ]
         else
           [ ]
