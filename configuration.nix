@@ -219,6 +219,7 @@
             "cuda_cccl"
             "cuda_nvcc"
             "nvidia-settings"
+            "libnpp"
           ]
         else
           [ ]
