@@ -1,4 +1,4 @@
-quasar: hyprPlugins: pack:
+quasar: upstream: hyprPlugins: pack:
 {
   pkgs,
   config,
@@ -50,7 +50,7 @@ quasar: hyprPlugins: pack:
     let
       zedGPU = pkgs.stdenv.mkDerivation rec {
         name = "zed-gpu";
-        src = pkgs.zed-editor;
+        src = upstream.zeditor;
         buildInputs = [ pkgs.makeWrapper ];
         installPhase = ''
           mkdir -p $out/bin
@@ -116,7 +116,7 @@ quasar: hyprPlugins: pack:
       delta
       lazygit
       micro
-      (if quasar.graphics.nvidia.enabled then zedGPU else zed-editor)
+      (if quasar.graphics.nvidia.enabled then zedGPU else upstream.zeditor)
       nixd
       nil
     ]

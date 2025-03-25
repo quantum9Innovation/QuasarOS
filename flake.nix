@@ -165,6 +165,11 @@
                     # Patching
                     utils = (import ./utils.nix);
 
+                    # Packages from upstream
+                    upstream = {
+                      zeditor = nixpkgs-upstream.legacyPackages.${quasar.system}.zed-editor;
+                    };
+
                     # Custom packages to inject
                     pack = [
                       zen-browser.packages.${quasar.system}.default
@@ -175,7 +180,7 @@
                     ];
                   in
                   [
-                    (import ./home.nix quasar nixpkgs.legacyPackages.${quasar.system}.hyprlandPlugins pack)
+                    (import ./home.nix quasar upstream nixpkgs.legacyPackages.${quasar.system}.hyprlandPlugins pack)
                   ]
                   ++ quasar.homeOverrides;
               };
