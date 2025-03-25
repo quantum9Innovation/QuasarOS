@@ -1,22 +1,5 @@
 {
   "nodes": {
-    "aq": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1736050555,
-        "narHash": "sha256-TUoKhJ2QMK2AYTRvBCRpYFmaSihiF/OgB+HDZjamZtI=",
-        "owner": "quantum9innovation",
-        "repo": "aquamarine",
-        "rev": "546ce7963d18cbd30b32bf8d464f9ab3f6d54f74",
-        "type": "github"
-      },
-      "original": {
-        "owner": "quantum9innovation",
-        "ref": "patch-125",
-        "repo": "aquamarine",
-        "type": "github"
-      }
-    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -319,11 +302,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742851132,
-        "narHash": "sha256-8vEcDefstheV1whup+5fSpZu4g9Jr7WpYzOBKAMSHn4=",
+        "lastModified": 1742871411,
+        "narHash": "sha256-F3xBdOs5m0SE6Gq3jz+JxDOPvsLs22vbGfD05uF6xEc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c4d5d72805d14ea43c140eeb70401bf84c0f11b4",
+        "rev": "869f2ec2add75ce2a70a6dbbf585b8399abec625",
         "type": "github"
       },
       "original": {
@@ -457,7 +440,6 @@
     },
     "root": {
       "inputs": {
-        "aq": "aq",
         "gitbutler": "gitbutler",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",

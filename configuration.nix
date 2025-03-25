@@ -38,13 +38,6 @@
     (self: super: {
       neatvnc = inputs.nixpkgs-upstream.legacyPackages.${pkgs.system}.neatvnc;
     })
-
-    (final: prev: {
-      aquamarine = prev.aquamarine.overrideAttrs {
-        version = inputs.aq.rev;
-        src = inputs.aq;
-      };
-    })
   ];
 
   # Bootloader
