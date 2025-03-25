@@ -243,7 +243,7 @@
       pavucontrol
       inxi
       brightnessctl
-      treefmt2
+      treefmt
       at
       tzupdate
     ]
