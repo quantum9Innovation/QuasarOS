@@ -67,6 +67,26 @@
         "type": "github"
       }
     },
+    "betterbird": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735952316,
+        "narHash": "sha256-F/DrcKNMbQvJte7JvjYCmR2iPytG/jYljMLuzOYles8=",
+        "ref": "refs/heads/main",
+        "rev": "89ff2f3f67caf2481763d560c3c2f2637881b3c3",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://code.youwen.dev/youwen5/betterbird-flake"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://code.youwen.dev/youwen5/betterbird-flake"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1731098351,
@@ -456,6 +476,7 @@
     },
     "root": {
       "inputs": {
+        "betterbird": "betterbird",
         "gitbutler": "gitbutler",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",

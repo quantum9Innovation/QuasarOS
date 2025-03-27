@@ -60,10 +60,10 @@
     };
 
     # Betterbird
-    # betterbird = {
-    #   url = "git+https://code.youwen.dev/youwen5/betterbird-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    betterbird = {
+      url = "git+https://code.youwen.dev/youwen5/betterbird-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Stylix is an auto-ricing utility that applies a consistent theme to
     # a variety of apps installed on QuasarOS.
@@ -94,7 +94,7 @@
       home-manager,
       zen-browser,
       gitbutler,
-      # betterbird,
+      betterbird,
       lanzaboote,
       stylix,
       ...
@@ -177,7 +177,7 @@
                     pack = [
                       nixpkgs-sleek-on-wayland.legacyPackages.${quasar.system}.sleek-todo
                       zen-browser.packages.${quasar.system}.default
-                      # betterbird.packages.${quasar.system}.default
+                      betterbird.packages.${quasar.system}.default
                       (utils.patch quasar.graphics.nvidia.enabled "gitbutler-tauri"
                         gitbutler.packages.${quasar.system}.default
                       )
