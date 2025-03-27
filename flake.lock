@@ -577,16 +577,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1742867990,
-        "narHash": "sha256-YzZ3qV2HAn3g+G7rMbGAP9Ta/Kx8ANztpZJl55NlPLs=",
-        "owner": "quantum9innovation",
-        "repo": "zen-browser-twilight-flake",
-        "rev": "9f61b2aafd3a47e7db94e0a9cc785891ffaecc28",
+        "lastModified": 1742980672,
+        "narHash": "sha256-smpL8N1naTS8C7mPnwmkmYStLnBRzMAPzaSwUZuMfmE=",
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
+        "rev": "36eb0acd12b41b8edb04f3fdf31ecab1b4897531",
         "type": "github"
       },
       "original": {
-        "owner": "quantum9innovation",
-        "repo": "zen-browser-twilight-flake",
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

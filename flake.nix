@@ -40,9 +40,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Zen browser, twilight edition
+    # Zen browser, beta edition
+    # After much consideration, the beta edition was deemed to be the best
+    # choice for the system browser on QuasarOS.
+    # Old twilight release binaries are not hosted by an official source,
+    # and these are necessary to ensure short-term rollbacks.
     zen-browser = {
-      url = "github:quantum9innovation/zen-browser-twilight-flake";
+      url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
