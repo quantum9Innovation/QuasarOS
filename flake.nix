@@ -30,6 +30,9 @@
     # For incorporating hotfixes
     nixpkgs-upstream.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
+    # Specific fixes
+    nixpkgs-sleek-on-wayland.url = "github:quantum9innovation/nixpkgs/sleek-on-wayland";
+
     # Home Manager manages user dotfiles in the Nix configuration language,
     # enhancing interoperability and consolidation of system configurations.
     # You should use Home Manager integrations
@@ -87,6 +90,7 @@
       self,
       nixpkgs,
       nixpkgs-upstream,
+      nixpkgs-sleek-on-wayland,
       home-manager,
       zen-browser,
       gitbutler,
@@ -171,6 +175,7 @@
 
                     # Custom packages to inject
                     pack = [
+                      nixpkgs-sleek-on-wayland.legacyPackages.${quasar.system}.sleek-todo
                       zen-browser.packages.${quasar.system}.default
                       # betterbird.packages.${quasar.system}.default
                       (utils.patch quasar.graphics.nvidia.enabled "gitbutler-tauri"

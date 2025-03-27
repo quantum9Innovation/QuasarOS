@@ -379,6 +379,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-sleek-on-wayland": {
+      "locked": {
+        "lastModified": 1743109385,
+        "narHash": "sha256-p7zYE9dzpIZ55vdkv3kBmNJPWCL2bHrwSlO0RwkWMNM=",
+        "owner": "quantum9innovation",
+        "repo": "nixpkgs",
+        "rev": "ebfb42edd956b23817b3b51958727eb5985be478",
+        "type": "github"
+      },
+      "original": {
+        "owner": "quantum9innovation",
+        "ref": "sleek-on-wayland",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -444,6 +460,7 @@
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-sleek-on-wayland": "nixpkgs-sleek-on-wayland",
         "nixpkgs-upstream": "nixpkgs-upstream",
         "stylix": "stylix",
         "zen-browser": "zen-browser"
