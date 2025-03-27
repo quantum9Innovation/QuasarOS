@@ -179,7 +179,9 @@
                     ];
                   in
                   [
-                    (import ./home.nix quasar upstream nixpkgs.legacyPackages.${quasar.system}.hyprlandPlugins pack)
+                    (import ./home.nix quasar upstream nixpkgs-upstream.legacyPackages.${quasar.system}.hyprlandPlugins
+                      pack
+                    )
                   ]
                   ++ quasar.homeOverrides;
               };
