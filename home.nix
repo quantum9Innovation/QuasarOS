@@ -28,8 +28,8 @@ quasar: utils: _upstream: plugins: pack:
   # which is how you should install packages.
 
   home = {
-    home.username = quasar.user;
-    home.homeDirectory = "/home/${quasar.user}";
+    username = quasar.user;
+    homeDirectory = "/home/${quasar.user}";
 
     # Packages that should be installed to the user profile
     packages =
