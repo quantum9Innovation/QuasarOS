@@ -76,13 +76,16 @@
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
-    # and is pinned to a release.
+    # and is pinned to a specific release.
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
 
       # Optional but recommended to limit the size of your system closure
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Enable pre-commit hooks on this repository
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 
   outputs =
@@ -99,7 +102,64 @@
       stylix,
       ...
     }@inputs:
+    let
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    in
     {
+      checks = forAllSystems (system: {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            check-merge-conflicts.enable = true;
+            commitizen.enable = true;
+            convco.enable = true;
+            forbid-new-submodules.enable = true;
+            gitlint.enable = true;
+            markdownlint.enable = true;
+            mdformat.enable = true;
+            mdsh.enable = true;
+            deadnix.enable = true;
+            flake-checker.enable = true;
+            nil.enable = true;
+            statix.enable = true;
+            nixfmt-rfc-style.enable = true;
+            ripsecrets.enable = true;
+            trufflehog.enable = true;
+            shellcheck.enable = true;
+            shfmt.enable = true;
+            typos.enable = true;
+            check-yaml.enable = true;
+            yamlfmt.enable = true;
+            yamllint.enable = true;
+            actionlint.enable = true;
+            check-added-large-files.enable = true;
+            check-case-conflicts.enable = true;
+            check-executables-have-shebangs.enable = true;
+            check-shebang-scripts-are-executable.enable = true;
+            check-symlinks.enable = true;
+            detect-private-keys.enable = true;
+            end-of-file-fixer.enable = true;
+            mixed-line-endings.enable = true;
+            tagref.enable = true;
+            trim-trailing-whitespace.enable = true;
+            check-toml.enable = true;
+          };
+        };
+      });
+
+      devShells = forAllSystems (system: {
+        default = nixpkgs.legacyPackages.${system}.mkShell {
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+          buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+        };
+      });
+
       make =
         config:
         let
@@ -152,43 +212,44 @@
             # Home Manager setup
             home-manager.nixosModules.home-manager
             {
-              # Install from preconfigured nixpkgs channel
-              home-manager.useGlobalPkgs = true;
+              home-manager = {
+                # Install from preconfigured nixpkgs channel
+                useGlobalPkgs = true;
 
-              # Enable user packages for `nixos-rebuild build-vm`
-              home-manager.useUserPackages = true;
+                # Enable user packages for `nixos-rebuild build-vm`
+                useUserPackages = true;
 
-              # Home Manager backup files will end in .backup
-              home-manager.backupFileExtension = "backup";
+                # Home Manager backup files will end in .backup
+                backupFileExtension = "backup";
 
-              home-manager.users.${quasar.user} = {
                 # Primary user Home Manager configuration module
-                imports =
-                  let
-                    # Patching
-                    utils = (import ./utils.nix);
+                users.${quasar.user} = {
+                  imports =
+                    let
+                      # Patching
+                      utils = import ./utils.nix;
 
-                    # Packages from upstream
-                    upstream = {
-                      zeditor = nixpkgs-upstream.legacyPackages.${quasar.system}.zed-editor;
-                    };
+                      # Packages from upstream
+                      upstream = { };
 
-                    # Custom packages to inject
-                    pack = [
-                      nixpkgs-sleek-on-wayland.legacyPackages.${quasar.system}.sleek-todo
-                      zen-browser.packages.${quasar.system}.default
-                      betterbird.packages.${quasar.system}.default
-                      (utils.patch quasar.graphics.nvidia.enabled "gitbutler-tauri"
-                        gitbutler.packages.${quasar.system}.default
+                      # Custom packages to inject
+                      pack = [
+                        nixpkgs-sleek-on-wayland.legacyPackages.${quasar.system}.sleek-todo
+                        zen-browser.packages.${quasar.system}.default
+                        betterbird.packages.${quasar.system}.default
+                        (utils.patch quasar.graphics.nvidia.enabled "gitbutler-tauri"
+                          gitbutler.packages.${quasar.system}.default
+                        )
+                      ];
+                    in
+                    [
+                      (import ./home.nix quasar utils upstream
+                        nixpkgs-upstream.legacyPackages.${quasar.system}.hyprlandPlugins
+                        pack
                       )
-                    ];
-                  in
-                  [
-                    (import ./home.nix quasar upstream nixpkgs-upstream.legacyPackages.${quasar.system}.hyprlandPlugins
-                      pack
-                    )
-                  ]
-                  ++ quasar.homeOverrides;
+                    ]
+                    ++ quasar.homeOverrides;
+                };
               };
             }
           ];
@@ -205,21 +266,14 @@
             };
 
             # Official support is currently for x86_64-linux only
-            system = quasar.system;
+            inherit (quasar) system;
 
             # This does the heavy lifting of configuring the system
-            modules = modules;
+            inherit modules;
           };
         };
 
       # Configure formatter for all supported systems
-      formatter =
-        let
-          systems = [
-            "x86_64-linux"
-          ];
-          forAll = value: nixpkgs.lib.genAttrs systems (key: value);
-        in
-        forAll nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      formatter = forAllSystems (_: nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style);
     };
 }

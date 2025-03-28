@@ -1,125 +1,121 @@
 @keyframes wave {
-	0% {
-		background: linear-gradient(to right, <CONE> 0%, <CTWO> 50%, <CONE> 100%);
-	}
-	25% {
-		background: linear-gradient(to right, <CTWO> 0%, <CTHREE> 50%, <CTWO> 100%);
-	}
-	50% {
-		background: linear-gradient(to right, <CTHREE> 0%, <CFOUR> 50%, <CTHREE> 100%);
-	}
-	75% {
-		background: linear-gradient(to right, <CTWO> 0%, <CTHREE> 50%, <CTWO> 100%);
-	}
-	100% {
-		background: linear-gradient(to right, <CONE> 0%, <CTWO> 50%, <CONE> 100%);
-	}
+  0% {
+    background: linear-gradient(to right, <CONE> 0%, <CTWO> 50%, <CONE> 100%);
+  }
+  25% {
+    background: linear-gradient(to right, <CTWO> 0%, <CTHREE> 50%, <CTWO> 100%);
+  }
+  50% {
+    background: linear-gradient(
+      to right,
+      <CTHREE> 0%,
+      <CFOUR> 50%,
+      <CTHREE> 100%
+    );
+  }
+  75% {
+    background: linear-gradient(to right, <CTWO> 0%, <CTHREE> 50%, <CTWO> 100%);
+  }
+  100% {
+    background: linear-gradient(to right, <CONE> 0%, <CTWO> 50%, <CONE> 100%);
+  }
 }
 
 #waybar {
-	animation: wave 3s infinite;
+  animation: wave 3s infinite;
 }
 
 #clock {
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: 5px;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
 }
 
 #battery {
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: 5px;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
 }
 
 #cpu {
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: 5px;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
 }
 
 #memory {
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: 5px;
-}
-
-#temperature {
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: 5px;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
 }
 
 #backlight {
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: 5px;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
 }
 
 #network {
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: 5px;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
 }
 
 #pulseaudio {
-    color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: 5px;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
 }
 
 #workspaces {
-    border-radius: 10px;
-    padding: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: 5px;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    margin: 0 5px;
-    border-radius: 5px;
-    color: #ffffff;
-    box-shadow: none;
+  padding: 0 5px;
+  margin: 0 5px;
+  border-radius: 5px;
+  color: #ffffff;
+  box-shadow: none;
 }
 
 #workspaces button:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-    color: <CFIVE>;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: <CFIVE>;
 }
 
 #workspaces button.focused {
-    border-color: #ffffff;
-    color: <CFIVE>;
-    border: 2px solid #ffffff;
+  border-color: #ffffff;
+  color: <CFIVE>;
+  border: 2px solid #ffffff;
 }
 
 #workspaces button.active {
-    background-color: #ffffff;
-    color: <CFIVE>;
+  background-color: #ffffff;
+  color: <CFIVE>;
 }
