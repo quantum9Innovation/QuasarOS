@@ -212,8 +212,6 @@
         treefmt
         at
         tzupdate
-        hyprland
-        fish
         dconf
       ]
       ++ (quasar.systemPackages pkgs);
@@ -264,6 +262,13 @@
       enable = true;
       enableSSHSupport = quasar.ssh.enabled;
     };
+
+    # Explicitly enable fish (necessary for use as login shell)
+    fish.enable = true;
+
+    # Explicitly enable Hyprland,
+    # necessary for detection by system services, for auto login, e.g.
+    hyprland.enable = true;
   };
 
   # All security rules

@@ -274,13 +274,6 @@
         };
 
       # Configure formatter for all supported systems
-      formatter =
-        let
-          systems = [
-            "x86_64-linux"
-          ];
-          forAll = value: nixpkgs.lib.genAttrs systems (_key: value);
-        in
-        forAll nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      formatter = forAllSystems (_: nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style);
     };
 }
