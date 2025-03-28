@@ -61,7 +61,7 @@
 
     # Betterbird
     betterbird = {
-      url = "git+https://code.youwen.dev/youwen5/betterbird-flake";
+      url = "git+https://code.youwen.dev/quantum9innovation/betterbird-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
