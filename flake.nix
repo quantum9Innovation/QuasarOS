@@ -76,7 +76,7 @@
     # Lanzaboote is needed for NixOS to work when secure boot is enabled.
     # Incorrect Lanzaboote configurations could lead to an unbootable OS.
     # Lanzaboote is a critical system package
-    # and is pinned to a release.
+    # and is pinned to a specific release.
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
 
@@ -161,17 +161,15 @@
               # Home Manager backup files will end in .backup
               home-manager.backupFileExtension = "backup";
 
+              # Primary user Home Manager configuration module
               home-manager.users.${quasar.user} = {
-                # Primary user Home Manager configuration module
                 imports =
                   let
                     # Patching
                     utils = (import ./utils.nix);
 
                     # Packages from upstream
-                    upstream = {
-                      zeditor = nixpkgs-upstream.legacyPackages.${quasar.system}.zed-editor;
-                    };
+                    upstream = { };
 
                     # Custom packages to inject
                     pack = [
@@ -184,7 +182,8 @@
                     ];
                   in
                   [
-                    (import ./home.nix quasar upstream nixpkgs-upstream.legacyPackages.${quasar.system}.hyprlandPlugins
+                    (import ./home.nix quasar utils upstream
+                      nixpkgs-upstream.legacyPackages.${quasar.system}.hyprlandPlugins
                       pack
                     )
                   ]

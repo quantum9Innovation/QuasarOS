@@ -33,13 +33,6 @@
     quasar.hardware
   ] ++ quasar.overrides;
 
-  # Incorporate hotfixes
-  nixpkgs.overlays = [
-    (self: super: {
-      neatvnc = inputs.nixpkgs-upstream.legacyPackages.${pkgs.system}.neatvnc;
-    })
-  ];
-
   # Bootloader
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -79,9 +72,8 @@
   time.timeZone = lib.mkForce null;
   services.timesyncd.enable = true;
 
-  # Select internationalisation properties
+  # Select internationalization properties
   i18n.defaultLocale = quasar.locale;
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = quasar.locale;
     LC_IDENTIFICATION = quasar.locale;
@@ -153,11 +145,11 @@
     alsa.support32Bit = true;
     pulse.enable = true;
 
-    # If you want to use JACK applications, set `quasar.audio.jack` to true
+    # If you want to use JACK applications, set this to true
     jack.enable = quasar.audio.jack;
   };
 
-  # Define a user account
+  # Define a user account and login shell
   # Don't forget to set a password with `passwd`
   programs.fish.enable = true;
   users.users.${quasar.user} = {
@@ -172,6 +164,7 @@
   };
 
   # Polkit rules
+  # Allow automatic timezone updates
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
@@ -228,6 +221,7 @@
       micro
       curl
       bat
+      git
       gnumake
       clang
       gcc
@@ -241,9 +235,6 @@
       tzupdate
     ]
     ++ (quasar.systemPackages pkgs);
-
-  # Git is an essential system package
-  programs.git.enable = true;
 
   # Yet another Nix CLI helper
   programs.nh = {
@@ -271,7 +262,7 @@
       	  XDG_PICTURES_DIR=img
       	  XDG_VIDEOS_DIR=vid
       	  XDG_WALLPAPERS_DIR=wall
-        	'';
+      	'';
   };
 
   # Setup GnuPG
@@ -291,7 +282,7 @@
 
   # Ollama
   services.ollama.enable = true;
-  services.ollama.acceleration = "cuda";
+  services.ollama.acceleration = if quasar.graphics.nvidia.enabled then "cuda" else null;
 
   # Setup Dconf for user configuration of low-level settings
   # Also needed as a dependency for critical system packages
@@ -337,7 +328,9 @@
     else
       null;
 
+  # Activate the Stylix autoricer
   stylix.enable = true;
+
   # Set a wallpaper (mandatory)
   # Run `systemctl restart --user -u hyprpaper.service` to refresh wallpaper
   # After editing and rebuilding
@@ -369,14 +362,14 @@
     };
   };
 
-  # Set cursor. Takes effect for Hyprland, GTK, etc.
+  # Set cursor; takes effect for Hyprland, GTK, etc.
   stylix.cursor = {
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
     size = 26;
   };
 
-  # Additional system fonts.
+  # Additional system fonts
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [

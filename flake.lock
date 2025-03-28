@@ -381,11 +381,11 @@
     },
     "nixpkgs-sleek-on-wayland": {
       "locked": {
-        "lastModified": 1743109385,
-        "narHash": "sha256-p7zYE9dzpIZ55vdkv3kBmNJPWCL2bHrwSlO0RwkWMNM=",
+        "lastModified": 1743124881,
+        "narHash": "sha256-mxsx+e6YSegpS8mKzm+cj8NMQf2+CDWT2qT7qIl/+cA=",
         "owner": "quantum9innovation",
         "repo": "nixpkgs",
-        "rev": "ebfb42edd956b23817b3b51958727eb5985be478",
+        "rev": "18bde33e1244cb2cfa4637a097066f211288b46d",
         "type": "github"
       },
       "original": {

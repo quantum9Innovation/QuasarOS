@@ -1,4 +1,4 @@
-quasar: upstream: hyprPlugins: pack:
+quasar: utils: upstream: plugins: pack:
 {
   pkgs,
   config,
@@ -30,9 +30,6 @@ quasar: upstream: hyprPlugins: pack:
   home.username = quasar.user;
   home.homeDirectory = "/home/${quasar.user}";
 
-  # Link the configuration file in current directory to the specified location in home directory
-  # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
-
   # Link all files in `./scripts` to `~/.config/i3/scripts`
   # home.file.".config/i3/scripts" = {
   #   source = ./scripts;
@@ -47,25 +44,6 @@ quasar: upstream: hyprPlugins: pack:
 
   # Packages that should be installed to the user profile
   home.packages =
-    let
-      zedGPU = pkgs.stdenv.mkDerivation rec {
-        name = "zed-gpu";
-        src = upstream.zeditor;
-        buildInputs = [ pkgs.makeWrapper ];
-        installPhase = ''
-          mkdir -p $out/bin
-          makeWrapper ${src}/bin/zeditor $out/bin/zeditor \
-            --set __NV_PRIME_RENDER_OFFLOAD 1 \
-            --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
-            --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
-            --set __VK_LAYER_NV_optimus "NVIDIA_only"
-        '';
-        meta = with pkgs.lib; {
-          description = "NVIDIA GPU offloading for Zed";
-          license = licenses.bsd3;
-        };
-      };
-    in
     with pkgs;
     [
       # essential
@@ -82,6 +60,7 @@ quasar: upstream: hyprPlugins: pack:
       unzip
 
       # utils
+      gh
       fzf
       bat
       nodePackages.live-server
@@ -91,6 +70,7 @@ quasar: upstream: hyprPlugins: pack:
       btop
 
       # wayland desktop utils
+      wlogout
       hyprland-qtutils
       wl-clipboard
       rofi-wayland
@@ -115,27 +95,32 @@ quasar: upstream: hyprPlugins: pack:
       delta
       lazygit
       micro
-      (if quasar.graphics.nvidia.enabled then zedGPU else upstream.zeditor)
+      (utils.patchPkg pkgs quasar.graphics.nvidia.enabled "zeditor" pkgs.zed-editor "gpl3Only")
       nixd
       nil
+
+      # shell
+      bash
     ]
     ++ (quasar.homePackages pkgs)
     ++ pack;
 
+  # Hyprland user config
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [ hyprPlugins.hyprscroller ];
+    plugins = [ plugins.hyprscroller ];
     settings = import ./modules/hyprland.nix (
       quasar
       // {
         inherit config lib;
       }
-    );
+    ) utils;
   };
 
-  # Setup GNOME keyring
+  # Enable GNOME keyring
   services.gnome-keyring.enable = true;
 
+  # Icon theming
   services.dunst = {
     enable = true;
     iconTheme = {
@@ -144,16 +129,13 @@ quasar: upstream: hyprPlugins: pack:
       size = "32x32";
     };
   };
+
+  # Audio effects service
   services.easyeffects = {
     enable = true;
   };
 
-  programs.gh.enable = true;
-  programs.fzf.enable = true;
-  programs.wlogout.enable = true;
-  programs.lazygit.enable = true;
-  programs.bash.enable = true;
-
+  # Primary shell
   programs.nushell = {
     enable = true;
     configFile = {
@@ -166,6 +148,7 @@ quasar: upstream: hyprPlugins: pack:
     };
   };
 
+  # Secondary shell
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -173,17 +156,20 @@ quasar: upstream: hyprPlugins: pack:
     '';
   };
 
+  # Auutomatic development environment integration
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
 
+  # Quick directory navigation
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
     enableNushellIntegration = true;
   };
 
+  # Shell prompt theming
   programs.oh-my-posh = {
     enable = true;
     enableFishIntegration = true;
@@ -192,6 +178,7 @@ quasar: upstream: hyprPlugins: pack:
     useTheme = "bubblesline";
   };
 
+  # Essential git config
   programs.git = {
     enable = true;
     userName = if builtins.hasAttr "name" quasar.git then quasar.git.name else quasar.name;
@@ -202,6 +189,7 @@ quasar: upstream: hyprPlugins: pack:
     };
   };
 
+  # Terminal setup
   programs.kitty = {
     enable = true;
     settings = {
@@ -214,10 +202,17 @@ quasar: upstream: hyprPlugins: pack:
     };
   };
 
+  # Activate Stylix targets
+  stylix.targets.waybar.enable = false;
+  stylix.targets.hyprlock.enable = false;
+
+  # Custom horizontal status bar on top of screen
   programs.waybar = {
     enable = true;
     systemd.enable = true;
     package = pkgs.waybar;
+
+    # inject stylix theming into styles
     style =
       builtins.replaceStrings
         [
@@ -252,6 +247,8 @@ quasar: upstream: hyprPlugins: pack:
           )
         )
         (builtins.readFile modules/waybar.css);
+
+    # general layout
     settings = {
       mainbar = {
         "layer" = "top";
@@ -281,23 +278,13 @@ quasar: upstream: hyprPlugins: pack:
           "format" = "{percentage}% ";
           "tooltip" = true;
         };
-        "temperature" = {
-          "critical-threshold" = 120;
-          "format" = "{temperatureF}°F ";
-          "format-icons" = [
-            ""
-            ""
-            ""
-            ""
-          ];
-          "show-icons" = true;
-        };
         "backlight" = {
           "format" = "{percent}% ";
           "format-icons" = [
             ""
             ""
           ];
+          "tooltip" = false;
         };
         "battery" = {
           "bat" = "BAT0";
@@ -326,7 +313,6 @@ quasar: upstream: hyprPlugins: pack:
           "pulseaudio"
           "memory"
           "cpu"
-          "temperature"
           "backlight"
           "battery"
         ];
@@ -358,6 +344,7 @@ quasar: upstream: hyprPlugins: pack:
     };
   };
 
+  # GTK theming
   gtk = {
     enable = true;
     iconTheme = {
@@ -365,15 +352,14 @@ quasar: upstream: hyprPlugins: pack:
     };
   };
 
-  stylix.targets.waybar.enable = false;
-  stylix.targets.hyprlock.enable = false;
-
+  # Qt theming
   qt = {
     enable = true;
     platformTheme.name = "qtct";
     style.name = "kvantum";
   };
 
+  # Activate XDG Kvantum theme
   xdg.configFile = {
     "Kvantum/kvantum.kvconfig".text = ''
       [General]
@@ -383,6 +369,7 @@ quasar: upstream: hyprPlugins: pack:
     "Kvantum/GraphiteNord".source = "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
   };
 
+  # Add desktop entries for missing programs
   xdg.desktopEntries = {
     zeditor = {
       name = "Zed";
@@ -397,6 +384,7 @@ quasar: upstream: hyprPlugins: pack:
     };
   };
 
+  # Set default handlers
   xdg.mimeApps = {
     enable = true;
 
@@ -409,13 +397,13 @@ quasar: upstream: hyprPlugins: pack:
     };
   };
 
+  # Tell Chrome to play nice with Wayland
   programs.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
 
-  home.stateVersion = quasar.stateVersion;
-  programs.home-manager.enable = true;
-
+  # Wallpaper management
   services.hyprpaper.enable = true;
 
+  # Aesthetic lockscreen blur
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -468,13 +456,15 @@ quasar: upstream: hyprPlugins: pack:
     };
   };
 
+  # Power management
   services.hypridle = {
     enable = true;
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || ${pkgs.grim}/bin/grim -o ${config.programs.hyprlock.settings.background.monitor} /tmp/__hyprlock-monitor-screenshot.png && ${pkgs.hyprlock}/bin/hyprlock"; # avoid starting multiple hyprlock instances.
-        before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
-        after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+        # avoid starting multiple hyprlock instances.
+        lock_cmd = "pidof hyprlock || ${pkgs.grim}/bin/grim -o ${config.programs.hyprlock.settings.background.monitor} /tmp/__hyprlock-monitor-screenshot.png && ${pkgs.hyprlock}/bin/hyprlock";
+        before_sleep_cmd = "loginctl lock-session"; # lock before suspend
+        after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display
       };
       listener = [
         {
@@ -484,7 +474,7 @@ quasar: upstream: hyprPlugins: pack:
         {
           timeout = 330; # 5.5min
           on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
-          on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+          on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired
         }
         {
           timeout = 1800;
@@ -493,4 +483,8 @@ quasar: upstream: hyprPlugins: pack:
       ];
     };
   };
+
+  # Essential home-manager config
+  home.stateVersion = quasar.stateVersion;
+  programs.home-manager.enable = true;
 }
