@@ -1,6 +1,6 @@
 quasar: utils:
 let
-  hyprland = quasar.hyprland;
+  inherit (quasar) hyprland;
   hypr = attr: fallback: utils.default hyprland attr fallback;
   inherit (quasar) config lib;
 in

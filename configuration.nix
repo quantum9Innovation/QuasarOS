@@ -58,18 +58,103 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Enable bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
+  # All hardware settings
+  hardware = {
+    # Enable bluetooth
+    bluetooth.enable = true;
+    bluetooth.powerOnBoot = true;
 
-  # Logitech peripheral support
-  hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true;
+    # Logitech peripheral support
+    logitech.wireless.enable = true;
+    logitech.wireless.enableGraphical = true;
 
-  # Set time zone automatically and sync with network time
+    # Use NVIDIA GPU in virtualized environments
+    nvidia-container-toolkit.enable = quasar.graphics.nvidia.enabled;
+
+    # Enable OpenGL for optimal graphics performance
+    graphics.enable = quasar.graphics.opengl;
+
+    # NVIDIA settings
+    nvidia =
+      if quasar.graphics.nvidia.enabled then
+        {
+          package = config.boot.kernelPackages.nvidiaPackages.beta;
+          modesetting.enable = true;
+          powerManagement.enable = true;
+          powerManagement.finegrained = true;
+          open = false;
+          nvidiaSettings = true;
+          prime = {
+            offload = {
+              enable = true;
+              enableOffloadCmd = true;
+            };
+            inherit (quasar.graphics.nvidia) intelBusId;
+            inherit (quasar.graphics.nvidia) nvidiaBusId;
+          };
+        }
+      else
+        null;
+  };
+
+  # All services
+  services = {
+    # Enable bluetooth client
+    blueman.enable = true;
+
+    # Set time zone automatically and sync with network time
+    timesyncd.enable = true;
+
+    # Disable the X11 windowing system,
+    # since Hyprland uses the more modern Wayland
+    xserver.enable = false;
+
+    # Enable SDDM for login and lock management
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+        package = pkgs.kdePackages.sddm;
+      };
+      autoLogin.enable = quasar.autoLogin;
+      autoLogin.user = if quasar.autoLogin then quasar.user else null;
+    };
+
+    # Enable CUPS to print documents
+    printing.enable = false;
+
+    # Enable sound with pipewire
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+
+      # If you want to use JACK applications, set this to true
+      jack.enable = quasar.audio.jack;
+    };
+
+    # Setup GNOME keyring
+    gnome.gnome-keyring.enable = true;
+
+    # Enable `at` for job scheduling
+    atd.enable = true;
+
+    # Enable the OpenSSH daemon
+    openssh.enable = quasar.ssh.enabled;
+
+    # Ollama
+    ollama.enable = true;
+    ollama.acceleration = if quasar.graphics.nvidia.enabled then "cuda" else null;
+
+    # Install and configure appropriate NVIDIA drivers
+    # Do not attempt to disable unfree software packages if you enable this
+    xserver.videoDrivers = [ "nvidia" ];
+  };
+
+  # Time zone will be set automatically
   time.timeZone = lib.mkForce null;
-  services.timesyncd.enable = true;
 
   # Select internationalization properties
   i18n.defaultLocale = quasar.locale;
@@ -102,55 +187,104 @@
     };
   };
 
-  # Disable the X11 windowing system,
-  # since Hyprland uses the more modern Wayland
-  services.xserver.enable = false;
+  # All environment settings
+  environment = {
+    # Enable Wayland support for Electron apps
+    sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # Enable Wayland support for Electron apps
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    systemPackages =
+      with pkgs;
+      [
+        micro
+        curl
+        bat
+        git
+        gnumake
+        clang
+        gcc
+        cachix
+        gnupg
+        pavucontrol
+        inxi
+        brightnessctl
+        treefmt
+        at
+        tzupdate
+        hyprland
+        fish
+        dconf
+      ]
+      ++ (quasar.systemPackages pkgs);
 
-  # Compatibility for running binaries not packaged for QuasarOS
-  programs.nix-ld = {
-    enable = true;
-    libraries = [
-      pkgs.icu
-      pkgs.glibc
-    ];
-  };
-
-  # Enable Hyprland
-  programs.hyprland.enable = true;
-
-  # Enable SDDM for login and lock management
-  services.displayManager = {
-    sddm = {
-      enable = true;
-      wayland.enable = true;
-      package = pkgs.kdePackages.sddm;
+    # Set default editor, among other things
+    variables = {
+      EDITOR = "micro";
+      NIX_AUTO_RUN = 1;
     };
-    autoLogin.enable = quasar.autoLogin;
-    autoLogin.user = if quasar.autoLogin then quasar.user else null;
+
+    # Prevent atrocious directories from polluting user home
+    etc = {
+      "xdg/user-dirs.defaults".text = ''
+        XDG_DESKTOP_DIR=desk
+        XDG_DOWNLOAD_DIR=dl
+        XDG_TEMPLATES_DIR=tmp
+        XDG_PUBLICSHARE_DIR=pub
+        XDG_DOCUMENTS_DIR=doc
+        XDG_MUSIC_DIR=music
+        XDG_PICTURES_DIR=img
+        XDG_VIDEOS_DIR=vid
+        XDG_WALLPAPERS_DIR=wall
+      '';
+    };
   };
 
-  # Enable CUPS to print documents
-  services.printing.enable = false;
+  # All program config
+  programs = {
+    # Compatibility for running binaries not packaged for QuasarOS
+    nix-ld = {
+      enable = true;
+      libraries = [
+        pkgs.icu
+        pkgs.glibc
+      ];
+    };
 
-  # Enable sound with pipewire
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+    # Yet another Nix CLI helper
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 14d --keep 12";
+      inherit (quasar) flake;
+    };
 
-    # If you want to use JACK applications, set this to true
-    jack.enable = quasar.audio.jack;
+    # Setup GnuPG
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = quasar.ssh.enabled;
+    };
+  };
+
+  # All security rules
+  security = {
+    # Enable rtkit scheduler
+    rtkit.enable = true;
+
+    # Polkit rules
+    # Allow automatic timezone updates
+    polkit.enable = true;
+    polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+          if (action.id == "org.freedesktop.timedate1.set-timezone") {
+              return polkit.Result.YES;
+          }
+      });
+    '';
   };
 
   # Define a user account and login shell
   # Don't forget to set a password with `passwd`
-  programs.fish.enable = true;
   users.users.${quasar.user} = {
     isNormalUser = true;
     description = quasar.name;
@@ -161,17 +295,6 @@
     ];
     shell = pkgs.fish;
   };
-
-  # Polkit rules
-  # Allow automatic timezone updates
-  security.polkit.enable = true;
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-        if (action.id == "org.freedesktop.timedate1.set-timezone") {
-            return polkit.Result.YES;
-        }
-    });
-  '';
 
   # More user configuration
   nix.optimise.automatic = true;
@@ -212,84 +335,8 @@
       );
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages =
-    with pkgs;
-    [
-      micro
-      curl
-      bat
-      git
-      gnumake
-      clang
-      gcc
-      cachix
-      gnupg
-      pavucontrol
-      inxi
-      brightnessctl
-      treefmt
-      at
-      tzupdate
-    ]
-    ++ (quasar.systemPackages pkgs);
-
-  # Yet another Nix CLI helper
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 14d --keep 12";
-    flake = quasar.flake;
-  };
-
-  # Set default editor, among other things
-  environment.variables = {
-    EDITOR = "micro";
-    NIX_AUTO_RUN = 1;
-  };
-
-  # Prevent atrocious directories from polluting user home
-  environment.etc = {
-    "xdg/user-dirs.defaults".text = ''
-      	  XDG_DESKTOP_DIR=desk
-      	  XDG_DOWNLOAD_DIR=dl
-      	  XDG_TEMPLATES_DIR=tmp
-      	  XDG_PUBLICSHARE_DIR=pub
-      	  XDG_DOCUMENTS_DIR=doc
-      	  XDG_MUSIC_DIR=music
-      	  XDG_PICTURES_DIR=img
-      	  XDG_VIDEOS_DIR=vid
-      	  XDG_WALLPAPERS_DIR=wall
-      	'';
-  };
-
-  # Setup GnuPG
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = quasar.ssh.enabled;
-  };
-
-  # Setup GNOME keyring
-  services.gnome.gnome-keyring.enable = true;
-
-  # Enable `at` for job scheduling
-  services.atd.enable = true;
-
-  # Enable the OpenSSH daemon
-  services.openssh.enable = quasar.ssh.enabled;
-
-  # Ollama
-  services.ollama.enable = true;
-  services.ollama.acceleration = if quasar.graphics.nvidia.enabled then "cuda" else null;
-
-  # Setup Dconf for user configuration of low-level settings
-  # Also needed as a dependency for critical system packages
-  programs.dconf.enable = true;
-
   # Enable Docker for hardware virtualization
   virtualisation.docker.enable = true;
-  hardware.nvidia-container-toolkit.enable = quasar.graphics.nvidia.enabled;
 
   # This value determines the NixOS release from which the default settings
   # for stateful data, like file locations and database versions
@@ -300,72 +347,47 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = quasar.stateVersion; # Did you read the comment?
 
-  # Enable OpenGL for optimal graphics performance
-  hardware.graphics.enable = quasar.graphics.opengl;
+  # Stylix autoricer
+  stylix = {
+    enable = true;
 
-  # Install and configure appropriate NVIDIA drivers
-  # Do not attempt to disable unfree software packages if you enable this
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia =
-    if quasar.graphics.nvidia.enabled then
-      {
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
-        modesetting.enable = true;
-        powerManagement.enable = true;
-        powerManagement.finegrained = true;
-        open = false;
-        nvidiaSettings = true;
-        prime = {
-          offload = {
-            enable = true;
-            enableOffloadCmd = true;
-          };
-          intelBusId = quasar.graphics.nvidia.intelBusId;
-          nvidiaBusId = quasar.graphics.nvidia.nvidiaBusId;
-        };
-      }
-    else
-      null;
+    # Set a wallpaper (mandatory)
+    # Run `systemctl restart --user -u hyprpaper.service` to refresh wallpaper
+    # After editing and rebuilding
+    image = ./walls/default.jpg;
 
-  # Activate the Stylix autoricer
-  stylix.enable = true;
+    # Forces light or dark mode.
+    # polarity :: "light" || "dark"
+    polarity = "light";
 
-  # Set a wallpaper (mandatory)
-  # Run `systemctl restart --user -u hyprpaper.service` to refresh wallpaper
-  # After editing and rebuilding
-  stylix.image = ./walls/default.jpg;
+    # Set a base16 scheme to override the wallpaper generated color scheme. You
+    # can use any theme in tinted-theming.
+    # <https://github.com/tinted-theming/schemes/tree/spec-0.11/base16>
+    # An example is below:
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
 
-  # Forces light or dark mode.
-  # polarity :: "light" || "dark"
-  stylix.polarity = "light";
-
-  # Set a base16 scheme to override the wallpaper generated color scheme. You
-  # can use any theme in tinted-theming.
-  # <https://github.com/tinted-theming/schemes/tree/spec-0.11/base16>
-  # An example is below:
-  # base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
-
-  # Font config, preferred over NixOS built-in font configuration
-  stylix.fonts = {
-    serif = {
-      package = pkgs.noto-fonts;
-      name = "Noto Serif";
+    # Font config, preferred over NixOS built-in font configuration
+    fonts = {
+      serif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
+      };
+      sansSerif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Sans";
+      };
+      monospace = {
+        package = pkgs.nerd-fonts.caskaydia-cove;
+        name = "CaskaydiaCove Nerd Font";
+      };
     };
-    sansSerif = {
-      package = pkgs.noto-fonts;
-      name = "Noto Sans";
-    };
-    monospace = {
-      package = pkgs.nerd-fonts.caskaydia-cove;
-      name = "CaskaydiaCove Nerd Font";
-    };
-  };
 
-  # Set cursor; takes effect for Hyprland, GTK, etc.
-  stylix.cursor = {
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    size = 26;
+    # Set cursor; takes effect for Hyprland, GTK, etc.
+    cursor = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 26;
+    };
   };
 
   # Additional system fonts

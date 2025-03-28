@@ -24,7 +24,7 @@
     nvidia: name: app:
     if nvidia then
       app.overrideAttrs (
-        final: prev: {
+        _final: _prev: {
           postFixup = ''
             wrapProgram $out/bin/${name} \
               --set __NV_PRIME_RENDER_OFFLOAD 1 \
