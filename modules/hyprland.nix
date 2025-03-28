@@ -51,7 +51,7 @@ in
     "$mod, ${hypr "float" "V"}, togglefloating"
     "$mod, ${hypr "full" "F"}, fullscreen, 0"
     "$mod+Alt, ${hypr "full" "F"}, fullscreen, 1"
-    "$mod, ${hypr "last" "L"}, focusurgentorlast"
+    "$mod, ${hypr "last" "R"}, focusurgentorlast"
     # recommended opacity toggle; see https://github.com/hyprwm/Hyprland/pull/7024
     "$mod, ${hypr "opaque" "O"}, exec, hyprctl setprop active opaque toggle"
 
