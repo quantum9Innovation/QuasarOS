@@ -69,7 +69,7 @@
     # a variety of apps installed on QuasarOS.
     # This is the primary tool used for specifying rices.
     stylix = {
-      url = "github:danth/stylix/release-24.11";
+      url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -137,6 +137,7 @@
             check-yaml.enable = true;
             yamlfmt.enable = true;
             yamllint.enable = true;
+            yamllint.settings.preset = "relaxed";
             actionlint.enable = true;
             check-added-large-files.enable = true;
             check-case-conflicts.enable = true;
