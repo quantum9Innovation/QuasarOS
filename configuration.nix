@@ -47,31 +47,29 @@
     })
   ];
 
-  # Bootloader
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    timeout = 15;
-    systemd-boot = {
-      enable = true;
-      consoleMode = "auto";
-    };
-  };
-
-  # Define your hostname
-  networking.hostName = quasar.hostname;
-
-  # Select kernel
-  boot.kernelPackages =
-    {
-      "zen" = pkgs.linuxPackages_zen;
-      "latest" = pkgs.linuxPackages_latest;
-      "hardened" = pkgs.linuxPackages_latest_hardened;
-      "libre" = pkgs.linuxPackages_latest-libre;
-    }
-    .${quasar.kernel};
-
-  # Intel S2Idle[deep] Sleeping
+  # Bootup
   boot = {
+    # Bootloader
+    loader = {
+      efi.canTouchEfiVariables = true;
+      timeout = 15;
+      systemd-boot = {
+        enable = true;
+        consoleMode = "auto";
+      };
+    };
+
+    # Select kernel
+    kernelPackages =
+      {
+        "zen" = pkgs.linuxPackages_zen;
+        "latest" = pkgs.linuxPackages_latest;
+        "hardened" = pkgs.linuxPackages_latest_hardened;
+        "libre" = pkgs.linuxPackages_latest-libre;
+      }
+      .${quasar.kernel};
+
+    # Intel S2Idle[deep] sleeping, stolen from KaitoTLex in #26
     consoleLogLevel = 3;
     initrd.systemd.enable = true;
     initrd.verbose = false;
@@ -85,12 +83,10 @@
       "mem_sleep_default=deep"
     ];
   };
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=yes
-    AllowHibernation=yes
-    AllowHybridSleep=yes
-    AllowSuspendThenHibernate=yes
-  '';
+
+  # Define your hostname
+  networking.hostName = quasar.hostname;
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -122,21 +118,31 @@
     LC_TIME = quasar.locale;
   };
 
-  # Custom system services
-  systemd.services = {
-    # Ensure network uplink on boot
-    NetworkManager-wait-online.enable = true;
+  systemd = {
+    # Custom system services
+    services = {
+      # Ensure network uplink on boot
+      NetworkManager-wait-online.enable = true;
 
-    # Automatic time zone switching
-    updateTimezone = {
-      description = "Automatically update timezone using `timedatectl` and `tzupdate`";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network-online.target" ];
-      requires = [ "network-online.target" ];
-      script = ''
-        timedatectl set-timezone $("${pkgs.tzupdate}/bin/tzupdate" -p)
-      '';
+      # Automatic time zone switching
+      updateTimezone = {
+        description = "Automatically update timezone using `timedatectl` and `tzupdate`";
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network-online.target" ];
+        requires = [ "network-online.target" ];
+        script = ''
+          timedatectl set-timezone $("${pkgs.tzupdate}/bin/tzupdate" -p)
+        '';
+      };
     };
+
+    # Extra deep sleep config, also stolen from KaitoTLex in #26
+    sleep.extraConfig = ''
+      AllowSuspend=yes
+      AllowHibernation=yes
+      AllowHybridSleep=yes
+      AllowSuspendThenHibernate=yes
+    '';
   };
 
   # Disable the X11 windowing system,
