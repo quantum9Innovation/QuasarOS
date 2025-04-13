@@ -43,6 +43,7 @@ quasar: utils: _upstream: plugins: pack:
         fastfetch
         nemo
         muffon
+        spotube
 
         # archives
         zip
@@ -52,13 +53,14 @@ quasar: utils: _upstream: plugins: pack:
         gh
         fzf
         bat
-        nodePackages.live-server
+        nodePackages_latest.live-server
 
         # system monitoring
         nix-output-monitor
         btop
 
         # wayland desktop utils
+        xorg.xeyes
         wlogout
         hyprland-qtutils
         wl-clipboard
@@ -70,6 +72,7 @@ quasar: utils: _upstream: plugins: pack:
         # messaging apps
         signal-desktop-bin
         vesktop
+        altus
 
         # ricing
         swww
@@ -87,6 +90,9 @@ quasar: utils: _upstream: plugins: pack:
         (utils.patchPkg pkgs quasar.graphics.nvidia.enabled "zeditor" pkgs.zed-editor "gpl3Only")
         nixd
         nil
+        typos
+        proselint
+        nodePackages_latest.cspell
 
         # shell
         bash
