@@ -68,7 +68,7 @@ quasar: utils: _upstream: plugins: pack:
         hyprpicker
 
         # messaging apps
-        signal-desktop
+        signal-desktop-bin
         vesktop
 
         # ricing
