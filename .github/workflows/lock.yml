@@ -19,4 +19,3 @@ jobs:
           pr-labels: |
             lock
           pr-assignees: quantum9innovation
-          pr-reviewers: quantum9innovation
