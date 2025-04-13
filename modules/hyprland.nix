@@ -1,10 +1,7 @@
-quasar:
+quasar: utils:
 let
-  hyprland = quasar.hyprland;
-  default =
-    mod: attr: fallback:
-    if builtins.hasAttr attr mod then mod.${attr} else fallback;
-  hypr = attr: fallback: default hyprland attr fallback;
+  inherit (quasar) hyprland;
+  hypr = attr: fallback: utils.default hyprland attr fallback;
   inherit (quasar) config lib;
 in
 {
@@ -27,10 +24,10 @@ in
     "clipse -listen"
   ];
   "$mod" = hypr "mod" "SUPER";
-  "$Left" = hypr "left" "Left";
-  "$Right" = hypr "right" "Right";
-  "$Up" = hypr "up" "Up";
-  "$Down" = hypr "down" "Down";
+  "$Left" = hypr "left" "H";
+  "$Right" = hypr "right" "L";
+  "$Up" = hypr "up" "K";
+  "$Down" = hypr "down" "J";
   env = [
     "HYPRCURSOR_THEME,Bibata-Modern-Classic"
     "HYPRCURSOR_SIZE,26"
@@ -50,18 +47,18 @@ in
 
     # Window actions
     "$mod, ${hypr "kill" "C"}, killactive"
-    "$mod, ${hypr "exit" "code:65307"}, exit"
+    "$mod, ${hypr "exit" "X"}, exit"
     "$mod, ${hypr "float" "V"}, togglefloating"
     "$mod, ${hypr "full" "F"}, fullscreen, 0"
     "$mod+Alt, ${hypr "full" "F"}, fullscreen, 1"
-    "$mod, ${hypr "last" "L"}, focusurgentorlast"
-    # jahnky ahh janky (see https://github.com/hyprwm/Hyprland/pull/7024 for reasons)
+    "$mod, ${hypr "last" "R"}, focusurgentorlast"
+    # recommended opacity toggle; see https://github.com/hyprwm/Hyprland/pull/7024
     "$mod, ${hypr "opaque" "O"}, exec, hyprctl setprop active opaque toggle"
 
     # Hyprscroller
     "$mod, ${hypr "view" "A"}, scroller:toggleoverview"
-    "$mod+Shift, $Up, scroller:cyclesize, +1"
-    "$mod+Shift, $Down, scroller:cyclesize, -1"
+    "$mod+Shift, K, scroller:cyclesize, +1"
+    "$mod+Shift, J, scroller:cyclesize, -1"
 
     # Hyprshot
     "$mod+Shift, ${hypr "window" "W"}, exec, hyprshot -m window --clipboard-only"
@@ -84,10 +81,10 @@ in
     "$mod+Alt, 7, resizeactive, exact 50% 71%"
 
     # Move around
-    "$mod, $Left, scroller:movefocus, l"
-    "$mod, $Right, scroller:movefocus, r"
-    "$mod, $Up, scroller:movefocus, u"
-    "$mod, $Down, scroller:movefocus, d"
+    "$mod, H, scroller:movefocus, l"
+    "$mod, L, scroller:movefocus, r"
+    "$mod, K, scroller:movefocus, u"
+    "$mod, J, scroller:movefocus, d"
 
     # Change workspaces
     "$mod, 0, workspace, 10"
@@ -113,18 +110,18 @@ in
     "$mod+Shift, 0, movetoworkspace, 10"
 
     # Move windows around
-    "$mod+Shift, $Left, scroller:movewindow, l"
-    "$mod+Shift, $Left, scroller:alignwindow, l"
-    "$mod+Shift, $Right, scroller:movewindow, r"
-    "$mod+Shift, $Right, scroller:alignwindow, r"
+    "$mod+Shift, H, scroller:movewindow, l"
+    "$mod+Shift, H, scroller:alignwindow, l"
+    "$mod+Shift, L, scroller:movewindow, r"
+    "$mod+Shift, L, scroller:alignwindow, r"
     "$mod, comma, scroller:admitwindow"
     "$mod, period, scroller:expelwindow"
 
     # Workspace shortcuts
-    "$mod+Ctrl+Shift, $Down, movetoworkspace, r+1"
-    "$mod+Ctrl+Shift, $Up, movetoworkspace, r-1"
-    "$mod+Ctrl, $Down, workspace, r+1"
-    "$mod+Ctrl, $Up, workspace, r-1"
+    "$mod+Ctrl+Shift, J, movetoworkspace, r+1"
+    "$mod+Ctrl+Shift, K, movetoworkspace, r-1"
+    "$mod+Ctrl, J, workspace, r+1"
+    "$mod+Ctrl, K, workspace, r-1"
     "$mod, ${hypr "min" "S"}, togglespecialworkspace"
     "$mod+Shift, ${hypr "min" "S"}, movetoworkspacesilent, special"
 
@@ -133,12 +130,16 @@ in
     ''$mod, ${hypr "screen" "P"}, exec, grim -g "$(slurp)" - | swappy -f -'' # Screenshot
     "$mod, ${hypr "menu" "Backspace"}, exec, wlogout" # Show power menu
   ];
+
+  # Special keybinds
   bindm = [
     "$mod, mouse:272, movewindow"
     "$mod, mouse:273, resizewindow"
     "$mod, Y, movewindow"
     "$mod, X, resizewindow"
   ];
+
+  # Window rules
   layerrule = [
     "blur,rofi"
     "ignorezero,rofi"
@@ -153,7 +154,11 @@ in
     "float,class:(clipse)"
     "size 622 652,class:(clipse)"
   ];
+
+  # Display outputs
   monitor = hyprland.monitors;
+
+  # Window animations
   animations = {
     enabled = "yes";
     bezier = [
@@ -170,6 +175,8 @@ in
       "workspaces, 1, 8, bounce, slidefadevert"
     ];
   };
+
+  # Hyprland config
   general =
     let
       inherit (config.lib.stylix) colors;
@@ -178,20 +185,24 @@ in
       gaps_in = "5";
       gaps_out = "20";
       border_size = "4";
+
       # the dot is a hyprland name, not nix syntax, so we escape it
-      # "col.active_border" = "rgba(1966ffff) rgba(00ff99ee) 45deg";
-      # "col.inactive_border" = "rgba(00000000)";
       "col.active_border" = lib.mkForce "rgba(${colors.base0A}ff) rgba(${colors.base09}ff) 45deg";
       "col.inactive_border" = lib.mkForce "rgba(${colors.base01}cc) rgba(${colors.base02}cc) 45deg";
+
       layout = "scroller";
       resize_on_border = "true";
       allow_tearing = "false";
     };
+
+  # Input devices
   input.touchpad = {
     natural_scroll = true;
     disable_while_typing = true;
     tap-to-click = true;
   };
+
+  # More eyecandy
   decoration = {
     rounding = "14";
     active_opacity = "0.9";
@@ -214,9 +225,13 @@ in
       special = true;
     };
   };
+
+  # Meta keybinds
   binds = {
     movefocus_cycles_fullscreen = "false";
   };
+
+  # Hidden config options
   misc = {
     force_default_wallpaper = 0;
   };

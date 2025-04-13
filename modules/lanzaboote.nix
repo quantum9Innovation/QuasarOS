@@ -25,6 +25,7 @@
   # So we force it to false for now.
   boot.loader.systemd-boot.enable = lib.mkForce false;
 
+  # Enable Lanzaboote
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
