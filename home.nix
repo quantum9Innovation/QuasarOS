@@ -168,12 +168,7 @@ quasar: utils: _upstream: plugins: pack:
     nushell = {
       enable = true;
       configFile = {
-        text = ''
-          $env.config = {
-            show_banner: false
-            buffer_editor: 'micro'
-          }
-        '';
+        source = ./modules/config.nu;
       };
     };
 
@@ -271,7 +266,7 @@ quasar: utils: _upstream: plugins: pack:
               ]
             )
           )
-          (builtins.readFile modules/waybar.css);
+          (builtins.readFile ./modules/waybar.css);
 
       # general layout
       settings = {
