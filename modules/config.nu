@@ -1,16 +1,14 @@
-# Shamelessly stolen from youwen5
-# https://github.com/youwen5/liminalOS/blob/11a7673570cefdfed29d129a158955f597b3df1a/hm/modules/common/shellenv/config.nu#L1
-
 let fish_completer = {|spans|
-    fish --command $'complete "--do-complete=($spans | str join " ")"'
-    | from tsv --flexible --noheaders --no-infer
-    | rename value description
-    | update value {
-        if ($in | path exists) {$'"($in | str replace "\"" "\\\"" )"'} else {$in}
+    fish --command $'complete --escape "--do-complete=($spans | str join " ")"'
+    | $"value(char tab)description(char newline)" + $in
+    | from tsv --flexible --no-infer
+    | each {|i|
+        if '\' in $i.value {
+            $i | merge {'value': $"\"($i.value | str replace -a '\' '')\""}
+        } else {$i}
     }
 }
-
-# this completer will use fish by default
+# This completer will use fish by default
 let external_completer = {|spans|
     let expanded_alias = scope aliases
     | where name == $spans.0
@@ -30,8 +28,4 @@ let external_completer = {|spans|
     } | do $in $spans
 }
 
-$env.config = {
-  show_banner: false
-  buffer_editor: 'micro'
-  completions.external.completer: $external_completer
-}
+$env.config.completions.external.completer = $external_completer
