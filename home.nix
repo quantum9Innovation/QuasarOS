@@ -171,12 +171,54 @@ quasar: utils: _upstream: plugins: pack:
   # All program config
   programs = {
     # Primary shell
-    nushell = {
-      enable = true;
-      configFile = {
-        source = ./modules/config.nu;
+    nushell =
+      let
+        # set up the zoxide init script ourselves so we can inject nushell
+        # completions
+        zoxideInit = pkgs.stdenvNoCC.mkDerivation {
+          inherit (pkgs.zoxide) version;
+          pname = "zoxide-init";
+          nativeBuildInputs = [ pkgs.zoxide ];
+          phases = [ "installPhase" ];
+          installPhase = ''
+            zoxide init nushell >> $out
+          '';
+        };
+      in
+      {
+        enable = true;
+        configFile.source = ./modules/config.nu;
+        settings = {
+          show_banner = false;
+          completions.external = {
+            enable = true;
+            max_results = 200;
+          };
+          buffer_editor = "micro";
+        };
+        # setup zoxide tab completions
+        extraConfig = ''
+          source "${zoxideInit}"
+          def "nu-complete zoxide path" [context: string] {
+            let parts = $context | split row " " | skip 1
+            {
+              options: {
+                sort: false
+                completion_algorithm: prefix
+                positional: false
+                case_sensitive: false
+              }
+              completions: (zoxide query --list --exclude $env.PWD -- ...$parts | lines)
+            }
+          }
+
+          def --env --wrapped z [...rest: string@"nu-complete zoxide path"] {
+            __zoxide_z ...$rest
+          }
+        '';
+        # dataframes like pandas
+        plugins = with pkgs.nushellPlugins; [ polars ];
       };
-    };
 
     # Secondary shell
     fish = {
