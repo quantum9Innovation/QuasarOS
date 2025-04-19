@@ -1,11 +1,9 @@
 let fish_completer = {|spans|
-    fish --command $'complete --escape "--do-complete=($spans | str join " ")"'
-    | $"value(char tab)description(char newline)" + $in
-    | from tsv --flexible --no-infer
-    | each {|i|
-        if '\' in $i.value {
-            $i | merge {'value': $"\"($i.value | str replace -a '\' '')\""}
-        } else {$i}
+    fish --command $"complete '--do-complete=($spans | str join ' ')'"
+    | from tsv --flexible --noheaders --no-infer
+    | rename value description
+    | update value {
+        if ($in | path exists) {$'"($in | str replace "\"" "\\\"" )"'} else {$in}
     }
 }
 # This completer will use fish by default
