@@ -44,6 +44,7 @@ quasar: utils: _upstream: plugins: pack:
         nemo
         muffon
         spotube
+        sleek-todo
 
         # archives
         zip
