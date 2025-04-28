@@ -72,7 +72,6 @@ quasar: utils: _upstream: plugins: pack:
 
         # messaging apps
         signal-desktop-bin
-        vesktop
         altus
 
         # ricing
@@ -261,6 +260,9 @@ quasar: utils: _upstream: plugins: pack:
         init.defaultBranch = "main";
       };
     };
+
+    # Free and open source Discord client
+    vesktop.enable = true;
 
     # Terminal setup
     kitty = {
