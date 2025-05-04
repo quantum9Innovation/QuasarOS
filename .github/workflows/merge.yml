@@ -1,0 +1,16 @@
+name: auto-merge-labeled
+on:
+  pull_request:
+jobs:
+  auto-merge-labeled:
+    runs-on: ubuntu-latest
+    steps:
+      - id: auto-merge-labeled
+        name: Auto merge labeled
+        uses: isolomak/auto-merge-labeled@v1.0.1
+        with:
+          label: 'lock'
+          commit-title: 'build(lock): update'
+          merge_method: 'squash'
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
