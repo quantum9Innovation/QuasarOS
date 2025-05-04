@@ -277,6 +277,24 @@ quasar: utils: _upstream: plugins: pack:
       };
     };
 
+    rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      terminal = "${pkgs.kitty}/bin/kitty";
+      font = "Noto Sans";
+      theme =
+        let
+          inherit (config.lib.formats.rasi) mkLiteral;
+        in
+        {
+          "window" = {
+            border-radius = mkLiteral "16px";
+            border-width = mkLiteral "4px";
+            padding = mkLiteral "6px";
+          };
+        };
+    };
+
     # Custom horizontal status bar on top of screen
     waybar = {
       enable = true;

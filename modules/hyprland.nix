@@ -126,17 +126,17 @@ in
     "$mod+Shift, ${hypr "min" "S"}, movetoworkspacesilent, special"
 
     # Run rofi (open new window)
-    "$mod, ${hypr "omni" "Space"}, exec, pkill -x rofi || rofi -show drun"
+    "$mod, ${hypr "omni" "Space"}, exec, pkill -x rofi || rofi -show drun -show-icons -theme paper-float"
     # Run rofi (run application on path)
-    "$mod+Shift, ${hypr "omniRun" "Space"}, exec, pkill -x rofi || rofi -show run"
+    "$mod+Shift, ${hypr "omniRun" "Space"}, exec, pkill -x rofi || rofi -show run -show-icons -theme paper-float"
     # Run rofi (open existing window)
-    "$mod, ${hypr "omniWindow" "W"}, exec, pkill -x rofi || rofi -show window"
+    "$mod, ${hypr "omniWindow" "W"}, exec, pkill -x rofi || rofi -show window -show-icons -theme paper-float"
     # Run rofi (ssh)
-    "$mod+Alt, ${hypr "omniSSH" "8"}, exec, pkill -x rofi || rofi -show ssh"
+    "$mod+Alt, ${hypr "omniSSH" "8"}, exec, pkill -x rofi || rofi -show ssh -show-icons -theme paper-float"
     # Run rofi (browse files)
-    "$mod+Shift, ${hypr "omniFile" "F"}, exec, pkill -x rofi || rofi -show filebrowser"
+    "$mod+Shift, ${hypr "omniFile" "F"}, exec, pkill -x rofi || rofi -show filebrowser -show-icons -theme paper-float"
     # Run rofi (list keybinds)
-    "$mod+Shift, ${hypr "omniKeys" "/"}, exec, pkill -x rofi || rofi -show keys"
+    "$mod+Shift, ${hypr "omniKeys" "/"}, exec, pkill -x rofi || rofi -show keys -show-icons -theme paper-float"
 
     # Utilities
     ''$mod, ${hypr "screen" "P"}, exec, grim -g "$(slurp)" - | swappy -f -'' # Screenshot
@@ -152,16 +152,7 @@ in
   ];
 
   # Window rules
-  layerrule = [
-    "blur,rofi"
-    "ignorezero,rofi"
-    "blur,notifications"
-    "ignorezero,notifications"
-    "blur,swaync-notification-window"
-    "ignorezero,swaync-notification-window"
-    "blur,swaync-control-center"
-    "ignorezero,swaync-control-center"
-  ];
+  layerrule = [ ];
   windowrulev2 = [
     "float,class:(clipse)"
     "size 622 652,class:(clipse)"
