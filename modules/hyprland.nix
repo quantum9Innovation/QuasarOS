@@ -125,8 +125,20 @@ in
     "$mod, ${hypr "min" "S"}, togglespecialworkspace"
     "$mod+Shift, ${hypr "min" "S"}, movetoworkspacesilent, special"
 
+    # Run rofi (open new window)
+    "$mod, ${hypr "omni" "Space"}, exec, pkill -x rofi || rofi -show drun"
+    # Run rofi (run application on path)
+    "$mod+Shift, ${hypr "omniRun" "Space"}, exec, pkill -x rofi || rofi -show run"
+    # Run rofi (open existing window)
+    "$mod, ${hypr "omniWindow" "W"}, exec, pkill -x rofi || rofi -show window"
+    # Run rofi (ssh)
+    "$mod+Alt, ${hypr "omniSSH" "8"}, exec, pkill -x rofi || rofi -show ssh"
+    # Run rofi (browse files)
+    "$mod+Shift, ${hypr "omniFile" "F"}, exec, pkill -x rofi || rofi -show filebrowser"
+    # Run rofi (list keybinds)
+    "$mod+Shift, ${hypr "omniKeys" "/"}, exec, pkill -x rofi || rofi -show keys"
+
     # Utilities
-    "$mod, ${hypr "omni" "Space"}, exec, pkill -x rofi || rofi -show drun" # Run rofi
     ''$mod, ${hypr "screen" "P"}, exec, grim -g "$(slurp)" - | swappy -f -'' # Screenshot
     "$mod, ${hypr "menu" "Backspace"}, exec, wlogout" # Show power menu
   ];
