@@ -216,13 +216,17 @@
         # Triggered by timer service (separately configured)
         wantedBy = [ ];
       };
+    };
 
+    timers = {
       refreshTimer = {
-        description = "Timer to trigger system refresh";
+        description = "Timer for system updates";
         wantedBy = [ "timers.target" ];
-        OnCalendar = "daily";
-        Unit = "refresh.service";
-        Persistent = true; # run on wake up if missed
+        timerConfig = {
+          OnCalendar = "daily";
+          Unit = "refresh.service";
+          Persistent = true; # run on wake up if missed
+        };
       };
     };
 
