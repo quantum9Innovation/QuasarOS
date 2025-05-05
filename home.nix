@@ -435,9 +435,11 @@ quasar: utils: _upstream: plugins: pack:
 
   };
 
-  # Activate Stylix targets
+  # Deactivate certain Stylix targets
   stylix.targets.waybar.enable = false;
   stylix.targets.hyprlock.enable = false;
+  stylix.targets.vesktop.enable = false;
+  stylix.targets.mako.enable = false;
 
   # GTK theming
   gtk = {
