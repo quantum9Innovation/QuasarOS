@@ -203,6 +203,34 @@
           timedatectl set-timezone $("${pkgs.tzupdate}/bin/tzupdate" -p)
         '';
       };
+
+      # Automatically update QuasarOS
+      refresh = {
+        description = "Automatically update QuasarOS";
+        after = [ "network-online.target" ];
+        requires = [ "network-online.target" ];
+        workingDirectory = quasar.flake;
+        serviceConfig = {
+          ExecStart = [
+            "${pkgs.git}/bin/git"
+            "pull"
+          ];
+          # Be persistent in upgrading; instability is expected and welcomed!
+          Restart = "on-failure";
+        };
+        # Triggered by timer service (separately configured)
+        wantedBy = [ ];
+      };
+
+      refreshTimer = {
+        description = "Timer to trigger system refresh";
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnCalendar = "daily";
+          Unit = "refresh.service";
+          Persistent = true; # run on wake up if missed
+        };
+      };
     };
 
     # Extra deep sleep config, also stolen from KaitoTLex in #26
