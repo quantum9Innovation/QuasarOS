@@ -420,6 +420,10 @@
       package = pkgs.bibata-cursors;
       size = 26;
     };
+
+    # Disable certain Stylix targets
+    mako.enable = false; # broken builds
+    vesktop.enable = false; # visual defects
   };
 
   # Additional system fonts
