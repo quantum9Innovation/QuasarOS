@@ -281,12 +281,14 @@ quasar: utils: _upstream: plugins: pack:
       enable = true;
       package = pkgs.rofi-wayland;
       terminal = "${pkgs.kitty}/bin/kitty";
-      font = "Noto Sans";
       theme =
         let
           inherit (config.lib.formats.rasi) mkLiteral;
         in
         {
+          "*" = {
+            font = "${config.stylix.fonts.sansSerif.name} ${toString config.stylix.fonts.sizes.popups}";
+          };
           "window" = {
             border-radius = mkLiteral "16px";
             border-width = mkLiteral "4px";
@@ -435,9 +437,13 @@ quasar: utils: _upstream: plugins: pack:
 
   };
 
-  # Activate Stylix targets
-  stylix.targets.waybar.enable = false;
-  stylix.targets.hyprlock.enable = false;
+  # Deactivate certain Stylix targets
+  stylix.targets = {
+    waybar.enable = false;
+    hyprlock.enable = false;
+    vesktop.enable = false;
+    mako.enable = false;
+  };
 
   # GTK theming
   gtk = {
