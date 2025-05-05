@@ -220,11 +220,9 @@
       refreshTimer = {
         description = "Timer to trigger system refresh";
         wantedBy = [ "timers.target" ];
-        timerConfig = {
-          OnCalendar = "daily";
-          Unit = "refresh.service";
-          Persistent = true; # run on wake up if missed
-        };
+        OnCalendar = "daily";
+        Unit = "refresh.service";
+        Persistent = true; # run on wake up if missed
       };
     };
 
