@@ -422,8 +422,10 @@
     };
 
     # Disable certain Stylix targets
-    mako.enable = false; # broken builds
-    vesktop.enable = false; # visual defects
+    targets = {
+      mako.enable = false; # broken builds
+      vesktop.enable = false; # visual defects
+    };
   };
 
   # Additional system fonts
