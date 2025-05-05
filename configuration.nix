@@ -209,15 +209,10 @@
         description = "Automatically update QuasarOS";
         after = [ "network-online.target" ];
         requires = [ "network-online.target" ];
-        workingDirectory = quasar.flake;
-        serviceConfig = {
-          ExecStart = [
-            "${pkgs.git}/bin/git"
-            "pull"
-          ];
-          # Be persistent in upgrading; instability is expected and welcomed!
-          Restart = "on-failure";
-        };
+        script = ''
+          cd ${quasar.flake}
+          git pull
+        '';
         # Triggered by timer service (separately configured)
         wantedBy = [ ];
       };
