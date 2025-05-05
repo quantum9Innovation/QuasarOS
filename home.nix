@@ -286,6 +286,9 @@ quasar: utils: _upstream: plugins: pack:
           inherit (config.lib.formats.rasi) mkLiteral;
         in
         {
+          "*" = {
+            font = "${config.stylix.fonts.sansSerif.name} ${toString config.stylix.fonts.sizes.popups}";
+          };
           "window" = {
             border-radius = mkLiteral "16px";
             border-width = mkLiteral "4px";
