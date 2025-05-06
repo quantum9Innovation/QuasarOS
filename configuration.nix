@@ -211,6 +211,7 @@
         requires = [ "network-online.target" ];
         script = ''
           cd ${quasar.flake}
+          ${pkgs.git}/bin/git config --global --add safe.directory ${quasar.flake}
           ${pkgs.git}/bin/git pull
         '';
         # Triggered by timer service (separately configured)
