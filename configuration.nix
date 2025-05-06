@@ -211,8 +211,12 @@
         requires = [ "network-online.target" ];
         script = ''
           cd ${quasar.flake}
-          git pull
+          ${pkgs.git}/bin/git config --global --add safe.directory ${quasar.flake}
+          ${pkgs.git}/bin/git pull
         '';
+        serviceConfig = {
+          Environment = "HOME=/root";
+        };
         # Triggered by timer service (separately configured)
         wantedBy = [ ];
       };
