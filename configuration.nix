@@ -211,7 +211,7 @@
         requires = [ "network-online.target" ];
         script = ''
           cd ${quasar.flake}
-          git pull
+          ${pkgs.git}/bin/git pull
         '';
         # Triggered by timer service (separately configured)
         wantedBy = [ ];
