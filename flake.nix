@@ -30,6 +30,9 @@
     # For incorporating hotfixes
     nixpkgs-upstream.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
+    # For `hyprslidr`
+    nixpkgs-hyprslidr.url = "github:youwen5/nixpkgs/init-hyprslidr";
+
     # Home Manager manages user dotfiles in the Nix configuration language,
     # enhancing interoperability and consolidation of system configurations.
     # You should use Home Manager integrations
@@ -89,7 +92,7 @@
     {
       self,
       nixpkgs,
-      nixpkgs-upstream,
+      nixpkgs-hyprslidr,
       home-manager,
       zen-browser,
       gitbutler,
@@ -240,7 +243,7 @@
                     in
                     [
                       (import ./home.nix quasar utils upstream
-                        nixpkgs-upstream.legacyPackages.${quasar.system}.hyprlandPlugins
+                        nixpkgs-hyprslidr.legacyPackages.${quasar.system}.hyprlandPlugins
                         pack
                       )
                     ]

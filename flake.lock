@@ -414,6 +414,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-hyprslidr": {
+      "locked": {
+        "lastModified": 1747461084,
+        "narHash": "sha256-t9TwAYe8UOpU2Me9sb6Hp1i6zdv+1JPb58oyjvyfVcs=",
+        "owner": "youwen5",
+        "repo": "nixpkgs",
+        "rev": "01b13988b43f1831b1bceb9dc2dd323796ef3669",
+        "type": "github"
+      },
+      "original": {
+        "owner": "youwen5",
+        "ref": "init-hyprslidr",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -541,6 +557,7 @@
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-hyprslidr": "nixpkgs-hyprslidr",
         "nixpkgs-upstream": "nixpkgs-upstream",
         "pre-commit-hooks": "pre-commit-hooks",
         "stylix": "stylix",

@@ -50,15 +50,13 @@ in
     "$mod, ${hypr "exit" "X"}, exit"
     "$mod, ${hypr "float" "V"}, togglefloating"
     "$mod, ${hypr "full" "F"}, fullscreen, 0"
-    "$mod+Alt, ${hypr "full" "F"}, fullscreen, 1"
+    "$mod+Alt, ${hypr "full" "F"}, slidr:maximize"
     "$mod, ${hypr "last" "R"}, focusurgentorlast"
     # recommended opacity toggle; see https://github.com/hyprwm/Hyprland/pull/7024
     "$mod, ${hypr "opaque" "O"}, exec, hyprctl setprop active opaque toggle"
 
-    # Hyprscroller
-    "$mod, ${hypr "view" "A"}, scroller:toggleoverview"
-    "$mod+Shift, K, scroller:cyclesize, +1"
-    "$mod+Shift, J, scroller:cyclesize, -1"
+    # Hyprslidr
+    "$mod+Shift, ${hypr "view" "A"}, slidr:cyclesize"
 
     # Hyprshot
     "$mod+Shift, ${hypr "window" "W"}, exec, hyprshot -m window --clipboard-only"
@@ -73,7 +71,7 @@ in
     "Ctrl+Alt, C, exec, hyprpicker | wl-copy"
 
     # Resizing
-    "$mod+Alt, 1, exec, hyprctl dispatch resizeactive exact 50% 89% && hyprctl dispatch scroller:admitwindow && hyprctl dispatch scroller:expelwindow"
+    "$mod+Alt, 1, exec, hyprctl dispatch resizeactive exact 50% 89% && hyprctl dispatch slidr:admitwindow && hyprctl dispatch slidr:expelwindow"
     "$mod+Alt, 2, resizeactive, exact 50% 47%"
     "$mod+Alt, 3, resizeactive, exact 50% 31%"
     "$mod+Alt, 4, resizeactive, exact 50% 23%"
@@ -81,10 +79,10 @@ in
     "$mod+Alt, 7, resizeactive, exact 50% 71%"
 
     # Move around
-    "$mod, H, scroller:movefocus, l"
-    "$mod, L, scroller:movefocus, r"
-    "$mod, K, scroller:movefocus, u"
-    "$mod, J, scroller:movefocus, d"
+    "$mod, H, slidr:movefocus, l"
+    "$mod, L, slidr:movefocus, r"
+    "$mod, K, slidr:movefocus, u"
+    "$mod, J, slidr:movefocus, d"
 
     # Change workspaces
     "$mod, 0, workspace, 10"
@@ -110,12 +108,13 @@ in
     "$mod+Shift, 0, movetoworkspace, 10"
 
     # Move windows around
-    "$mod+Shift, H, scroller:movewindow, l"
-    "$mod+Shift, H, scroller:alignwindow, l"
-    "$mod+Shift, L, scroller:movewindow, r"
-    "$mod+Shift, L, scroller:alignwindow, r"
-    "$mod, comma, scroller:admitwindow"
-    "$mod, period, scroller:expelwindow"
+    "$mod+Shift, H, slidr:alignwindow, l"
+    "$mod+Shift, L, slidr:alignwindow, r"
+    "$mod+Shift, J, slidr:alignwindow, d"
+    "$mod+Shift, K, slidr:alignwindow, u"
+    "$mod+Shift, C, slidr:alignwindow, c"
+    "$mod, comma, slidr:admitwindow"
+    "$mod, period, slidr:expelwindow"
 
     # Workspace shortcuts
     "$mod+Ctrl+Shift, J, movetoworkspace, r+1"
