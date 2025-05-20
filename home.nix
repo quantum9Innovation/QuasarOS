@@ -3,6 +3,7 @@ quasar: utils: _upstream: plugins: pack:
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 
@@ -105,16 +106,23 @@ quasar: utils: _upstream: plugins: pack:
   };
 
   # Hyprland user config
-  wayland.windowManager.hyprland = {
-    enable = true;
-    plugins = [ plugins.hyprscroller ];
-    settings = import ./modules/hyprland.nix (
-      quasar
-      // {
-        inherit config lib;
-      }
-    ) utils;
-  };
+  wayland.windowManager.hyprland =
+    let
+      hyprscroller = pkgs.callPackage ./pkgs/vendored/hyprscroller.nix {
+        src = inputs.hyprscroller-src;
+        version = inputs.hyprscroller-src.lastModified;
+      };
+    in
+    {
+      enable = true;
+      plugins = [ hyprscroller ];
+      settings = import ./modules/hyprland.nix (
+        quasar
+        // {
+          inherit config lib;
+        }
+      ) utils;
+    };
 
   # All services
   services = {
