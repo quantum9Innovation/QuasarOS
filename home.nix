@@ -345,10 +345,18 @@ quasar: utils: _upstream: plugins: pack:
           "layer" = "top";
           "modules-left" = [
             "hyprland/workspaces"
+            "idle_inhibitor"
           ];
           "modules-center" = [
             "clock"
           ];
+          idle_inhibitor = {
+            format = "{icon}";
+            format-icons = {
+              activated = "󰛊 ";
+              deactivated = "󰾫 ";
+            };
+          };
           "network" = {
             "format-ethernet" = "{ipaddr}  󰈀";
             "format-wifi" = "{essid}  ";
