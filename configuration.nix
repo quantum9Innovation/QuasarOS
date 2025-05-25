@@ -122,6 +122,21 @@
     # Set time zone automatically and sync with network time
     timesyncd.enable = true;
 
+    # Configure monadic keybind management
+    kmonad =
+      if quasar.kmonad.enabled then
+        {
+          enable = true;
+          keyboards = {
+            main = {
+              device = "/dev/input/by-id/${quasar.kmonad.keyboard}";
+              config = import ./modules/keyboard.nix quasar;
+            };
+          };
+        }
+      else
+        null;
+
     # Disable the X11 windowing system,
     # since Hyprland uses the more modern Wayland
     xserver.enable = false;
