@@ -372,6 +372,22 @@
         "type": "github"
       }
     },
+    "hyprscroller-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746802628,
+        "narHash": "sha256-m9689UH+w8Z/qP/DKYtzQfIGfiE4jgBAfO+uH34cfNs=",
+        "owner": "cpiber",
+        "repo": "hyprscroller",
+        "rev": "de97924b6d1086d84939b6f6688637f7b21d8d80",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cpiber",
+        "repo": "hyprscroller",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -539,6 +555,7 @@
       "inputs": {
         "gitbutler": "gitbutler",
         "home-manager": "home-manager",
+        "hyprscroller-src": "hyprscroller-src",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
         "nixpkgs-upstream": "nixpkgs-upstream",
