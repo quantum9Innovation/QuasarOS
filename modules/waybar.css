@@ -34,6 +34,15 @@
   margin: 5px;
 }
 
+#idle_inhibitor {
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
+}
+
 #battery {
   color: #ffffff;
   border-radius: 10px;
