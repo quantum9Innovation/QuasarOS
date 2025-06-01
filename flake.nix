@@ -83,6 +83,11 @@
 
     # Enable pre-commit hooks on this repository
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+
+    hyprscroller-src = {
+      url = "github:cpiber/hyprscroller";
+      flake = false;
+    };
   };
 
   outputs =
