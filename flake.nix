@@ -40,6 +40,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Monadic Haskellian keybinds
+    # Many believe it is unnecessary to introduce functional bloat
+    # in such a performance-critical capacity,
+    # but true believers of the functional regime know such performance concerns
+    # are irrelevant, trumped by more pressing considerations
+    # of mathematical purity.
+    kmonad = {
+      url = "github:kmonad/kmonad?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Zen browser, beta edition
     # After much consideration, the beta edition was deemed to be the best
     # choice for the system browser on QuasarOS.
@@ -91,6 +102,7 @@
       nixpkgs,
       nixpkgs-upstream,
       home-manager,
+      kmonad,
       zen-browser,
       gitbutler,
       # betterbird,
@@ -250,8 +262,12 @@
             }
           ];
 
+          # Modules with conditional keyboard add-on
+          preModules =
+            if quasar.kmonad.enabled then baseModules ++ [ kmonad.nixosModules.default ] else baseModules;
+
           # Modules with conditional add-ons
-          modules = if quasar.secureboot.enabled then baseModules ++ secureBoot else baseModules;
+          modules = if quasar.secureboot.enabled then preModules ++ secureBoot else preModules;
         in
         {
           system = nixpkgs.lib.nixosSystem {
