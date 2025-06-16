@@ -403,6 +403,7 @@
             "cuda_nvprune"
             "cuda_cupti"
             "cuda_cuxxfilt"
+            "cuda_nvml_dev"
           ]
         else
           [ ]
