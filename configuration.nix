@@ -410,6 +410,7 @@
             "cuda_sanitizer_api"
             "libcurand"
             "libcusolver"
+            "libnvjitlink"
           ]
         else
           [ ]
