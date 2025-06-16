@@ -400,6 +400,7 @@
             "cuda_cuobjdump"
             "cuda_gdb"
             "cuda_nvdisasm"
+            "cuda_nvprune"
           ]
         else
           [ ]
