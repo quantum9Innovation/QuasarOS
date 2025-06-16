@@ -405,6 +405,7 @@
             "cuda_cuxxfilt"
             "cuda_nvml_dev"
             "cuda_nvrtc"
+            "cuda_nvtx"
           ]
         else
           [ ]
