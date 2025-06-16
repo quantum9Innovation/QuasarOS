@@ -411,6 +411,7 @@
             "libcurand"
             "libcusolver"
             "libnvjitlink"
+            "libcusparse"
           ]
         else
           [ ]
