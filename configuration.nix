@@ -402,6 +402,7 @@
             "cuda_nvdisasm"
             "cuda_nvprune"
             "cuda_cupti"
+            "cuda_cuxxfilt"
           ]
         else
           [ ]
