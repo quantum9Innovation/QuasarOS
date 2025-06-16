@@ -398,6 +398,7 @@
             "libcufft"
             "cuda-merged"
             "cuda_cuobjdump"
+            "cuda_gdb"
           ]
         else
           [ ]
