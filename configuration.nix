@@ -396,6 +396,7 @@
             "nvidia-settings"
             "libnpp"
             "libcufft"
+            "cuda-merged"
           ]
         else
           [ ]
