@@ -397,6 +397,7 @@
             "libnpp"
             "libcufft"
             "cuda-merged"
+            "cuda_cuobjdump"
           ]
         else
           [ ]
