@@ -401,6 +401,7 @@
             "cuda_gdb"
             "cuda_nvdisasm"
             "cuda_nvprune"
+            "cuda_cupti"
           ]
         else
           [ ]
