@@ -55,11 +55,6 @@ in
     # recommended opacity toggle; see https://github.com/hyprwm/Hyprland/pull/7024
     "$mod, ${hypr "opaque" "O"}, exec, hyprctl setprop active opaque toggle"
 
-    # Hyprscroller
-    "$mod, ${hypr "view" "A"}, scroller:toggleoverview"
-    "$mod+Shift, K, scroller:cyclesize, +1"
-    "$mod+Shift, J, scroller:cyclesize, -1"
-
     # Hyprshot
     "$mod+Shift, ${hypr "window" "W"}, exec, hyprshot -m window --clipboard-only"
     "$mod+Alt, ${hypr "window" "W"}, exec, hyprshot -m window"
@@ -73,7 +68,7 @@ in
     "Ctrl+Alt, C, exec, hyprpicker | wl-copy"
 
     # Resizing
-    "$mod+Alt, 1, exec, hyprctl dispatch resizeactive exact 50% 89% && hyprctl dispatch scroller:admitwindow && hyprctl dispatch scroller:expelwindow"
+    "$mod+Alt, 1, exec, hyprctl dispatch resizeactive exact 50% 89%"
     "$mod+Alt, 2, resizeactive, exact 50% 47%"
     "$mod+Alt, 3, resizeactive, exact 50% 31%"
     "$mod+Alt, 4, resizeactive, exact 50% 23%"
@@ -81,10 +76,10 @@ in
     "$mod+Alt, 7, resizeactive, exact 50% 71%"
 
     # Move around
-    "$mod, H, scroller:movefocus, l"
-    "$mod, L, scroller:movefocus, r"
-    "$mod, K, scroller:movefocus, u"
-    "$mod, J, scroller:movefocus, d"
+    "$mod, H, movefocus, l"
+    "$mod, L, movefocus, r"
+    "$mod, K, movefocus, u"
+    "$mod, J, movefocus, d"
 
     # Change workspaces
     "$mod, 0, workspace, 10"
@@ -110,12 +105,8 @@ in
     "$mod+Shift, 0, movetoworkspace, 10"
 
     # Move windows around
-    "$mod+Shift, H, scroller:movewindow, l"
-    "$mod+Shift, H, scroller:alignwindow, l"
-    "$mod+Shift, L, scroller:movewindow, r"
-    "$mod+Shift, L, scroller:alignwindow, r"
-    "$mod, comma, scroller:admitwindow"
-    "$mod, period, scroller:expelwindow"
+    "$mod+Shift, H, movewindow, l"
+    "$mod+Shift, L, movewindow, r"
 
     # Workspace shortcuts
     "$mod+Ctrl+Shift, J, movetoworkspace, r+1"
@@ -193,7 +184,7 @@ in
       "col.active_border" = lib.mkForce "rgba(${colors.base0A}ff) rgba(${colors.base09}ff) 45deg";
       "col.inactive_border" = lib.mkForce "rgba(${colors.base01}cc) rgba(${colors.base02}cc) 45deg";
 
-      layout = "scroller";
+      layout = "master";
       resize_on_border = "true";
       allow_tearing = "false";
     };
