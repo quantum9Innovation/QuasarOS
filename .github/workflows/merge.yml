@@ -4,6 +4,7 @@ on:
 jobs:
   auto-merge-labeled:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'quantum9Innovation'
     steps:
       - id: auto-merge-labeled
         name: Auto merge labeled
