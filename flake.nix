@@ -83,19 +83,25 @@
 
     # Enable pre-commit hooks on this repository
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+
+    # Add maintained hyprscroller instance
+    hyprscroller-src = {
+      url = "github:cpiber/hyprscroller";
+      flake = false;
+    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      nixpkgs-upstream,
       home-manager,
       zen-browser,
       gitbutler,
       # betterbird,
       lanzaboote,
       stylix,
+      hyprscroller-src,
       ...
     }@inputs:
     let
@@ -239,10 +245,7 @@
                       ];
                     in
                     [
-                      (import ./home.nix quasar utils upstream
-                        nixpkgs-upstream.legacyPackages.${quasar.system}.hyprlandPlugins
-                        pack
-                      )
+                      (import ./home.nix quasar utils upstream hyprscroller-src pack)
                     ]
                     ++ quasar.homeOverrides;
                 };
