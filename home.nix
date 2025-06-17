@@ -109,7 +109,7 @@ quasar: utils: _upstream: hyprscroller-src: pack:
     let
       hyprscroller = pkgs.callPackage ./pkgs/vendored/hyprscroller.nix {
         src = hyprscroller-src;
-        version = hyprscroller-src.lastModified;
+        version = builtins.toString hyprscroller-src.lastModified;
       };
     in
     {
