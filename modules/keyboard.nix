@@ -7,6 +7,11 @@ quasar: {
       allow-cmd false
     )
 
+    (defsrc
+      esc
+      caps
+    )
+
     (deflayer qwerty
       caps  esc
       esc   caps
