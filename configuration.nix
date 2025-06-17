@@ -130,7 +130,7 @@
           keyboards = {
             main = {
               device = "/dev/input/by-id/${quasar.kmonad.keyboard}";
-              config = import ./modules/keyboard.nix quasar;
+              config = (import ./modules/keyboard.nix quasar).kbd;
             };
           };
         }

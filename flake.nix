@@ -200,6 +200,9 @@
                 enabled = true;
               };
             };
+            kmonad = {
+              enabled = false;
+            };
             audio = {
               jack = false;
             };
