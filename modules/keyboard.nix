@@ -8,7 +8,6 @@ quasar: {
     )
 
     (deflayer qwerty
-      # swap caps and esc
       caps  esc
       esc   caps
     )'';
