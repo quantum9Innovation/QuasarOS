@@ -73,6 +73,7 @@ quasar: utils: _upstream: hyprscroller-src: pack:
         # messaging apps
         signal-desktop-bin
         altus
+        fractal
 
         # ricing
         swww
