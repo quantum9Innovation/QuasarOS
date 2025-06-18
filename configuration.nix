@@ -134,6 +134,7 @@
           settings = {
             main = {
               capslock = "esc";
+              esc = "capslock";
             };
           };
         };
