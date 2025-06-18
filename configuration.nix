@@ -126,6 +126,21 @@
     # since Hyprland uses the more modern Wayland
     xserver.enable = false;
 
+    keyd = {
+      enable = true;
+      keyboards = {
+        default = {
+          ids = [ "*" ];
+          settings = {
+            main = {
+              capslock = "esc";
+              esc = "capslock";
+            };
+          };
+        };
+      };
+    };
+
     # Enable SDDM for login and lock management
     displayManager = {
       sddm = {
