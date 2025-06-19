@@ -229,6 +229,11 @@ in
     };
   };
 
+  # Cursor configuration
+  cursor = {
+    no_hardware_cursors = if quasar.graphics.nvidia.enabled then 1 else 2;
+  };
+
   # Meta keybinds
   binds = {
     movefocus_cycles_fullscreen = "false";
