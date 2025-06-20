@@ -347,6 +347,9 @@
     # Enable rtkit scheduler
     rtkit.enable = true;
 
+    # Auto unlock login keyring
+    pam.services.sddm.enableGnomeKeyring = true;
+
     # Polkit rules
     # Allow automatic timezone updates
     polkit.enable = true;
