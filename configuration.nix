@@ -126,6 +126,9 @@
     # since Hyprland uses the more modern Wayland
     xserver.enable = false;
 
+    # Enable dbus for talking to GNOME keyring
+    dbus.enable = true;
+
     keyd = {
       enable = true;
       keyboards = {
@@ -340,12 +343,19 @@
     # Explicitly enable Hyprland,
     # necessary for detection by system services, for auto login, e.g.
     hyprland.enable = true;
+
+    # Enable for communicating with GNOME keyring
+    nm-applet.enable = true;
   };
 
   # All security rules
   security = {
     # Enable rtkit scheduler
     rtkit.enable = true;
+
+    # Auto unlock login keyring
+    pam.services.sddm.enableGnomeKeyring = true;
+    pam.services.sddm-autologin.enableGnomeKeyring = true;
 
     # Polkit rules
     # Allow automatic timezone updates
