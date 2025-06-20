@@ -126,6 +126,9 @@
     # since Hyprland uses the more modern Wayland
     xserver.enable = false;
 
+    # Enable dbus for talking to GNOME keyring
+    dbus.enable = true;
+
     keyd = {
       enable = true;
       keyboards = {
