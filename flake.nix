@@ -132,7 +132,7 @@
             statix.enable = true;
             nixfmt-rfc-style.enable = true;
             ripsecrets.enable = true;
-            trufflehog.enable = true;
+            trufflehog.enable = false;
             shellcheck.enable = true;
             shfmt.enable = true;
             typos.enable = true;
