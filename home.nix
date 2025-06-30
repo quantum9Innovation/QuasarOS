@@ -42,8 +42,8 @@ quasar: utils: _upstream: hyprscroller-src: pack:
         zettlr
         fastfetch
         nemo
-        muffon
-        spotube
+        youtube-music
+        lollypop
         sleek-todo
 
         # archives
