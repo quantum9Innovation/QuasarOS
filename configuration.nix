@@ -69,11 +69,20 @@
     ];
   };
 
-  # Define your hostname
-  networking.hostName = quasar.hostname;
+  # Networking
+  networking = {
+    # Define your hostname
+    hostName = quasar.hostname;
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+    # Network manager
+    networkmanager = {
+      # Enable networking
+      enable = true;
+
+      # Wait for connection
+      wait-online.enable = true;
+    };
+  };
 
   # All hardware settings
   hardware = {
@@ -146,10 +155,9 @@
 
     # Enable SDDM for login and lock management
     displayManager = {
-      sddm = {
+      gdm = {
         enable = true;
-        wayland.enable = true;
-        package = pkgs.kdePackages.sddm;
+        wayland = true;
       };
       autoLogin.enable = quasar.autoLogin;
       autoLogin.user = if quasar.autoLogin then quasar.user else null;
@@ -225,8 +233,8 @@
       # Automatically update QuasarOS
       refresh = {
         description = "Automatically update QuasarOS";
-        after = [ "network-online.target" ];
-        requires = [ "network-online.target" ];
+        after = [ "NetworkManager-wait-online.service" ];
+        requires = [ "NetworkManager-wait-online.service" ];
         script = ''
           cd ${quasar.flake}
           ${pkgs.git}/bin/git config --global --add safe.directory ${quasar.flake}
@@ -354,8 +362,7 @@
     rtkit.enable = true;
 
     # Auto unlock login keyring
-    pam.services.sddm.enableGnomeKeyring = true;
-    pam.services.sddm-autologin.enableGnomeKeyring = true;
+    pam.services.gdm.enableGnomeKeyring = true;
 
     # Polkit rules
     # Allow automatic timezone updates
