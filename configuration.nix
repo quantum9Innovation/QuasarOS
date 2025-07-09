@@ -74,14 +74,8 @@
     # Define your hostname
     hostName = quasar.hostname;
 
-    # Network manager
-    networkmanager = {
-      # Enable networking
-      enable = true;
-
-      # Wait for connection
-      wait-online.enable = true;
-    };
+    # Enable networking
+    networkmanager.enable = true;
   };
 
   # All hardware settings
