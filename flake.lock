@@ -585,8 +585,7 @@
         "type": "github"
       },
       "original": {
-        "owner": "quantum9innovation",
-        "ref": "unique-to-shared-pointers",
+        "owner": "cpiber",
         "repo": "hyprscroller",
         "type": "github"
       }
