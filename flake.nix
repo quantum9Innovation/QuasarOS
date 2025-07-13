@@ -86,7 +86,7 @@
 
     # Add maintained hyprscroller instance
     hyprscroller-src = {
-      url = "github:cpiber/hyprscroller";
+      url = "github:quantum9innovation/hyprscroller/unique-to-shared-pointers";
       flake = false;
     };
   };
