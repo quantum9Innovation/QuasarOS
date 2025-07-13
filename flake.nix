@@ -36,7 +36,7 @@
     # to configure all installed applications
     # in order to ensure complete reproducibility.
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:awwpotato/home-manager/9a0683a385c5422da91c11957f4b73c09a924821";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
