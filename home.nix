@@ -1,4 +1,4 @@
-quasar: utils: _upstream: hyprscroller-src: pack:
+quasar: utils: _upstream: hyprland: hyprscroller: pack:
 {
   pkgs,
   config,
@@ -106,23 +106,18 @@ quasar: utils: _upstream: hyprscroller-src: pack:
   };
 
   # Hyprland user config
-  wayland.windowManager.hyprland =
-    let
-      hyprscroller = pkgs.callPackage ./pkgs/vendored/hyprscroller.nix {
-        src = hyprscroller-src;
-        version = builtins.toString hyprscroller-src.lastModified;
-      };
-    in
-    {
-      enable = true;
-      plugins = [ hyprscroller ];
-      settings = import ./modules/hyprland.nix (
-        quasar
-        // {
-          inherit config lib;
-        }
-      ) utils;
-    };
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = hyprland.packages.${quasar.system}.hyprland;
+    portalPackage = hyprland.packages.${quasar.system}.xdg-desktop-portal-hyprland;
+    plugins = [ hyprscroller.packages.${quasar.system}.hyprscroller ];
+    settings = import ./modules/hyprland.nix (
+      quasar
+      // {
+        inherit config lib;
+      }
+    ) utils;
+  };
 
   # All services
   services = {
