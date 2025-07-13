@@ -291,15 +291,16 @@
     "hyprscroller-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1752330619,
-        "narHash": "sha256-UhLPX6G+iL3eYCKoe58zOl7oi3691RFtH7Mky4vFbfY=",
-        "owner": "cpiber",
+        "lastModified": 1752444258,
+        "narHash": "sha256-T0o6EJ2Pv1n0hXxxLt4nn9tVnk+yAgC/Z6Q39ANG6M0=",
+        "owner": "quantum9innovation",
         "repo": "hyprscroller",
-        "rev": "87296f274df085885dc49ac954bc0067536aa84b",
+        "rev": "c651c5e8669866d0bde68c05ed235e08d012dcad",
         "type": "github"
       },
       "original": {
-        "owner": "cpiber",
+        "owner": "quantum9innovation",
+        "ref": "unique-to-shared-pointers",
         "repo": "hyprscroller",
         "type": "github"
       }
