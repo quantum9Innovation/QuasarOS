@@ -152,6 +152,16 @@ in
     "$mod, X, resizewindow"
   ];
 
+  # Switches (turn off laptop screen on lid close)
+  bindl = [
+    ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${
+      builtins.elemAt (builtins.split "," (builtins.elemAt hyprland.monitors 0)) 0
+    }, disable\""
+    ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${
+      builtins.elemAt (builtins.split "," (builtins.elemAt hyprland.monitors 0)) 0
+    }, enable\""
+  ];
+
   # Window rules
   layerrule = [ ];
   windowrulev2 = [

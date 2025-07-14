@@ -155,6 +155,10 @@
       autoLogin.user = if quasar.autoLogin then quasar.user else null;
     };
 
+    # Lid switch actions
+    logind.lidSwitch = "suspend";
+    logind.lidSwitchDocked = "ignore";
+
     # Enable CUPS to print documents
     printing.enable = false;
 
