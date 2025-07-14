@@ -37,6 +37,7 @@ in
   bind = [
     # Application keybinds
     "$mod, ${hypr "browserKey" "B"}, exec, ${hypr "browser" "zen"}"
+    "$mod, ${hypr "commKey" "M"}, exec, ${hypr "comms" "fractal"}"
     "$mod, ${hypr "termKey" "Q"}, exec, ${hypr "term" "kitty"}"
     "$mod, ${hypr "fileKey" "E"}, exec, ${hypr "file" "nemo"}"
     # "$mod, ${hypr "mailKey" "U"}, exec, ${hypr "mail" "betterbird"}"
