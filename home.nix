@@ -166,6 +166,10 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
             timeout = 1800;
             on-timeout = "systemctl suspend";
           }
+          {
+            on-lid-close = "echo 'no naps allowed'";
+            on-lid-open = "hyprctl dispatch dpms on";
+          }
         ];
       };
     };
