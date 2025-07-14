@@ -84,10 +84,16 @@
     # Enable pre-commit hooks on this repository
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
 
-    # Add maintained hyprscroller instance
-    hyprscroller-src = {
-      url = "github:quantum9innovation/hyprscroller/unique-to-shared-pointers";
-      flake = false;
+    # Use latest Hyprland version
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Use latest Hyprscroller plugin
+    hyprscroller = {
+      url = "github:cpiber/hyprscroller";
+      inputs.hyprland.follows = "hyprland";
     };
   };
 
@@ -101,7 +107,8 @@
       # betterbird,
       lanzaboote,
       stylix,
-      hyprscroller-src,
+      hyprland,
+      hyprscroller,
       ...
     }@inputs:
     let
@@ -245,7 +252,7 @@
                       ];
                     in
                     [
-                      (import ./home.nix quasar utils upstream hyprscroller-src pack)
+                      (import ./home.nix quasar utils upstream hyprland hyprscroller pack)
                     ]
                     ++ quasar.homeOverrides;
                 };
