@@ -156,7 +156,7 @@
     };
 
     # Lid switch actions
-    logind.lidSwitch = "suspend";
+    logind.lidSwitch = "ignore";
     logind.lidSwitchDocked = "ignore";
 
     # Enable CUPS to print documents
