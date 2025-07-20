@@ -159,7 +159,7 @@ in
     }, disable\""
     ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${
       builtins.elemAt (builtins.split "," (builtins.elemAt hyprland.monitors 0)) 0
-    }, preferred, auto, 1\""
+    }, preferred, auto, 1\"; hyprctl reload;"
   ];
 
   # Window rules
