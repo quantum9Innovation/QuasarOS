@@ -263,6 +263,11 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
       extraConfig = {
         init.defaultBranch = "main";
         credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
+
+        # signing
+        commit.gpgsign = quasar.git.signing.enabled;
+        gpg.format = "ssh";
+        user.signingkey = if quasar.git.signing.enabled then quasar.git.signing.key else null;
       };
     };
 
