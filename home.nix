@@ -117,7 +117,7 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
       // {
         inherit config lib;
       }
-    ) utils pkgs.wlr-randr;
+    ) utils "${pkgs.wlr-randr}/bin/wlr-randr";
   };
 
   # All services
