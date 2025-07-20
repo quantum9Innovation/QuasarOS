@@ -32,10 +32,7 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
     homeDirectory = "/home/${quasar.user}";
 
     file.".ssh/allowed_signers".text =
-      if quasar.git.signing.enabled then
-        "* ${builtins.readFile "~/.ssh/${quasar.git.signing.key}"}"
-      else
-        "";
+      if quasar.git.signing.enabled then "* ${builtins.readFile "${quasar.git.signing.key}"}" else "";
 
     # Packages that should be installed to the user profile
     packages =
