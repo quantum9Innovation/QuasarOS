@@ -65,6 +65,7 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
         wlogout
         hyprland-qtutils
         wl-clipboard
+        wlr-randr
         rofi-wayland
         hyprshot
         clipse
@@ -116,7 +117,7 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
       // {
         inherit config lib;
       }
-    ) utils;
+    ) utils pkgs.wlr-randr;
   };
 
   # All services

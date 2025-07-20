@@ -1,4 +1,4 @@
-quasar: utils:
+quasar: utils: wlr:
 let
   inherit (quasar) hyprland;
   hypr = attr: fallback: utils.default hyprland attr fallback;
@@ -153,14 +153,19 @@ in
   ];
 
   # Switches (turn off laptop screen on lid close)
-  bindl = [
-    ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${
-      builtins.elemAt (builtins.split "," (builtins.elemAt hyprland.monitors 0)) 0
-    }, disable\""
-    ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${
-      builtins.elemAt (builtins.split "," (builtins.elemAt hyprland.monitors 0)) 0
-    }, preferred, auto, 1\"; hyprctl reload;"
-  ];
+  bindl =
+    let
+      screen_off = "hyprctl keyword monitor \"${
+        builtins.elemAt (builtins.split "," (builtins.elemAt hyprland.monitors 0)) 0
+      }, disable\"";
+      sleep = "systemctl suspend";
+    in
+    [
+      ", switch:on:Lid Switch, exec, ${(import ./docked.nix wlr screen_off sleep).script}"
+      ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${
+        builtins.elemAt (builtins.split "," (builtins.elemAt hyprland.monitors 0)) 0
+      }, preferred, auto, 1\"; hyprctl reload;"
+    ];
 
   # Window rules
   layerrule = [ ];
