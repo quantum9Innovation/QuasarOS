@@ -157,7 +157,9 @@ in
     ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${
       builtins.elemAt (builtins.split "," (builtins.elemAt hyprland.monitors 0)) 0
     }, disable\""
-    ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${builtins.elemAt hyprland.monitors 0}\""
+    ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${
+      builtins.elemAt (builtins.split "," (builtins.elemAt hyprland.monitors 0)) 0
+    }, preferred, auto, 1\""
   ];
 
   # Window rules
