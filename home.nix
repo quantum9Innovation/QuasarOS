@@ -31,6 +31,12 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
     username = quasar.user;
     homeDirectory = "/home/${quasar.user}";
 
+    file.".ssh/allowed_signers".text =
+      if quasar.git.signing.enabled then
+        "* ${builtins.readFile "~/.ssh/${quasar.git.signing.key}"}"
+      else
+        "";
+
     # Packages that should be installed to the user profile
     packages =
       with pkgs;
@@ -267,6 +273,7 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
         # signing
         commit.gpgsign = quasar.git.signing.enabled;
         gpg.format = "ssh";
+        gpg.ssh.allowedSignersFile = if quasar.git.signing.enabled then "~/.ssh/allowed_signers" else null;
         user.signingkey = if quasar.git.signing.enabled then quasar.git.signing.key else null;
       };
     };
