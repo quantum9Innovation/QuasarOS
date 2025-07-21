@@ -125,6 +125,12 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
     # Enable GNOME keyring
     gnome-keyring.enable = true;
 
+    # Enable GnuPG agent
+    gpg-agent = {
+      enable = true;
+      enableSshSupport = quasar.ssh.enabled;
+    };
+
     # Icon theming
     dunst = {
       enable = true;
