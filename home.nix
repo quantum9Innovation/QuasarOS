@@ -260,6 +260,14 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
       useTheme = "bubblesline";
     };
 
+    # GPG agent config
+    gpg = {
+      enable = true;
+      settings = {
+        use-agent = "";
+      };
+    };
+
     # Essential git config
     git = {
       enable = true;
