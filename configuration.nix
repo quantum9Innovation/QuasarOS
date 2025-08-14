@@ -30,7 +30,8 @@
   imports = [
     # Include the results of the hardware scan
     quasar.hardware
-  ] ++ quasar.overrides;
+  ]
+  ++ quasar.overrides;
 
   # Bootup
   boot = {
