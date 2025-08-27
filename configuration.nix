@@ -158,8 +158,10 @@
 
     # Always ignore lid switch because logind cannot detect if docked
     # Instead, we use a custom utility for power management (see `modules/hyprland.nix`)
-    logind.lidSwitch = "ignore";
-    logind.lidSwitchDocked = "ignore";
+    logind.settings.Login = {
+      HandleLidSwitch = "ignore";
+      HandleLidSwitchDocked = "ignore";
+    };
 
     # Enable CUPS to print documents
     printing.enable = false;
