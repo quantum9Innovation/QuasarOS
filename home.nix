@@ -499,9 +499,9 @@ quasar: utils: _upstream: hyprland: hyprscroller: pack:
     configFile = {
       "Kvantum/kvantum.kvconfig".text = ''
         [General]
-        theme=GraphiteNordDark
+        theme=Materia
       '';
-      "Kvantum/GraphiteNord".source = "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
+      "Kvantum/Materia".source = "${pkgs.materia-kde-theme}/share/Kvantum/Materia";
     };
 
     # Add desktop entries for missing programs
