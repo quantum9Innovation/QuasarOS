@@ -454,6 +454,7 @@
             "libcusolver"
             "libnvjitlink"
             "libcusparse"
+            "cudnn"
           ]
         else
           [ ]
