@@ -130,6 +130,15 @@
     # Enable dbus for talking to GNOME keyring
     dbus.enable = true;
 
+    # CPU power consumption
+    tlp = {
+      enable = true;
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_AC = "powersave";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      };
+    };
+
     keyd = {
       enable = true;
       keyboards = {
