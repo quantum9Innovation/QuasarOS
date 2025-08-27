@@ -84,9 +84,9 @@
     # Enable pre-commit hooks on this repository
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
 
-    # Use latest Hyprland version
+    # Use latest Hyprland version, but not unstable upstream
     hyprland = {
-      url = "github:hyprwm/hyprland";
+      url = "github:hyprwm/hyprland/v0.50.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
