@@ -244,11 +244,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757650110,
-        "narHash": "sha256-p4Gw1ERySLZdDLLzLGP8qMbhhZ6qQgT64BCaI25G754=",
+        "lastModified": 1757822914,
+        "narHash": "sha256-h8yq/2YGrZkk2DbxRMNdTI7RamQ7R/bDSlBgg/3wRoY=",
         "owner": "youwen5",
         "repo": "gitbutler-flake",
-        "rev": "c39abdcef13ce867d7f5b1c76b8c298d6a55d940",
+        "rev": "ded090f6682259c1a28465674b64587dba2a6860",
         "type": "github"
       },
       "original": {
@@ -701,11 +701,11 @@
     },
     "nixpkgs-upstream": {
       "locked": {
-        "lastModified": 1757752761,
-        "narHash": "sha256-HBM2YTKSegLZjdamfqH9KADj2zQBQBNQHmwdrYkatpg=",
+        "lastModified": 1757839328,
+        "narHash": "sha256-1pHXwkoGSVVlux+4ryyxsm/D6jmYnqBqekPZlN6mVyg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4b46c744cbd5f9336027dff287e74ead84d80041",
+        "rev": "a870b7409045459d9a4011ddd6a42acbb2faed9c",
         "type": "github"
       },
       "original": {
